@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { slants, eventRanges } from '@/requests';
+import { slants, eventRanges, getArticles } from '@/requests';
 
 Vue.use(Vuex);
 
@@ -17,7 +17,12 @@ export default new Vuex.Store({
     currentArticleId: 0,
     currentNewshouse: '',
     currentSentiment: 0,
-    currentEvent: {},
+    currentNewsEvent: {
+      count: null,
+      next: null,
+      previous: null,
+      results: [],
+    },
   },
   mutations: {
     SET_HEADER_STATE(state, newHeaderState) {
@@ -41,11 +46,20 @@ export default new Vuex.Store({
     SET_CURRENT_SENTIMENT(state, newCurrentSentiment) {
       state.currentSentiment = newCurrentSentiment;
     },
-    SET_CURRENT_EVENT(state, newCurrentEvent) {
-      state.currentEvent = newCurrentEvent;
+    SET_CURRENT_NEWS_EVENT(state, newCurrentEvent) {
+      state.currentNewsEvent = newCurrentEvent;
     },
   },
   actions: {
-
+    async updateArticleById({ commit, state }, {eventId, articleId }) {
+      if (state.currentNewsEvent.results.length === 0) {
+        state.currentNewsEvent = await getArticles(eventId);
+      }
+      const theArticle = state.currentNewsEvent.results.find(article => article.id === parseInt(articleId));
+      commit('SET_CURRENT_ARTICLE_URL', theArticle.url);
+      commit('SET_CURRENT_ARTICLE_ID', theArticle.id);
+      commit('SET_CURRENT_NEWSHOUSE', theArticle.medium.title);
+      commit('SET_CURRENT_SENTIMENT', theArticle.sentiment);
+    },
   },
 });

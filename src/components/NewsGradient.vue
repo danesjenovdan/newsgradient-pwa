@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 @Component({
   computed: {
@@ -31,15 +31,17 @@ import { mapState, mapMutations } from 'vuex';
       'currentArticleId',
       'currentNewshouse',
       'currentSentiment',
-      'currentEvent',
+      'currentNewsEvent',
     ]),
 
     minSentiment() {
-      return this.currentEvent.sort((a, b) => a.sentiment - b.sentiment)[0].sentiment;
+      const sortedNewsEvent = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
+      return sortedNewsEvent.length > 0 ? sortedNewsEvent[0].sentiment : 0;
     },
 
     maxSentiment() {
-      return this.currentEvent.sort((a, b) => b.sentiment - a.sentiment)[0].sentiment;
+      const sortedNewsEvent = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
+      return sortedNewsEvent.length > 0 ? sortedNewsEvent[0].sentiment : 0;
     },
 
     gradientMarkerLeft() {
@@ -52,55 +54,37 @@ import { mapState, mapMutations } from 'vuex';
   },
 
   methods: {
-    ...mapMutations([
-      'SET_CURRENT_ARTICLE_URL',
-      'SET_CURRENT_ARTICLE_ID',
-      'SET_CURRENT_NEWSHOUSE',
-      'SET_CURRENT_SENTIMENT',
+    ...mapActions([
+      'updateArticleById',
     ]),
 
-    findWithAttr(array, attr, value) {
-      for(var i = 0; i < array.length; i += 1) {
-          if(array[i][attr] === value) {
-              return i;
-          }
-      }
-      return -1;
-    },
-
     stepNegative() {
-      const sortedArticles = this.currentEvent.sort((a, b) => a.sentiment - b.sentiment);
-      console.log(sortedArticles[0]);
-      const currentArticleIndex = this.findWithAttr(sortedArticles, 'id', this.currentArticleId);
+      const sortedArticles = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
+      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find(article => article.id === this.currentArticleId));
+
       if (currentArticleIndex > 0) {
-        const newArticle = sortedArticles[currentArticleIndex - 1];
-        this.SET_CURRENT_ARTICLE_URL(newArticle.url);
-        this.SET_CURRENT_ARTICLE_ID(newArticle.id);
-        this.SET_CURRENT_NEWSHOUSE(newArticle.medium.title);
-        this.SET_CURRENT_SENTIMENT(newArticle.sentiment);
-        this.$router.push(`/article/${newArticle.id}`)
+        const newArticleId = sortedArticles[currentArticleIndex - 1].id
+        this.updateArticleById({
+          eventId: this.$route.params.eventId,
+          articleId: newArticleId,
+        });
+        this.$router.push(`/article/${this.$route.params.eventId}/${newArticleId}`)
       } else {
         alert('This is the most negative article about this event.');
-      }
-
-      console.log('LOGGING SENTIMENT');
-      console.log(sortedArticles.length);
-      for (let articleId in sortedArticles) {
-        console.log(sortedArticles[articleId].sentiment);
       }
     },
 
     stepPositive() {
-      const sortedArticles = this.currentEvent.sort((a, b) => b.sentiment - a.sentiment);
-      console.log(sortedArticles[0]);
-      const currentArticleIndex = this.findWithAttr(sortedArticles, 'id', this.currentArticleId);
+      const sortedArticles = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
+      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find(article => article.id === this.currentArticleId));
+
       if (currentArticleIndex > 0) {
-        const newArticle = sortedArticles[currentArticleIndex - 1];
-        this.SET_CURRENT_ARTICLE_URL(newArticle.url);
-        this.SET_CURRENT_ARTICLE_ID(newArticle.id);
-        this.SET_CURRENT_NEWSHOUSE(newArticle.medium.title);
-        this.SET_CURRENT_SENTIMENT(newArticle.sentiment);
-        this.$router.push(`/article/${newArticle.id}`)
+        const newArticleId = sortedArticles[currentArticleIndex - 1].id
+        this.updateArticleById({
+          eventId: this.$route.params.eventId,
+          articleId: newArticleId,
+        });
+        this.$router.push(`/article/${this.$route.params.eventId}/${newArticleId}`)
       } else {
         alert('This is the most positive article about this event.');
       }
