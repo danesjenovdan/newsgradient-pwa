@@ -78,6 +78,7 @@ import { mapState, mapMutations } from 'vuex';
         this.SET_CURRENT_ARTICLE_ID(newArticle.id);
         this.SET_CURRENT_NEWSHOUSE(newArticle.medium.title);
         this.SET_CURRENT_SENTIMENT(newArticle.sentiment);
+        this.$router.push(`/article/${newArticle.id}`)
       } else {
         alert('This is the most negative article about this event.');
       }
@@ -99,6 +100,7 @@ import { mapState, mapMutations } from 'vuex';
         this.SET_CURRENT_ARTICLE_ID(newArticle.id);
         this.SET_CURRENT_NEWSHOUSE(newArticle.medium.title);
         this.SET_CURRENT_SENTIMENT(newArticle.sentiment);
+        this.$router.push(`/article/${newArticle.id}`)
       } else {
         alert('This is the most positive article about this event.');
       }

@@ -58,7 +58,7 @@ import { mapState, mapMutations } from 'vuex';
       this.SET_CURRENT_NEWSHOUSE(article.medium.title);
       this.SET_CURRENT_SENTIMENT(article.sentiment);
       this.SET_CURRENT_EVENT(articles.results);
-      this.$router.push('/article');
+      this.$router.push(`/article/${article.id}`);
     },
   },
 
