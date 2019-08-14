@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import NgHeader from '@/components/NgHeader.vue';
 import NewsGradient from '@/components/NewsGradient.vue';
 import NgEmbed from '@/components/NgEmbed.vue';
@@ -26,6 +26,19 @@ import NgEmbed from '@/components/NgEmbed.vue';
     ...mapState([
       'currentArticleUrl'
     ]),
+  },
+
+  methods: {
+    ...mapActions([
+      'updateArticleById',
+    ]),
+  },
+
+  created() {
+    this.updateArticleById({
+      eventId: this.$route.params.eventId,
+      articleId: this.$route.params.articleId,
+    });;
   },
 })
 
