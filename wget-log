@@ -1,0 +1,10 @@
+--2019-08-14 13:48:57--  http://192.168.160.207:8080/v1/events/?range=today
+Povezovanje na 192.168.160.207:8080 ... povezano.
+HTTP zahteva poslana, čakanje na odgovor ... 200 OK
+Dolžina: 52 [application/json]
+Shranjevanje v: `index.html?range=today'
+
+index.html?range=today                                                0%[                                                                                                                                                                   ]       0  --.-KB/s               index.html?range=today                                              100%[==================================================================================================================================================================>]      52  --.-KB/s    in 0s      
+
+2019-08-14 13:48:57 (1,99 MB/s) - `index.html?range=today' shranjeno [52/52]
+
