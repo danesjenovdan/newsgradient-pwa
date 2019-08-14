@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseApiUrl = 'http://localhost:8081/v1';
+const baseApiUrl = 'http://api.ng.djnd.si/v1';
 let axiosInstance = axios.create({ baseURL: baseApiUrl });
 
 export const eventRanges = {
