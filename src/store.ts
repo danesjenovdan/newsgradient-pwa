@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { slants, eventRanges, getArticles } from '@/requests';
+import { eventRanges, getArticles } from '@/requests';
 
 Vue.use(Vuex);
 
@@ -11,9 +11,8 @@ export const hState = Object.freeze({
 export default new Vuex.Store({
   state: {
     headerState: hState.home,
-    currentSlant: slants.all,
-    currentEventRange: eventRanges.lastWeek,
-    currentArticleUrl: '',
+    currentEventRange: eventRanges.yesterday,
+    currentArticle: {},
     currentArticleId: 0,
     currentNewshouse: '',
     currentSentiment: 0,
@@ -28,14 +27,11 @@ export default new Vuex.Store({
     SET_HEADER_STATE(state, newHeaderState) {
       state.headerState = newHeaderState;
     },
-    SET_CURRENT_SLANT(state, newCurrentSlant) {
-      state.currentSlant = newCurrentSlant;
-    },
     SET_CURRENT_EVENT_RANGE(state, newCurrentEventRange) {
       state.currentEventRange = newCurrentEventRange;
     },
-    SET_CURRENT_ARTICLE_URL(state, newCurrentArticleUrl) {
-      state.currentArticleUrl = newCurrentArticleUrl;
+    SET_CURRENT_ARTICLE(state, newCurrentArticle) {
+      state.currentArticle = newCurrentArticle;
     },
     SET_CURRENT_ARTICLE_ID(state, newCurrentArticleId) {
       state.currentArticleId = newCurrentArticleId;
@@ -56,8 +52,8 @@ export default new Vuex.Store({
         state.currentNewsEvent = await getArticles(eventId);
       }
       const theArticle = state.currentNewsEvent.results.find(article => article.id === parseInt(articleId));
-      commit('SET_CURRENT_ARTICLE_URL', theArticle.url);
       commit('SET_CURRENT_ARTICLE_ID', theArticle.id);
+      commit('SET_CURRENT_ARTICLE', theArticle);
       commit('SET_CURRENT_NEWSHOUSE', theArticle.medium.title);
       commit('SET_CURRENT_SENTIMENT', theArticle.sentiment);
     },
