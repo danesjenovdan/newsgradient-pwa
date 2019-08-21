@@ -1,30 +1,27 @@
 <template>
-  <div id="home">
+  <div id="event">
     <ng-header />
-    <ng-sub-header />
-    <ng-list />
+    <event-list />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import NgHeader from '@/components/NgHeader.vue';
-import NgSubHeader from '@/components/NgSubHeader.vue';
-import NgList from '@/components/NgList.vue';
+import EventList from '@/components/EventList.vue';
 
 @Component({
   components: {
     NgHeader,
-    NgSubHeader,
-    NgList,
+    EventList,
   },
 })
 
-export default class Listing extends Vue {}
+export default class Event extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-#home {
+#event {
   width: 100%;
 }
 </style>

@@ -34,6 +34,8 @@ export default class NgHeader extends Vue {
   top: 0;
   left: 0;
 
+  z-index: 2;
+
   #back-to-listing {
     text-transform: none;
     display: block;

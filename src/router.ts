@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Listing from './views/Listing.vue';
 import Article from './views/Article.vue';
+import Event from './views/Event.vue';
 
 Vue.use(Router);
 
@@ -27,5 +28,10 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
+    {
+      path: '/event/:eventId/:articleId',
+      name: 'event',
+      component: Event,
+    }
   ],
 });

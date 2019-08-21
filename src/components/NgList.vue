@@ -6,16 +6,18 @@
       class="event"
       @click="openRandomArticle(event.id)"
     >
+      <img :src="event.image || 'http://placekitten.com/400/250'" />
       <h3>{{ event.title }}</h3>
-      <p>{{ event.summary }}...</p>
-      <p>Number of articles: {{ event.counter.total }}</p>
+      <p class="article-counter">{{ event.count }} articles</p>
+      <p class="article-timestamp">{{ getRelativeTime(event.computed_time) }}</p>
     </a>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { eventRanges, slants, getEvents, getArticles } from '../requests';
+import { DateTime } from 'luxon';
+import { eventRanges, getEvents, getArticles } from '../requests';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 @Component({
@@ -29,8 +31,8 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 
   computed: {
     ...mapState([
-      'currentSlant',
       'currentEventRange',
+      'currentNewsEvent',
     ]),
   },
 
@@ -45,8 +47,12 @@ import { mapState, mapMutations, mapActions } from 'vuex';
     ...mapActions([
       'updateArticleById',
     ]),
+    getRelativeTime(timestamp) {
+      return DateTime.fromISO(timestamp).toRelative();
+    },
     async refreshEvents() {
-      const data = await getEvents(this.currentEventRange, this.currentSlant);
+      const data = await getEvents(this.currentEventRange);
+      console.log(data);
       this.events = data.results;
     },
     async openRandomArticle(eventId) {
@@ -54,21 +60,15 @@ import { mapState, mapMutations, mapActions } from 'vuex';
       this.SET_CURRENT_NEWS_EVENT(event);
       const article = event.results[Math.floor(Math.random() * event.results.length)];
       this.updateArticleById({
-          eventId: eventId,
-          articleId: article.id,
-        });;
-      this.$router.push(`/article/${eventId}/${article.id}`);
+        eventId: eventId,
+        articleId: article.id,
+      });
+      this.$router.push(`/event/${eventId}/${article.id}`);
     },
   },
-
-  watch: {
-    currentSlant(newSlant) {
-      this.refreshEvents();
-    }
-  }
 })
 
-export default class NgList extends Vue {}
+export default class NgList extends Vue {};
 </script>
 
 <style lang="scss" scoped>
@@ -79,7 +79,36 @@ export default class NgList extends Vue {}
     display: block;
     text-decoration: none;
     border: 1px solid #000000;
-    margin-bottom: 3px;
+    margin: 5px 10px;
+    position: relative;
+    padding-bottom: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    h3 {
+      padding: 5px;
+      margin: 0;
+    }
+
+    p {
+      font-size: 12px;
+      padding: 0 8px;
+      width: calc(50% - 30px);
+      position: absolute;
+      bottom: 0;
+
+      &.article-counter {
+        text-align: left;
+        left: 0;
+      }
+      &.article-timestamp {
+        text-align: right;
+        right: 0;
+      }
+    }
   }
 }
 </style>
