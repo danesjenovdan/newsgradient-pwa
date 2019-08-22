@@ -30,7 +30,7 @@ export default class NgSubHeader extends Vue {}
 #subheader {
   width: 100%;
   position: fixed;
-  top: 30px;
+  top: 40px;
   left: 0;
   z-index: 2;
 

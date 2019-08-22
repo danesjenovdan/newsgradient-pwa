@@ -17,8 +17,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime } from 'luxon';
-import { eventRanges, getEvents, getArticles } from '../requests';
 import { mapState, mapMutations, mapActions } from 'vuex';
+import { eventRanges, getEvents, getArticles } from '../requests';
 
 @Component({
   components: {},
@@ -26,7 +26,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
   data() {
     return {
       events: [],
-    }
+    };
   },
 
   computed: {
