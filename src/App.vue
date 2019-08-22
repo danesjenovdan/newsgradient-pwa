@@ -1,18 +1,28 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Averia+Sans+Libre:400,700&display=swap');
+html {
+  box-sizing: border-box;
+}
 
-html, body {
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
   padding: 0;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
 #app {
-  padding-top: 60px; //to offset headers
+  padding-top: 79px; // to offset headers
 }
 </style>

@@ -14,6 +14,7 @@ export const getEvents = (eventRange: string) => axiosInstance
   .get('/events/', {
     params: {
       range: eventRange,
+      is_hidden: false,
     },
   }).then(response => response.data)
   .catch((error) => { throw error });

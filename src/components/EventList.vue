@@ -72,7 +72,7 @@ import { mapState, mapActions } from 'vuex';
         });
         this.$router.push(`/event/${this.$route.params.eventId}/${newArticleId}`)
       } else {
-        alert('This is the most negative article about this event.');
+        alert(`his is the most ${direction} article about this event.`);
       }
     },
     updateArticleStatement(newCurrentArticle) {
