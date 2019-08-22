@@ -5,6 +5,14 @@
 </template>
 
 <style lang="scss">
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
   padding: 0;
@@ -15,6 +23,6 @@ body {
 }
 
 #app {
-  padding-top: 70px; // to offset headers
+  padding-top: 79px; // to offset headers
 }
 </style>

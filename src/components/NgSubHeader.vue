@@ -8,24 +8,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { mapState, mapMutations } from "vuex";
+import { Component, Vue } from 'vue-property-decorator';
+import { mapState, mapMutations } from 'vuex';
 
 @Component({
   computed: {
-    ...mapState(["currentSlant"])
+    ...mapState(['currentSlant']),
   },
 
   methods: {},
 
   data() {
     return {};
-  }
+  },
 })
 export default class NgSubHeader extends Vue {}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 #subheader {
   width: 100%;
@@ -33,8 +32,8 @@ export default class NgSubHeader extends Vue {}
   top: 40px;
   left: 0;
   z-index: 2;
-
-  background-color: #ffffff;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
 
   p {
     padding: 5px 50px;

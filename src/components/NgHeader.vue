@@ -21,7 +21,7 @@ export default class NgHeader extends Vue {}
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  height: 39px;
+  height: 40px;
   color: transparent;
   line-height: 40px;
   font-weight: 700;
