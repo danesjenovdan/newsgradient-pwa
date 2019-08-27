@@ -51,6 +51,7 @@ export default class NgHeader extends Vue {}
     background-image: url('../assets/arrow-left.svg');
     background-repeat: no-repeat;
     background-position: left center;
+    background-size: 1rem 1rem;
   }
 }
 </style>
