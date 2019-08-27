@@ -138,8 +138,9 @@ export default class EventList extends Vue {};
     .article-title {
       text-align: center;
       font-weight: 500;
+      margin: 0.5rem 0;
       padding: 0 1rem;
-      min-height: 50px;
+      min-height: 75px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -163,6 +164,7 @@ export default class EventList extends Vue {};
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: #e8e8e8;
     }
 
     .article-image {
@@ -202,7 +204,7 @@ export default class EventList extends Vue {};
 
     .arrow {
       position: absolute;
-      top: 180px;
+      top: 185px;
       cursor: pointer;
       background-color: #fff;
       border-radius: 50%;

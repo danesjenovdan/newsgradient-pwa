@@ -47,7 +47,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async updateArticleById({ commit, state }, {eventId, articleId }) {
+    async updateArticleById({ commit, state }, { eventId, articleId }) {
       if (state.currentNewsEvent.results.length === 0) {
         state.currentNewsEvent = await getArticles(eventId);
       }
