@@ -98,7 +98,7 @@ export default class NgList extends Vue {};
     .ratio {
       position: relative;
       height: 0;
-      padding-top: 60%;
+      padding-top: 70%;
 
       .ratio-item {
         position: absolute;
@@ -111,7 +111,7 @@ export default class NgList extends Vue {};
 
     .bg-image {
       background-repeat: no-repeat;
-      background-position: bottom 25% center;
+      background-position: bottom 15% center;
       background-size: cover;
       // filter: grayscale(100%);
     }

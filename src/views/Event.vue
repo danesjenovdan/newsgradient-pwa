@@ -16,7 +16,6 @@ import EventList from '@/components/EventList.vue';
     EventList,
   },
 })
-
 export default class Event extends Vue {}
 </script>
 
