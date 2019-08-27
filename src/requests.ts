@@ -13,8 +13,8 @@ export const eventRanges = {
 export const getEvents = (eventRange: string) => axiosInstance
   .get('/events/', {
     params: {
-      range: eventRange,
-      is_hidden: false,
+      // range: eventRange,
+      is_visible: true,
     },
   }).then(response => response.data)
   .catch((error) => { throw error });
