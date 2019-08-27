@@ -132,6 +132,8 @@ export default class EventList extends Vue {}
   #article-window {
     overflow: hidden;
     position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
 
     .article-title {
       text-align: center;
