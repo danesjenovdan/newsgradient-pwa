@@ -42,22 +42,21 @@
         class="arrow plus"
       ></div>
     </div>
+    <ng-slider @change="changeArticle" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { mapState, mapActions } from 'vuex';
+import debounce from 'lodash.debounce';
 import AnimatedLoader from './AnimatedLoader.vue';
+import NgSlider from '@/components/NgSlider.vue';
 
 @Component({
   components: {
     AnimatedLoader,
-  },
-
-  data() {
-    return {
-    };
+    NgSlider,
   },
 
   computed: {
@@ -71,14 +70,14 @@ import AnimatedLoader from './AnimatedLoader.vue';
       return this.currentNewsEvent.count;
     },
     sortedArticles() {
-      return this.currentNewsEvent.results.slice().sort((a, b) => a.sentiment - b.sentiment);
+      return this.currentNewsEvent.results.slice().sort((a, b) => a.sentimentRNN - b.sentimentRNN);
     },
     currentArticleIndex() {
       return this.sortedArticles.indexOf(this.currentArticle);
     },
     articleSlantStatement() {
       const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
-      const articleSlant = percentageMorePositive > 50 ? 'NEGATIVE' : 'POSITIVE';
+      const articleSlant = percentageMorePositive > 50 ? 'POSITIVE' : 'NEGATIVE';
       const percentage = percentageMorePositive > 50
         ? percentageMorePositive
         : 100 - percentageMorePositive;
@@ -91,10 +90,11 @@ import AnimatedLoader from './AnimatedLoader.vue';
       'updateArticleById',
     ]),
     nextArticle(direction) {
-      if (this.currentArticleIndex > 0 && this.currentArticleIndex < (this.sortedArticles.length - 1)) {
-        const newArticleIndex = direction === 'negative'
-          ? this.currentArticleIndex - 1
-          : this.currentArticleIndex + 1;
+      const newArticleIndex = direction === 'negative'
+        ? this.currentArticleIndex - 1
+        : this.currentArticleIndex + 1;
+
+      if (newArticleIndex >= 0 && newArticleIndex < this.sortedArticles.length) {
         const newArticleId = this.sortedArticles[newArticleIndex].id;
         this.updateArticleById({
           eventId: this.$route.params.eventId,
@@ -105,8 +105,15 @@ import AnimatedLoader from './AnimatedLoader.vue';
         alert(`This is the most ${direction} article about this event.`);
       }
     },
+    changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
+      const newArticleIndex = Math.floor(sliderValue / 100 * (this.sortedArticles.length - 1));
+      const newArticleId = this.sortedArticles[newArticleIndex].id;
+      this.updateArticleById({
+        eventId: this.$route.params.eventId,
+        articleId: newArticleId,
+      });
+    }, 0),
   },
-
   created() {
     this.updateArticleById({
       eventId: this.$route.params.eventId,
@@ -114,8 +121,7 @@ import AnimatedLoader from './AnimatedLoader.vue';
     });
   },
 })
-
-export default class EventList extends Vue {};
+export default class EventList extends Vue {}
 </script>
 
 <style lang="scss">
