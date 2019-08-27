@@ -57,8 +57,6 @@ import AnimatedLoader from './AnimatedLoader.vue';
 
   data() {
     return {
-      articleSlantStatement: '',
-      numberOfArticles: 0,
     };
   },
 
@@ -69,14 +67,22 @@ import AnimatedLoader from './AnimatedLoader.vue';
       'currentNewsEvent',
       'currentArticle',
     ]),
-  },
-
-  watch: {
-    currentNewsEvent(newCurrentNewsEvent) {
-      this.numberOfArticles = newCurrentNewsEvent.count;
+    numberOfArticles() {
+      return this.currentNewsEvent.count;
     },
-    currentArticle(newCurrentArticle) {
-      this.updateArticleStatement(newCurrentArticle);
+    sortedArticles() {
+      return this.currentNewsEvent.results.slice().sort((a, b) => a.sentiment - b.sentiment);
+    },
+    currentArticleIndex() {
+      return this.sortedArticles.indexOf(this.currentArticle);
+    },
+    articleSlantStatement() {
+      const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
+      const articleSlant = percentageMorePositive > 50 ? 'NEGATIVE' : 'POSITIVE';
+      const percentage = percentageMorePositive > 50
+        ? percentageMorePositive
+        : 100 - percentageMorePositive;
+      return `This article by ${this.currentNewshouse} is more ${articleSlant} than ${percentage.toFixed(2)}% of other coverage. Move the slider to see things from the other perspective.`;
     },
   },
 
@@ -85,31 +91,19 @@ import AnimatedLoader from './AnimatedLoader.vue';
       'updateArticleById',
     ]),
     nextArticle(direction) {
-      const sortedArticles = direction == 'negative' ?
-        this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment) :
-        this.currentNewsEvent.results.sort((b, a) => a.sentiment - b.sentiment);
-      const currentArticleIndex = sortedArticles.indexOf(this.currentArticle);//sortedArticles.find(article => article.id === this.currentArticleId));
-
-      if (currentArticleIndex > 0) {
-        const newArticleId = sortedArticles[currentArticleIndex - 1].id
+      if (this.currentArticleIndex > 0 && this.currentArticleIndex < (this.sortedArticles.length - 1)) {
+        const newArticleIndex = direction === 'negative'
+          ? this.currentArticleIndex - 1
+          : this.currentArticleIndex + 1;
+        const newArticleId = this.sortedArticles[newArticleIndex].id;
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
         });
-        this.$router.push(`/event/${this.$route.params.eventId}/${newArticleId}`)
+        this.$router.push(`/event/${this.$route.params.eventId}/${newArticleId}`);
       } else {
-        alert(`his is the most ${direction} article about this event.`);
+        alert(`This is the most ${direction} article about this event.`);
       }
-    },
-    updateArticleStatement(newCurrentArticle) {
-      const articleOrder = this.currentNewsEvent.results
-                            .sort((b, a) => a.sentiment - b.sentiment)
-                            .indexOf(newCurrentArticle) + 1;
-
-      const percentageMorePositive = (articleOrder / this.numberOfArticles * 100);
-      const articleSlant = percentageMorePositive > 50 ? 'NEGATIVE' : 'POSITIVE';
-      const percentage = percentageMorePositive > 50 ? percentageMorePositive : 100 - percentageMorePositive;
-      this.articleSlantStatement = `This article by ${this.currentNewshouse} is more ${articleSlant} than ${percentage.toFixed(2)}% of other coverage. Move the slider to see things from the other perspective.`
     },
   },
 
@@ -118,8 +112,6 @@ import AnimatedLoader from './AnimatedLoader.vue';
       eventId: this.$route.params.eventId,
       articleId: this.$route.params.articleId,
     });
-    this.numberOfArticles = this.currentNewsEvent.count;
-    this.updateArticleStatement(this.currentArticle);
   },
 })
 
