@@ -102,7 +102,6 @@ export default class NewsGradient extends Vue {
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  font-family: 'Averia Sans Libre', sans-serif;
   height: 30px;
   background-image: linear-gradient(to left, #f43b47 0%, #453a94 100%);
   color: #ffffff;

@@ -39,7 +39,6 @@ export default class NgSubHeader extends Vue {}
     padding: 5px 50px;
     margin: 0;
     text-align: center;
-    font-family: "Averia Sans Libre", sans-serif;
     font-size: 12px;
     line-height: 14px;
     color: #000000;
