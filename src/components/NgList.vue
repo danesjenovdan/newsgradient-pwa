@@ -13,7 +13,10 @@
         <div class="ratio-item">
           <div class="event-content">
             <div class="event-bg-gradient">
-              <h3 class="event-title">{{ event.title }}</h3>
+              <h3 class="event-title">
+                {{ event.title }}
+                <div class="title-arrow" />
+              </h3>
               <div class="event-data">
                 <div class="event-count">{{ event.count }} articles</div>
                 <div class="event-time">
@@ -157,11 +160,25 @@ export default class NgList extends Vue {};
 
         .event-title {
           margin: 0;
+          padding-right: 1.5rem;
           font-size: 1.5rem;
           font-weight: 700;
           line-height: 1.1;
           text-shadow: 0px 0px 10px rgba(#000, 0.75);
           color: #fff;
+          position: relative;
+
+          .title-arrow {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 17px;
+            height: 26px;
+            background-image: url('../assets/arrow-right-white.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 75%;
+          }
         }
 
         .event-data {
