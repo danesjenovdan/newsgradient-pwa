@@ -201,7 +201,7 @@ export default class EventList extends Vue {}
 
     .arrow {
       position: absolute;
-      top: 185px;
+      top: 183px;
       cursor: pointer;
       background-color: #fff;
       border-radius: 50%;
