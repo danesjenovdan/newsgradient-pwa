@@ -130,7 +130,6 @@ export default class EventList extends Vue {}
   #article-window {
     overflow: hidden;
     position: relative;
-    max-height: 80vh;
     overflow-y: auto;
 
     .article-title {
@@ -194,7 +193,7 @@ export default class EventList extends Vue {}
     .sentiment {
       background: #edbdd3;
       margin: 1.25rem 0 0 0;
-      padding: 0.5rem 1rem;
+      padding: 1rem;
       font-size: 0.75rem;
       line-height: 1.4;
       text-align: center;
