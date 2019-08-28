@@ -30,9 +30,7 @@
         class="read-more"
         target="_blank"
       >Read article</a>
-      <p class="sentiment">
-        {{ articleSlantStatement }}
-      </p>
+      <p class="sentiment" v-html="articleSlantStatement"></p>
       <div
         @click="nextArticle('negative')"
         class="arrow minus"
@@ -81,7 +79,7 @@ import NgSlider from '@/components/NgSlider.vue';
       const percentage = percentageMorePositive > 50
         ? percentageMorePositive
         : 100 - percentageMorePositive;
-      return `This article by ${this.currentNewshouse} is more ${articleSlant} than ${percentage.toFixed(2)}% of other coverage. Move the slider to see things from the other perspective.`;
+      return `This article by ${this.currentNewshouse} is <strong>more ${articleSlant} than ${percentage.toFixed(2)}%</strong> of other coverage. Move the slider to see things from the other perspective.`;
     },
   },
 
