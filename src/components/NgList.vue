@@ -13,7 +13,10 @@
         <div class="ratio-item">
           <div class="event-content">
             <div class="event-bg-gradient">
-              <h3 class="event-title">{{ event.title }}</h3>
+              <h3 class="event-title">
+                {{ event.title }}
+                <div class="title-arrow" />
+              </h3>
               <div class="event-data">
                 <div class="event-count">{{ event.count }} articles</div>
                 <div class="event-time">
@@ -113,6 +116,7 @@ export default class NgList extends Vue {};
       background-repeat: no-repeat;
       background-position: bottom 15% center;
       background-size: cover;
+      background-color: #e8e8e8;
       // filter: grayscale(100%);
     }
 
@@ -143,9 +147,9 @@ export default class NgList extends Vue {};
         padding: 1.25rem 1rem;
         background-image: linear-gradient(
           to bottom,
-          rgba(#fff, 0) 0%,
-          rgba(#fff, 0.35) 2rem,
-          rgba(#fff, 1) calc(100% - 2rem)
+          rgba(#000, 0) 0%,
+          rgba(#000, 0.35) 2rem,
+          rgba(#000, 1) calc(100% - 2rem)
         );
 
         .event-title,
@@ -156,10 +160,25 @@ export default class NgList extends Vue {};
 
         .event-title {
           margin: 0;
+          padding-right: 1.5rem;
           font-size: 1.5rem;
           font-weight: 700;
           line-height: 1.1;
-          text-shadow: 0px 0px 10px rgba(#fff, 0.75);
+          text-shadow: 0px 0px 10px rgba(#000, 0.75);
+          color: #fff;
+          position: relative;
+
+          .title-arrow {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 17px;
+            height: 26px;
+            background-image: url('../assets/arrow-right-white.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 75%;
+          }
         }
 
         .event-data {
@@ -170,13 +189,13 @@ export default class NgList extends Vue {};
 
           .event-count {
             font-size: 0.875rem;
-            color: #e60000;
+            color: #e64d6f;
             font-weight: 500;
           }
 
           .event-time {
             font-size: 0.65rem;
-            color: #07f;
+            color: #7e93ff;
             margin-left: 1rem;
             font-weight: 400;
             margin-bottom: 0.1em;

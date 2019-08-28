@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
 html {
   box-sizing: border-box;
 }
@@ -17,9 +19,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 #app {

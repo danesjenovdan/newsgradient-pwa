@@ -30,9 +30,7 @@
         class="read-more"
         target="_blank"
       >Read article</a>
-      <p class="sentiment">
-        {{ articleSlantStatement }}
-      </p>
+      <p class="sentiment" v-html="articleSlantStatement"></p>
       <div
         @click="nextArticle('negative')"
         class="arrow minus"
@@ -81,7 +79,7 @@ import NgSlider from '@/components/NgSlider.vue';
       const percentage = percentageMorePositive > 50
         ? percentageMorePositive
         : 100 - percentageMorePositive;
-      return `This article by ${this.currentNewshouse} is more ${articleSlant} than ${percentage.toFixed(2)}% of other coverage. Move the slider to see things from the other perspective.`;
+      return `This article by ${this.currentNewshouse} is <strong>more ${articleSlant} than ${percentage.toFixed(2)}%</strong> of other coverage. Move the slider to see things from the other perspective.`;
     },
   },
 
@@ -132,7 +130,6 @@ export default class EventList extends Vue {}
   #article-window {
     overflow: hidden;
     position: relative;
-    max-height: 80vh;
     overflow-y: auto;
 
     .article-title {
@@ -196,7 +193,7 @@ export default class EventList extends Vue {}
     .sentiment {
       background: #edbdd3;
       margin: 1.25rem 0 0 0;
-      padding: 0.5rem 1rem;
+      padding: 1rem;
       font-size: 0.75rem;
       line-height: 1.4;
       text-align: center;
@@ -204,7 +201,7 @@ export default class EventList extends Vue {}
 
     .arrow {
       position: absolute;
-      top: 185px;
+      top: 183px;
       cursor: pointer;
       background-color: #fff;
       border-radius: 50%;

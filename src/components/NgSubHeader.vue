@@ -9,19 +9,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mapState, mapMutations } from 'vuex';
 
-@Component({
-  computed: {
-    ...mapState(['currentSlant']),
-  },
-
-  methods: {},
-
-  data() {
-    return {};
-  },
-})
+@Component
 export default class NgSubHeader extends Vue {}
 </script>
 
@@ -33,13 +22,11 @@ export default class NgSubHeader extends Vue {}
   left: 0;
   z-index: 2;
   background-color: #fff;
-  border-bottom: 1px solid #ccc;
 
   p {
     padding: 5px 50px;
     margin: 0;
     text-align: center;
-    font-family: "Averia Sans Libre", sans-serif;
     font-size: 12px;
     line-height: 14px;
     color: #000000;
