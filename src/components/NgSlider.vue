@@ -3,9 +3,8 @@
     <input
       type="range"
       class="slider"
-      min="0"
-      max="100"
-      step="0.1"
+      :min="0"
+      :max="max - 1"
       :value="currentValue"
       @input="onInput"
     />
@@ -39,7 +38,7 @@ export default {
   },
   computed: {
     currentValue() {
-      return this.switching ? this.rangeValue : (this.value / this.max * 100);
+      return this.switching ? this.rangeValue : this.value;
     },
   },
   methods: {

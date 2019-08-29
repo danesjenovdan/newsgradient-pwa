@@ -110,7 +110,7 @@ import NgSlider from '@/components/NgSlider.vue';
       return `https://www.google.com/s2/favicons?domain=${domain}`;
     },
     shortArticleText() {
-      const max = 180;
+      const max = 170;
       const text = this.currentArticle.og_description || this.currentArticle.content || 'No article description available.';
       if (text.length <= max) {
         return text;
@@ -142,7 +142,7 @@ import NgSlider from '@/components/NgSlider.vue';
     },
     changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
       this.switching = true;
-      const newArticleIndex = Math.floor(sliderValue / 100 * (this.sortedArticles.length - 1));
+      const newArticleIndex = sliderValue;
       const newArticleId = this.sortedArticles[newArticleIndex].id;
       this.updateArticleById({
         eventId: this.$route.params.eventId,
@@ -153,7 +153,10 @@ import NgSlider from '@/components/NgSlider.vue';
     stopSwitching: debounce(function stopSwitching(this: Vue) {
       requestAnimationFrame(() => {
         this.switching = false;
-        this.$router.push(`/event/${this.$route.params.eventId}/${this.currentArticle.id}`);
+        const newPath = `/event/${this.$route.params.eventId}/${this.currentArticle.id}`;
+        if (newPath !== this.$route.path) {
+          this.$router.push(newPath);
+        }
       });
     }, 100),
   },
@@ -190,14 +193,14 @@ export default class EventList extends Vue {}
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 86px;
-      font-size: 1.1rem;
+      height: 92px;
+      font-size: 1.15rem;
       line-height: 1.2;
 
       .byline {
         margin-bottom: 0.25rem;
         font-weight: 400;
-        font-size: 0.85rem;
+        font-size: 1rem;
         font-style: italic;
         color: #666;
         display: flex;
@@ -211,7 +214,7 @@ export default class EventList extends Vue {}
       }
 
       .title {
-        max-height: calc(3 * 1.2 * 1.1rem);
+        max-height: calc(3 * 1.2 * 1.15rem);
         overflow: hidden;
       }
     }
