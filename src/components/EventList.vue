@@ -28,17 +28,14 @@
           />
         </template>
       </div>
-      <p class="og-text">{{
-        currentArticle.og_description ||
-        (currentArticle.content
-          ? `${currentArticle.content.substring(0, 200)}...`
-          : 'No text :(')
-      }}</p>
-      <a
-        :href="currentArticle.url"
-        class="read-more"
-        target="_blank"
-      >Read article</a>
+      <p class="og-text">
+        {{ shortArticleText }}
+        <a
+          :href="currentArticle.url"
+          class="read-more"
+          target="_blank"
+        >Read more</a>
+      </p>
       <p class="sentiment" v-html="articleSlantStatement"></p>
       <div
         @click="nextArticle('negative')"
@@ -96,6 +93,14 @@ import NgSlider from '@/components/NgSlider.vue';
       const domain = url.slice(start, url.indexOf('/', start))
       return `https://www.google.com/s2/favicons?domain=${domain}`;
     },
+    shortArticleText() {
+      const max = 180;
+      const text = this.currentArticle.og_description || this.currentArticle.content || 'No article description available.';
+      if (text.length <= max) {
+        return text;
+      }
+      return `${text.slice(0, text.lastIndexOf(' ', max))}...`;
+    },
   },
 
   methods: {
@@ -146,6 +151,7 @@ export default class EventList extends Vue {}
     overflow: hidden;
     position: relative;
     overflow-y: auto;
+    background-color: #eee;
 
     .article-title {
       font-weight: 700;
@@ -222,14 +228,10 @@ export default class EventList extends Vue {}
     }
 
     .read-more {
-      display: block;
+      display: inline;
       margin: 0.5rem auto;
-      padding: 0.5rem 1rem;
-      width: 150px;
       text-align: center;
-      border: 1px solid #07f;
-      border-radius: 0.5em;
-      text-decoration: none;
+      text-decoration: underline;
       color: #07f;
     }
 
