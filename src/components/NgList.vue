@@ -7,7 +7,10 @@
       @click="openRandomArticle(event.id)"
     >
       <div class="ratio">
-        <div class="ratio-item bg-image" :style="`background-image: url(${event.image || '/img/washington-placeholder.jpg'})`"></div>
+        <div
+          class="ratio-item bg-image"
+          :style="`background-image: url(${event.image || '/img/washington-placeholder.jpg'})`"
+        />
         <div class="ratio-item color-overlay"></div>
         <div class="ratio-item gradient-overlay"></div>
         <div class="ratio-item">
@@ -98,7 +101,7 @@ export default class NgList extends Vue {};
     display: block;
     text-decoration: none;
     position: relative;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #444;
 
     .ratio {
       position: relative;
