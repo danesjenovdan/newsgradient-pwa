@@ -3,6 +3,9 @@
     <div class="lead">
       Move the slider to see different perspectives
     </div>
+    <div class="icon-container">
+      <img class="icon" :src="icon" alt="icon" :style="`left: ${currentValue / max * 100}%`" />
+    </div>
     <input
       type="range"
       class="slider"
@@ -80,7 +83,22 @@ export default {
     font-weight: 700;
     font-size: 0.75rem;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .icon-container {
+    position: relative;
+    height: 22px;
+
+    .icon {
+      display: block;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-33%);
+    }
   }
 
   .sentiment {

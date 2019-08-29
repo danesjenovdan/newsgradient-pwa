@@ -52,6 +52,7 @@
       </div>
     </div>
     <ng-slider
+      :icon="faviconUrl"
       :switching="switching"
       :value="currentArticleIndex"
       :max="numberOfArticles"
@@ -110,7 +111,7 @@ import NgSlider from '@/components/NgSlider.vue';
     faviconUrl() {
       const { url } = this.currentArticle;
       const start = url.indexOf('//') + 2;
-      const domain = url.slice(start, url.indexOf('/', start))
+      const domain = url.slice(start, url.indexOf('/', start));
       return `https://www.google.com/s2/favicons?domain=${domain}`;
     },
     shortArticleText() {
