@@ -1,6 +1,14 @@
 <template>
   <div id="slider">
-    <input type="range" class="slider" @input="onInput" @change="onChange" min="0" max="100" step="0.1" />
+    <input
+      type="range"
+      class="slider"
+      min="0"
+      max="100"
+      step="0.1"
+      :value="currentValue"
+      @input="onInput"
+    />
   </div>
 </template>
 
@@ -11,14 +19,33 @@ export default {
       type: String,
       default: '',
     },
+    switching: {
+      type: Boolean,
+      default: false,
+    },
+    value: {
+      type: Number,
+      default: 50,
+    },
+    max: {
+      type: Number,
+      default: 100,
+    },
+  },
+  data() {
+    return {
+      rangeValue: 50,
+    };
+  },
+  computed: {
+    currentValue() {
+      return this.switching ? this.rangeValue : (this.value / this.max * 100);
+    },
   },
   methods: {
-    onChange(event) {
-
-    },
     onInput(event) {
-      console.log(event.target.value);
-      this.$emit('change', Number(event.target.value));
+      this.rangeValue = Number(event.target.value);
+      this.$emit('change', this.rangeValue);
     },
   },
 };

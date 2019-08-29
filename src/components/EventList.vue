@@ -51,7 +51,12 @@
         >More positive</div>
       </div>
     </div>
-    <ng-slider @change="changeArticle" />
+    <ng-slider
+      :switching="switching"
+      :value="currentArticleIndex"
+      :max="numberOfArticles"
+      @change="changeArticle"
+    />
   </div>
 </template>
 
