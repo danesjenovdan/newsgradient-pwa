@@ -153,6 +153,7 @@ import NgSlider from '@/components/NgSlider.vue';
     stopSwitching: debounce(function stopSwitching(this: Vue) {
       requestAnimationFrame(() => {
         this.switching = false;
+        this.$router.push(`/event/${this.$route.params.eventId}/${this.currentArticle.id}`);
       });
     }, 100),
   },
