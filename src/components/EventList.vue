@@ -1,7 +1,16 @@
 <template>
   <div id="event-list">
     <div id="article-window">
-      <h3 class="article-title">{{ currentArticle.title }}</h3>
+      <h3 class="article-title">
+        {{ currentArticle.title }}
+        <div class="byline">
+          <div
+            class="favicon"
+            :style="`background-image: url(${faviconUrl})`"
+          />
+          <div class="name">{{ currentNewshouse }}</div>
+        </div>
+      </h3>
       <div class="ratio">
         <div class="ratio-item loader">
           <animated-loader />
@@ -81,6 +90,12 @@ import NgSlider from '@/components/NgSlider.vue';
         : 100 - percentageMorePositive;
       return `This article by ${this.currentNewshouse} is <strong>more ${articleSlant} than ${percentage.toFixed(2)}%</strong> of other coverage. Move the slider to see things from the other perspective.`;
     },
+    faviconUrl() {
+      const { url } = this.currentArticle;
+      const start = url.indexOf('//') + 2;
+      const domain = url.slice(start, url.indexOf('/', start))
+      return `https://www.google.com/s2/favicons?domain=${domain}`;
+    },
   },
 
   methods: {
@@ -133,14 +148,42 @@ export default class EventList extends Vue {}
     overflow-y: auto;
 
     .article-title {
-      text-align: center;
-      font-weight: 500;
+      font-weight: 700;
       margin: 0.5rem 0;
       padding: 0 1rem;
-      min-height: 75px;
+      min-height: 96px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
+
+      .byline {
+        margin: 0.25rem 0 0.25rem;
+        font-weight: 400;
+        font-size: 0.85rem;
+        font-style: italic;
+        color: #888;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+
+        .favicon {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-right: 0.5rem;
+          background-color: #fff;
+          background-size: contain;
+          background-repeat: no-repeat;
+          flex-basis: 16px;
+          flex-shrink: 0;
+        }
+
+        .name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
 
     .ratio {
@@ -201,7 +244,7 @@ export default class EventList extends Vue {}
 
     .arrow {
       position: absolute;
-      top: calc(75px + 28.125vw); // title height + half of image ratio
+      top: calc(96px + 28.125vw); // title height + half of image ratio
       cursor: pointer;
       background-color: #fff;
       border-radius: 50%;
