@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="header" :class="{ 'has-line': $route.path === '/' }">
     <router-link
       v-if="$route.path !== '/'"
       to="/"
@@ -34,7 +34,7 @@ export default class NgHeader extends Vue {}
   left: 0;
   z-index: 2;
 
-  &::after {
+  &.has-line::after {
     content: '';
     display: block;
     width: 75px;
@@ -44,6 +44,10 @@ export default class NgHeader extends Vue {}
     left: 50%;
     transform: translateX(-50%);
     background-image: linear-gradient(to right, #07f, #e60000);
+  }
+
+  &:not(.has-line) {
+    box-shadow: 0px 0px 10px 0px #ccc;
   }
 
   h1 {

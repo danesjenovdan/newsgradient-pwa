@@ -1,46 +1,65 @@
 <template>
   <div id="event-list">
     <div id="article-window">
-      <h3 class="article-title">{{ currentArticle.title }}</h3>
+      <h3 class="article-title">
+        <div class="byline">
+          <div class="name">{{ currentNewshouse }}</div>
+        </div>
+        <div class="title">{{ currentArticle.title }}</div>
+      </h3>
       <div class="ratio">
-        <div class="ratio-item loader">
+        <div v-if="switching" class="ratio-item loader">
           <animated-loader />
         </div>
-        <template v-if="'og_image' in currentArticle || 'image' in currentArticle">
+        <template v-else-if="'og_image' in currentArticle || 'image' in currentArticle">
           <div
             v-if="currentArticle.og_image || currentArticle.image"
-            class="ratio-item article-image"
-            :style="`background-image: url(${currentArticle.og_image || currentArticle.image})`"
-          />
+            class="ratio-item"
+          >
+            <div
+              class="article-image"
+              :style="`background-image: url(${currentArticle.og_image || currentArticle.image})`"
+            ></div>
+          </div>
           <div
             v-else
-            class="ratio-item article-image"
-            :style="`background-image: url(http://placekitten.com/720/405)`"
-          />
+            class="ratio-item"
+          >
+            <div
+              class="article-image"
+              :style="`background-image: url('/img/washington-placeholder.jpg')`"
+            ></div>
+          </div>
         </template>
       </div>
-      <p class="og-text">{{
-        currentArticle.og_description ||
-        (currentArticle.content
-          ? `${currentArticle.content.substring(0, 200)}...`
-          : 'No text :(')
-      }}</p>
-      <a
-        :href="currentArticle.url"
-        class="read-more"
-        target="_blank"
-      >Read article</a>
-      <p class="sentiment" v-html="articleSlantStatement"></p>
-      <div
-        @click="nextArticle('negative')"
-        class="arrow minus"
-      ></div>
-      <div
-        @click="nextArticle('positive')"
-        class="arrow plus"
-      ></div>
+      <p class="og-text">
+        {{ shortArticleText }}
+        <a
+          :href="currentArticle.url"
+          class="read-more"
+          target="_blank"
+        >Read more</a>
+      </p>
+      <div class="arrows">
+        <div
+          @click="nextArticle('negative')"
+          class="arrow minus"
+        >More negative</div>
+        <div
+          @click="nextArticle('positive')"
+          class="arrow plus"
+        >More positive</div>
+      </div>
     </div>
-    <ng-slider @change="changeArticle" />
+    <ng-slider
+      :icon="faviconUrl"
+      :switching="switching"
+      :value="currentArticleIndex"
+      :max="numberOfArticles"
+      :article-slant="articleSlant"
+      :percentage-slant="percentageSlant"
+      @change="changeArticle"
+    />
   </div>
 </template>
 
@@ -55,6 +74,12 @@ import NgSlider from '@/components/NgSlider.vue';
   components: {
     AnimatedLoader,
     NgSlider,
+  },
+
+  data() {
+    return {
+      switching: false,
+    };
   },
 
   computed: {
@@ -73,13 +98,29 @@ import NgSlider from '@/components/NgSlider.vue';
     currentArticleIndex() {
       return this.sortedArticles.indexOf(this.currentArticle);
     },
-    articleSlantStatement() {
+    articleSlant() {
       const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
-      const articleSlant = percentageMorePositive > 50 ? 'POSITIVE' : 'NEGATIVE';
-      const percentage = percentageMorePositive > 50
+      return percentageMorePositive > 50 ? 'positive' : 'negative';
+    },
+    percentageSlant() {
+      const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
+      return percentageMorePositive > 50
         ? percentageMorePositive
         : 100 - percentageMorePositive;
-      return `This article by ${this.currentNewshouse} is <strong>more ${articleSlant} than ${percentage.toFixed(2)}%</strong> of other coverage. Move the slider to see things from the other perspective.`;
+    },
+    faviconUrl() {
+      const { url } = this.currentArticle;
+      const start = url.indexOf('//') + 2;
+      const domain = url.slice(start, url.indexOf('/', start));
+      return `https://www.google.com/s2/favicons?domain=${domain}`;
+    },
+    shortArticleText() {
+      const max = 170;
+      const text = this.currentArticle.og_description || this.currentArticle.content || 'No article description available.';
+      if (text.length <= max) {
+        return text;
+      }
+      return `${text.slice(0, text.lastIndexOf(' ', max))}...`;
     },
   },
 
@@ -100,17 +141,29 @@ import NgSlider from '@/components/NgSlider.vue';
         });
         this.$router.push(`/event/${this.$route.params.eventId}/${newArticleId}`);
       } else {
+        // eslint-disable-next-line no-alert
         alert(`This is the most ${direction} article about this event.`);
       }
     },
     changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
-      const newArticleIndex = Math.floor(sliderValue / 100 * (this.sortedArticles.length - 1));
+      this.switching = true;
+      const newArticleIndex = sliderValue;
       const newArticleId = this.sortedArticles[newArticleIndex].id;
       this.updateArticleById({
         eventId: this.$route.params.eventId,
         articleId: newArticleId,
       });
+      this.stopSwitching();
     }, 0),
+    stopSwitching: debounce(function stopSwitching(this: Vue) {
+      requestAnimationFrame(() => {
+        this.switching = false;
+        const newPath = `/event/${this.$route.params.eventId}/${this.currentArticle.id}`;
+        if (newPath !== this.$route.path) {
+          this.$router.push(newPath);
+        }
+      });
+    }, 100),
   },
   created() {
     this.updateArticleById({
@@ -125,22 +178,50 @@ export default class EventList extends Vue {}
 <style lang="scss">
 #event-list {
   width: 100%;
-  margin-top: -39px;
+  height: 100vh;
+  margin-top: -79px;
+  padding-top: 40px;
+  background-color: #e8e8e8;
 
   #article-window {
     overflow: hidden;
     position: relative;
     overflow-y: auto;
+    background-color: #fff;
+    margin: 1rem;
+    box-shadow: 0 0 6px -3px #ccc;
 
     .article-title {
-      text-align: center;
-      font-weight: 500;
-      margin: 0.5rem 0;
-      padding: 0 1rem;
-      min-height: 75px;
+      font-weight: 700;
+      margin: 0.75rem 0;
+      padding: 0 0.75rem;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
+      height: 92px;
+      font-size: 1.15rem;
+      line-height: 1.2;
+
+      .byline {
+        margin-bottom: 0.25rem;
+        font-weight: 400;
+        font-size: 1rem;
+        font-style: italic;
+        color: #666;
+        display: flex;
+        align-items: center;
+
+        .name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .title {
+        max-height: calc(3 * 1.2 * 1.15rem);
+        overflow: hidden;
+      }
     }
 
     .ratio {
@@ -154,6 +235,8 @@ export default class EventList extends Vue {}
         left: 0;
         width: 100%;
         height: 100%;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
       }
     }
 
@@ -161,67 +244,69 @@ export default class EventList extends Vue {}
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #e8e8e8;
+      // background-color: #e8e8e8;
     }
 
     .article-image {
       background-repeat: none;
       background-position: center;
       background-size: cover;
+      // background-color: #fff;
+      height: 100%;
     }
 
     .og-text {
       margin: 0;
-      padding: 1rem;
+      padding: 0.75rem;
       font-size: 0.85rem;
       line-height: 1.4;
-      min-height: 76px;
+      min-height: 100px;
     }
 
     .read-more {
-      display: block;
+      display: inline;
       margin: 0.5rem auto;
-      padding: 0.5rem 1rem;
-      width: 150px;
       text-align: center;
-      border: 1px solid #07f;
-      border-radius: 0.5em;
-      text-decoration: none;
+      text-decoration: underline;
       color: #07f;
     }
 
-    .sentiment {
-      background: #edbdd3;
-      margin: 1.25rem 0 0 0;
-      padding: 1rem;
-      font-size: 0.75rem;
-      line-height: 1.4;
-      text-align: center;
-    }
+    .arrows {
+      border-top: 1px solid #eee;
+      display: flex;
+      padding: 0 0.75rem;
+      margin: 0 -0.375rem;
 
-    .arrow {
-      position: absolute;
-      top: 183px;
-      cursor: pointer;
-      background-color: #fff;
-      border-radius: 50%;
-      width: 1.5rem;
-      height: 1.5rem;
-      border: 1px solid #aaa;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 50% 50%;
+      .arrow {
+        flex: 1;
+        border-radius: 5rem;
+        height: 2rem;
+        margin: 0.75rem 0.375rem;
+        padding: 0 1rem;
+        text-align: center;
+        line-height: 2rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 0.7rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 2rem 35%;
 
-      &.minus {
-        left: 0.5rem;
-        background-image: url('../assets/arrow-left.svg');
-        background-position: left 40% center;
-      }
+        &.minus {
+          color: #07f;
+          background-color: rgba(#07f, 0.25);
+          background-image: url('../assets/arrow-left-blue.svg');
+          background-position: left center;
+          padding-left: 1.5rem;
+        }
 
-      &.plus {
-        right: 0.5rem;
-        background-image: url('../assets/arrow-right.svg');
-        background-position: left 55% center;
+        &.plus {
+          color: #e60000;
+          background-color: rgba(#e60000, 0.25);
+          background-image: url('../assets/arrow-right-red.svg');
+          background-position: right center;
+          padding-right: 1.5rem;
+        }
       }
     }
   }

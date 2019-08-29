@@ -7,7 +7,10 @@
       @click="openRandomArticle(event.id)"
     >
       <div class="ratio">
-        <div class="ratio-item bg-image" :style="`background-image: url(${event.image || 'http://placekitten.com/720/405'})`"></div>
+        <div
+          class="ratio-item bg-image"
+          :style="`background-image: url(${event.image || '/img/washington-placeholder.jpg'})`"
+        />
         <div class="ratio-item color-overlay"></div>
         <div class="ratio-item gradient-overlay"></div>
         <div class="ratio-item">
@@ -15,13 +18,15 @@
             <div class="event-bg-gradient">
               <h3 class="event-title">
                 {{ event.title }}
-                <div class="title-arrow" />
               </h3>
               <div class="event-data">
-                <div class="event-count">{{ event.count }} articles</div>
-                <div class="event-time">
-                  First published {{ getRelativeTime(event.computed_time) }}
+                <div class="event-detail">
+                  <div class="event-count">{{ event.count }} articles</div>
+                  <div class="event-time">
+                    {{ getRelativeTime(event.computed_time) }}
+                  </div>
                 </div>
+                <div class="event-button">Compare headlines</div>
               </div>
             </div>
           </div>
@@ -96,7 +101,7 @@ export default class NgList extends Vue {};
     display: block;
     text-decoration: none;
     position: relative;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #444;
 
     .ratio {
       position: relative;
@@ -144,12 +149,12 @@ export default class NgList extends Vue {};
 
 
       .event-bg-gradient {
-        padding: 1.25rem 1rem;
+        padding: 1.5rem 1rem 0 1rem;
         background-image: linear-gradient(
           to bottom,
           rgba(#000, 0) 0%,
-          rgba(#000, 0.35) 2rem,
-          rgba(#000, 1) calc(100% - 2rem)
+          rgba(#000, 0.35) 1.5rem,
+          rgba(#000, 1) calc(100% - 3.5rem)
         );
 
         .event-title,
@@ -167,38 +172,56 @@ export default class NgList extends Vue {};
           text-shadow: 0px 0px 10px rgba(#000, 0.75);
           color: #fff;
           position: relative;
-
-          .title-arrow {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 17px;
-            height: 26px;
-            background-image: url('../assets/arrow-right-white.svg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 100% 75%;
-          }
         }
 
         .event-data {
           display: flex;
-          // justify-content: space-between;
-          align-items: flex-end;
+          flex-wrap: wrap;
+          // flex-direction: column;
+          align-items: center;
           margin-top: 0.75rem;
+          border-top: 1px solid #444;
+          line-height: 1;
+          padding-top: 0.75rem;
 
-          .event-count {
-            font-size: 0.875rem;
-            color: #e64d6f;
-            font-weight: 500;
+          .event-detail {
+            display: flex;
+            align-items: center;
+            line-height: 1.25rem;
+            margin-bottom: 1rem;
+
+            .event-count {
+              font-size: 0.75rem;
+              color: #edbdd3;
+              font-weight: 500;
+            }
+
+            .event-time {
+              font-size: 0.65rem;
+              color: #aaa;
+              margin-left: 0.5rem;
+              font-weight: 400;
+              font-style: italic;
+              border-left: 1px solid #444;
+              padding-left: 0.5rem;
+            }
           }
 
-          .event-time {
-            font-size: 0.65rem;
-            color: #7e93ff;
-            margin-left: 1rem;
-            font-weight: 400;
-            margin-bottom: 0.1em;
+          .event-button {
+            background-color: #07f;
+            font-size: 0.85rem;
+            margin-left: auto;
+            margin-bottom: 1rem;
+            padding: 1px 2rem 0 1.25rem;
+            transform: rotate(0.05deg);
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 2rem;
+            border-radius: 5rem;
+            background-image: url('../assets/arrow-right-white.svg');
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 2rem 35%;
           }
         }
       }

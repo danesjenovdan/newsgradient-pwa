@@ -1,8 +1,7 @@
 <template>
   <div id="subheader">
     <p>
-      Five most important political events of the day as reported by
-      <strong>all</strong> US media.
+      Top 5 political events of the day as reported by US media.
     </p>
   </div>
 </template>
@@ -22,9 +21,13 @@ export default class NgSubHeader extends Vue {}
   left: 0;
   z-index: 2;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  height: 39px;
 
   p {
-    padding: 5px 50px;
+    width: 100%;
+    padding: 5px 30px;
     margin: 0;
     text-align: center;
     font-size: 12px;
