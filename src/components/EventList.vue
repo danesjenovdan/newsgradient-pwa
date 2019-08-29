@@ -24,7 +24,7 @@
           <div
             v-else
             class="ratio-item article-image"
-            :style="`background-image: url(http://placekitten.com/720/405)`"
+            :style="`background-image: url('/img/washington-placeholder.jpg')`"
           />
         </template>
       </div>
