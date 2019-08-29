@@ -55,6 +55,8 @@
       :switching="switching"
       :value="currentArticleIndex"
       :max="numberOfArticles"
+      :article-slant="articleSlant"
+      :percentage-slant="percentageSlant"
       @change="changeArticle"
     />
   </div>
@@ -95,13 +97,15 @@ import NgSlider from '@/components/NgSlider.vue';
     currentArticleIndex() {
       return this.sortedArticles.indexOf(this.currentArticle);
     },
-    articleSlantStatement() {
+    articleSlant() {
       const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
-      const articleSlant = percentageMorePositive > 50 ? 'POSITIVE' : 'NEGATIVE';
-      const percentage = percentageMorePositive > 50
+      return percentageMorePositive > 50 ? 'positive' : 'negative';
+    },
+    percentageSlant() {
+      const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
+      return percentageMorePositive > 50
         ? percentageMorePositive
         : 100 - percentageMorePositive;
-      return `This article by ${this.currentNewshouse} is <strong>more ${articleSlant} than ${percentage.toFixed(2)}%</strong> of other coverage. Move the slider to see things from the other perspective.`;
     },
     faviconUrl() {
       const { url } = this.currentArticle;

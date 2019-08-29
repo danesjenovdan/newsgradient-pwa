@@ -1,5 +1,8 @@
 <template>
   <div id="slider">
+    <div class="lead">
+      Move the slider to see different perspectives
+    </div>
     <input
       type="range"
       class="slider"
@@ -8,6 +11,10 @@
       :value="currentValue"
       @input="onInput"
     />
+    <div class="sentiment">
+      This story is <strong>more {{ articleSlant }}</strong>
+      than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of other coverage.
+    </div>
   </div>
 </template>
 
@@ -29,6 +36,14 @@ export default {
     max: {
       type: Number,
       default: 100,
+    },
+    articleSlant: {
+      type: String,
+      default: '',
+    },
+    percentageSlant: {
+      type: Number,
+      default: 0,
     },
   },
   data() {
@@ -56,8 +71,23 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 0 2rem;
-  height: 40px;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px #ccc;
+
+  .lead {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .sentiment {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    text-align: center;
+  }
 
   .slider {
     -webkit-appearance: none;

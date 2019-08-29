@@ -47,7 +47,7 @@ export default class NgHeader extends Vue {}
   }
 
   &:not(.has-line) {
-    box-shadow: 0px 0px 10px 0px #ccc
+    box-shadow: 0px 0px 10px 0px #ccc;
   }
 
   h1 {
