@@ -190,14 +190,18 @@ export default class EventList extends Vue {}
   height: 100vh;
   margin-top: -79px;
   padding-top: 40px;
+  padding-bottom: 110px;
+  overflow-y: auto;
   background-color: #e8e8e8;
 
   #article-window {
-    overflow: hidden;
     position: relative;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     background-color: #fff;
     margin: 0.5rem;
+    min-height: calc(100% - 1rem);
     box-shadow: 0 0 6px -3px #ccc;
 
     .article-title {
@@ -298,6 +302,7 @@ export default class EventList extends Vue {}
       display: flex;
       padding: 0 0.75rem;
       margin: 0 -0.375rem;
+      margin-top: auto;
 
       .arrow {
         flex: 1;
