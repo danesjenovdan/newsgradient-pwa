@@ -92,6 +92,9 @@ export default {
   .icon-container {
     position: relative;
     height: 16px;
+    margin: 0 1rem;
+    margin-bottom: 0.5rem;
+    z-index: 2;
 
     .icon {
       display: block;
@@ -100,7 +103,8 @@ export default {
       position: absolute;
       top: 0;
       left: 0;
-      transform: translateX(-8px);
+      transform: translateX(-7px);
+      background: #fff;
     }
   }
 
@@ -123,8 +127,8 @@ export default {
     .slider-track {
       position: absolute;
       top: calc(1rem - 0.125rem);
-      left: 0.75rem;
-      right: 0.75rem;
+      left: 1rem;
+      right: 1rem;
       height: 4px;
       background: #fff;
       border-radius: 5rem;
