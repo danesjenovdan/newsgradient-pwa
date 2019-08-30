@@ -3,6 +3,9 @@
     <div id="article-window">
       <h3 class="article-title">
         <div class="byline">
+          <div class="icon-container">
+            <img class="icon" :src="faviconUrl" alt="icon" />
+          </div>
           <div class="name">{{ currentNewshouse }}</div>
         </div>
         <div class="title">{{ currentArticle.title }}</div>
@@ -110,9 +113,12 @@ import NgSlider from '@/components/NgSlider.vue';
     },
     faviconUrl() {
       const { url } = this.currentArticle;
-      const start = url.indexOf('//') + 2;
-      const domain = url.slice(start, url.indexOf('/', start));
-      return `https://www.google.com/s2/favicons?domain=${domain}`;
+      if (url) {
+        const start = url.indexOf('//') + 2;
+        const domain = url.slice(start, url.indexOf('/', start));
+        return `https://www.google.com/s2/favicons?domain=${domain}`;
+      }
+      return '';
     },
     shortArticleText() {
       const max = 170;
@@ -148,11 +154,14 @@ import NgSlider from '@/components/NgSlider.vue';
     changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
       this.switching = true;
       const newArticleIndex = sliderValue;
-      const newArticleId = this.sortedArticles[newArticleIndex].id;
-      this.updateArticleById({
-        eventId: this.$route.params.eventId,
-        articleId: newArticleId,
-      });
+      const newArticle = this.sortedArticles[newArticleIndex];
+      if (newArticle) {
+        const newArticleId = newArticle.id;
+        this.updateArticleById({
+          eventId: this.$route.params.eventId,
+          articleId: newArticleId,
+        });
+      }
       this.stopSwitching();
     }, 0),
     stopSwitching: debounce(function stopSwitching(this: Vue) {
@@ -181,35 +190,51 @@ export default class EventList extends Vue {}
   height: 100vh;
   margin-top: -79px;
   padding-top: 40px;
+  padding-bottom: 110px;
+  overflow-y: auto;
   background-color: #e8e8e8;
 
   #article-window {
-    overflow: hidden;
     position: relative;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     background-color: #fff;
-    margin: 1rem;
+    margin: 0.5rem;
+    min-height: calc(100% - 1rem);
     box-shadow: 0 0 6px -3px #ccc;
 
     .article-title {
       font-weight: 700;
-      margin: 0.75rem 0;
+      margin: 0.75rem 0 0.5rem;
       padding: 0 0.75rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: 92px;
-      font-size: 1.15rem;
+      justify-content: space-between;
+      height: 89px;
+      font-size: 1.1rem;
       line-height: 1.2;
 
       .byline {
         margin-bottom: 0.25rem;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 0.85rem;
         font-style: italic;
-        color: #666;
+        color: #333;
         display: flex;
         align-items: center;
+
+        .icon-container {
+          position: relative;
+          height: 16px;
+          margin-right: 0.5rem;
+
+          .icon {
+            display: block;
+            width: 16px;
+            height: 16px;
+          }
+        }
 
         .name {
           white-space: nowrap;
@@ -219,8 +244,9 @@ export default class EventList extends Vue {}
       }
 
       .title {
-        max-height: calc(3 * 1.2 * 1.15rem);
+        max-height: calc(3 * 1.2 * 1.1rem);
         overflow: hidden;
+        margin: auto 0;
       }
     }
 
@@ -276,6 +302,7 @@ export default class EventList extends Vue {}
       display: flex;
       padding: 0 0.75rem;
       margin: 0 -0.375rem;
+      margin-top: auto;
 
       .arrow {
         flex: 1;

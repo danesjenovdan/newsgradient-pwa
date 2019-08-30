@@ -6,17 +6,20 @@
     <div class="icon-container">
       <img class="icon" :src="icon" alt="icon" :style="`left: ${currentValue / max * 100}%`" />
     </div>
-    <input
-      type="range"
-      class="slider"
-      :min="0"
-      :max="max - 1"
-      :value="currentValue"
-      @input="onInput"
-    />
+    <div class="slider-container">
+      <div class="slider-track" />
+      <input
+        type="range"
+        class="slider"
+        :min="0"
+        :max="max - 1"
+        :value="currentValue"
+        @input="onInput"
+      />
+    </div>
     <div class="sentiment">
       This story is <strong>more {{ articleSlant }}</strong>
-      than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of other coverage.
+      than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of coverage.
     </div>
   </div>
 </template>
@@ -81,59 +84,85 @@ export default {
   .lead {
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-align: center;
     margin-bottom: 0.25rem;
   }
 
   .icon-container {
     position: relative;
-    height: 22px;
+    height: 16px;
+    margin: 0 1rem;
+    margin-bottom: 0.5rem;
+    z-index: 2;
 
     .icon {
       display: block;
-      width: 22px;
-      height: 22px;
+      width: 16px;
+      height: 16px;
       position: absolute;
       top: 0;
       left: 0;
-      transform: translateX(-8px);
+      transform: translateX(-7px);
+      background: #fff;
     }
   }
 
   .sentiment {
-    margin-top: 1rem;
-    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
     text-align: center;
   }
 
-  .slider {
-    -webkit-appearance: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 5px;
+  .slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    padding: 0 0.75rem;
     background: #07f;
     background-image: linear-gradient(to right, #07f, #e60000);
-    outline: none;
-    transition: opacity 0.2s;
-  }
+    border-radius: 5rem;
 
-  @mixin slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 8px;
-    height: 25px;
-    background: #000;
-    cursor: pointer;
-  }
+    .slider-track {
+      position: absolute;
+      top: calc(1rem - 0.125rem);
+      left: 1rem;
+      right: 1rem;
+      height: 4px;
+      background: #fff;
+      border-radius: 5rem;
+    }
 
-  .slider::-webkit-slider-thumb {
-    @include slider-thumb;
-  }
+    .slider {
+      -webkit-appearance: none;
+      appearance: none;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 3.5rem;
+      background: transparent;
+      outline: none;
+    }
 
-  .slider::-moz-range-thumb {
-    @include slider-thumb;
+    @mixin slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 0.625rem;
+      height: 3.5rem;
+      background: transparent;
+      background-image: url('../assets/slider-thumb.svg');
+      cursor: pointer;
+    }
+
+    .slider::-webkit-slider-thumb {
+      @include slider-thumb;
+    }
+
+    .slider::-moz-range-thumb {
+      @include slider-thumb;
+    }
   }
 }
 </style>
