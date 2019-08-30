@@ -110,9 +110,12 @@ import NgSlider from '@/components/NgSlider.vue';
     },
     faviconUrl() {
       const { url } = this.currentArticle;
-      const start = url.indexOf('//') + 2;
-      const domain = url.slice(start, url.indexOf('/', start));
-      return `https://www.google.com/s2/favicons?domain=${domain}`;
+      if (url) {
+        const start = url.indexOf('//') + 2;
+        const domain = url.slice(start, url.indexOf('/', start));
+        return `https://www.google.com/s2/favicons?domain=${domain}`;
+      }
+      return '';
     },
     shortArticleText() {
       const max = 170;
@@ -148,11 +151,14 @@ import NgSlider from '@/components/NgSlider.vue';
     changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
       this.switching = true;
       const newArticleIndex = sliderValue;
-      const newArticleId = this.sortedArticles[newArticleIndex].id;
-      this.updateArticleById({
-        eventId: this.$route.params.eventId,
-        articleId: newArticleId,
-      });
+      const newArticle = this.sortedArticles[newArticleIndex];
+      if (newArticle) {
+        const newArticleId = newArticle.id;
+        this.updateArticleById({
+          eventId: this.$route.params.eventId,
+          articleId: newArticleId,
+        });
+      }
       this.stopSwitching();
     }, 0),
     stopSwitching: debounce(function stopSwitching(this: Vue) {
