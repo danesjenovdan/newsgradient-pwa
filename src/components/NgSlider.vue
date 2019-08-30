@@ -16,7 +16,7 @@
     />
     <div class="sentiment">
       This story is <strong>more {{ articleSlant }}</strong>
-      than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of other coverage.
+      than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of coverage.
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@ export default {
   .lead {
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-align: center;
     margin-bottom: 0.25rem;
   }

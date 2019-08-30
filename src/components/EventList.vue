@@ -188,7 +188,7 @@ export default class EventList extends Vue {}
     position: relative;
     overflow-y: auto;
     background-color: #fff;
-    margin: 1rem;
+    margin: 0.5rem;
     box-shadow: 0 0 6px -3px #ccc;
 
     .article-title {
