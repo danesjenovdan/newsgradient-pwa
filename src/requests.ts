@@ -23,7 +23,7 @@ export const getArticles = (eventId: Number) => axiosInstance
   .get('/articles/', {
     params: {
       event: eventId,
-      // limit: 300,
+      limit: 300,
     },
   }).then(response => response.data)
   .catch((error) => { throw error });

@@ -3,6 +3,9 @@
     <div id="article-window">
       <h3 class="article-title">
         <div class="byline">
+          <div class="icon-container">
+            <img class="icon" :src="faviconUrl" alt="icon" />
+          </div>
           <div class="name">{{ currentNewshouse }}</div>
         </div>
         <div class="title">{{ currentArticle.title }}</div>
@@ -199,23 +202,35 @@ export default class EventList extends Vue {}
 
     .article-title {
       font-weight: 700;
-      margin: 0.75rem 0;
+      margin: 0.75rem 0 0.5rem;
       padding: 0 0.75rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: 92px;
-      font-size: 1.15rem;
+      justify-content: space-between;
+      height: 89px;
+      font-size: 1.1rem;
       line-height: 1.2;
 
       .byline {
         margin-bottom: 0.25rem;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 0.85rem;
         font-style: italic;
-        color: #666;
+        color: #333;
         display: flex;
         align-items: center;
+
+        .icon-container {
+          position: relative;
+          height: 16px;
+          margin-right: 0.5rem;
+
+          .icon {
+            display: block;
+            width: 16px;
+            height: 16px;
+          }
+        }
 
         .name {
           white-space: nowrap;
@@ -225,8 +240,9 @@ export default class EventList extends Vue {}
       }
 
       .title {
-        max-height: calc(3 * 1.2 * 1.15rem);
+        max-height: calc(3 * 1.2 * 1.1rem);
         overflow: hidden;
+        margin: auto 0;
       }
     }
 

@@ -88,12 +88,12 @@ export default {
 
   .icon-container {
     position: relative;
-    height: 22px;
+    height: 16px;
 
     .icon {
       display: block;
-      width: 22px;
-      height: 22px;
+      width: 16px;
+      height: 16px;
       position: absolute;
       top: 0;
       left: 0;
@@ -103,7 +103,7 @@ export default {
 
   .sentiment {
     margin-top: 1rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-align: center;
   }
 
