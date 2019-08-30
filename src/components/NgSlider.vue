@@ -105,7 +105,7 @@ export default {
   }
 
   .sentiment {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 0.7rem;
     text-align: center;
   }
@@ -137,7 +137,7 @@ export default {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 2rem;
+      height: 3.5rem;
       background: transparent;
       outline: none;
     }
@@ -145,9 +145,10 @@ export default {
     @mixin slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 8px;
-      height: 25px;
-      background: #000;
+      width: 0.625rem;
+      height: 3.5rem;
+      background: transparent;
+      background-image: url('../assets/slider-thumb.svg');
       cursor: pointer;
     }
 
