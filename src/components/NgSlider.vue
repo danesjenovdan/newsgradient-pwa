@@ -6,14 +6,17 @@
     <div class="icon-container">
       <img class="icon" :src="icon" alt="icon" :style="`left: ${currentValue / max * 100}%`" />
     </div>
-    <input
-      type="range"
-      class="slider"
-      :min="0"
-      :max="max - 1"
-      :value="currentValue"
-      @input="onInput"
-    />
+    <div class="slider-container">
+      <div class="slider-track" />
+      <input
+        type="range"
+        class="slider"
+        :min="0"
+        :max="max - 1"
+        :value="currentValue"
+        @input="onInput"
+      />
+    </div>
     <div class="sentiment">
       This story is <strong>more {{ articleSlant }}</strong>
       than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of coverage.
@@ -107,33 +110,54 @@ export default {
     text-align: center;
   }
 
-  .slider {
-    -webkit-appearance: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 5px;
+  .slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    padding: 0 0.75rem;
     background: #07f;
     background-image: linear-gradient(to right, #07f, #e60000);
-    outline: none;
-    transition: opacity 0.2s;
-  }
+    border-radius: 5rem;
 
-  @mixin slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 8px;
-    height: 25px;
-    background: #000;
-    cursor: pointer;
-  }
+    .slider-track {
+      position: absolute;
+      top: calc(1rem - 0.125rem);
+      left: 0.75rem;
+      right: 0.75rem;
+      height: 4px;
+      background: #fff;
+      border-radius: 5rem;
+    }
 
-  .slider::-webkit-slider-thumb {
-    @include slider-thumb;
-  }
+    .slider {
+      -webkit-appearance: none;
+      appearance: none;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 2rem;
+      background: transparent;
+      outline: none;
+    }
 
-  .slider::-moz-range-thumb {
-    @include slider-thumb;
+    @mixin slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 8px;
+      height: 25px;
+      background: #000;
+      cursor: pointer;
+    }
+
+    .slider::-webkit-slider-thumb {
+      @include slider-thumb;
+    }
+
+    .slider::-moz-range-thumb {
+      @include slider-thumb;
+    }
   }
 }
 </style>
