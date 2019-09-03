@@ -153,6 +153,7 @@ export default {
       height: 3.5rem;
       background: transparent;
       background-image: url('../assets/slider-thumb.svg');
+      border: none;
       cursor: pointer;
     }
 

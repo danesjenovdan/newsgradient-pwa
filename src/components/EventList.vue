@@ -1,6 +1,9 @@
 <template>
   <div id="event-list">
-    <div id="article-window">
+    <div id="article-window"
+      v-touch:swipe.left="swipeLeftHandler"
+      v-touch:swipe.right="swipeRightHandler"
+    >
       <h3 class="article-title">
         <div class="byline">
           <div class="icon-container">
@@ -173,12 +176,32 @@ import NgSlider from '@/components/NgSlider.vue';
         }
       });
     }, 100),
+    swipeLeftHandler() {
+      this.nextArticle('positive');
+    },
+    swipeRightHandler() {
+      this.nextArticle('negative');
+    },
   },
   created() {
     this.updateArticleById({
       eventId: this.$route.params.eventId,
       articleId: this.$route.params.articleId,
     });
+
+    if (typeof window !== 'undefined') {
+      window.onpopstate = (event) => {
+        const { pathname: path } = window.location;
+        const match = /\/event\/(\d+)\/(\d+)\/?$/.exec(path);
+        if (match) {
+          const [, eventId, articleId] = match;
+          this.updateArticleById({
+            eventId,
+            articleId,
+          });
+        }
+      };
+    }
   },
 })
 export default class EventList extends Vue {}
@@ -201,7 +224,7 @@ export default class EventList extends Vue {}
     overflow: hidden;
     background-color: #fff;
     margin: 0.5rem;
-    min-height: calc(100% - 1rem);
+    min-height: calc(100% - 73px);
     box-shadow: 0 0 6px -3px #ccc;
 
     .article-title {
