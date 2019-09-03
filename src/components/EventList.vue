@@ -201,7 +201,7 @@ export default class EventList extends Vue {}
     overflow: hidden;
     background-color: #fff;
     margin: 0.5rem;
-    min-height: calc(100% - 1rem);
+    min-height: calc(100% - 73px);
     box-shadow: 0 0 6px -3px #ccc;
 
     .article-title {
