@@ -3,6 +3,11 @@ import App from './App.vue';
 import router from './router';
 import './registerServiceWorker';
 import store from './store';
+import Vue2TouchEvents from 'vue2-touch-events';
+
+Vue.use(Vue2TouchEvents, {
+  swipeTolerance: 100,
+});
 
 Vue.config.productionTip = false;
 
