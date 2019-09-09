@@ -4,6 +4,7 @@
       v-if="$route.path !== '/'"
       to="/"
       id="back-to-listing"
+      @click="$matomo.trackEvent('backToListing', `${this.$route.params.eventId}`)"
     >List</router-link>
     <h1>Newsgradient</h1>
   </div>
