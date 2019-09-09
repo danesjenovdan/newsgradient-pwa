@@ -57,6 +57,9 @@ export default new Vuex.Store({
     TOGGLE_LOGGED_IN(state) {
       state.loggedIn = !state.loggedIn;
     },
+    SET_LOGGED_IN(state, newLoginState) {
+      state.loggedIn = newLoginState;
+    },
   },
   actions: {
     async updateArticleById({ commit, state }, { eventId, articleId }) {

@@ -41,15 +41,30 @@ import { mapMutations } from 'vuex';
   },
 
   methods: {
-    ...mapMutations(['TOGGLE_LOGGED_IN']),
+    ...mapMutations([
+      'TOGGLE_LOGGED_IN',
+      'SET_LOGGED_IN',
+    ]),
     checkLogin() {
       if ((this.username === this.password) && (this.username === 'usagm')) {
+        window.localStorage.setItem('ngUsername', this.username);
+        window.localStorage.setItem('ngPassword', this.password);
         this.$matomo.trackEvent('loggedIn', 'usagm');
         this.TOGGLE_LOGGED_IN();
       } else {
         alert('Sorry, this is a closed beta, you need the correct username and password. If you would like to try it out send an email to ziga@danesjenovdan.si');
       };
     },
+  },
+
+  created() {
+    this.username = window.localStorage.getItem('ngUsername');
+    this.password = window.localStorage.getItem('ngPassword');
+
+    console.log(this.password);
+    if ((this.username === this.password) && (this.username === 'usagm')) {
+      this.SET_LOGGED_IN(true);
+    }
   },
 })
 export default class LoginWall extends Vue {}
