@@ -85,6 +85,7 @@ import { eventRanges, getEvents, getArticles } from '../requests';
         eventId: eventId,
         articleId: article.id,
       });
+      this.$matomo.trackEvent('openRandomArticle', `${eventId}`, `${article.id}`);
       this.$router.push(`/event/${eventId}/${article.id}`);
     },
   },

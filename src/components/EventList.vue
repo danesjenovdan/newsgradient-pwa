@@ -44,6 +44,7 @@
           :href="currentArticle.url"
           class="read-more"
           target="_blank"
+          @click="$matomo.trackEvent('readArticle', `${this.$route.params.eventId}`, `${currentArticle.id}`)"
         >Read more</a>
       </p>
       <div class="arrows">
@@ -137,7 +138,7 @@ import NgSlider from '@/components/NgSlider.vue';
     ...mapActions([
       'updateArticleById',
     ]),
-    nextArticle(direction) {
+    nextArticle(direction: String) {
       const newArticleIndex = direction === 'negative'
         ? this.currentArticleIndex - 1
         : this.currentArticleIndex + 1;
@@ -148,6 +149,7 @@ import NgSlider from '@/components/NgSlider.vue';
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
         });
+        this.$matomo.trackEvent(`openNext${direction}Article`, `${this.$route.params.eventId}`, `${newArticleId}`);
         this.$router.push(`/event/${this.$route.params.eventId}/${newArticleId}`);
       } else {
         // eslint-disable-next-line no-alert
@@ -172,6 +174,7 @@ import NgSlider from '@/components/NgSlider.vue';
         this.switching = false;
         const newPath = `/event/${this.$route.params.eventId}/${this.currentArticle.id}`;
         if (newPath !== this.$route.path) {
+          this.$matomo.trackEvent(`openSliderArticle`, `${this.$route.params.eventId}`, `${this.currentArticle.id}`);
           this.$router.push(newPath);
         }
       });

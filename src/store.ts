@@ -22,6 +22,9 @@ export default new Vuex.Store({
       previous: null,
       results: [],
     },
+    username: '',
+    password: '',
+    loggedIn: false,
   },
   mutations: {
     SET_HEADER_STATE(state, newHeaderState) {
@@ -44,6 +47,15 @@ export default new Vuex.Store({
     },
     SET_CURRENT_NEWS_EVENT(state, newCurrentEvent) {
       state.currentNewsEvent = newCurrentEvent;
+    },
+    SET_USERNAME(state, newUsername: string) {
+      state.username = newUsername;
+    },
+    SET_PASSWORD(state, newPassword: string) {
+      state.password = newPassword;
+    },
+    TOGGLE_LOGGED_IN(state) {
+      state.loggedIn = !state.loggedIn;
     },
   },
   actions: {
