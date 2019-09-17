@@ -52,7 +52,7 @@
           @click="$matomo.trackEvent('readArticle', `${this.$route.params.eventId}`, `${currentArticle.id}`)"
         >Read more</a>
       </p>
-      <!-- <div class="arrows">
+      <div class="arrows">
         <div
           @click="nextArticle('negative')"
           class="arrow minus"
@@ -61,7 +61,7 @@
           @click="nextArticle('positive')"
           class="arrow plus"
         >More positive</div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
