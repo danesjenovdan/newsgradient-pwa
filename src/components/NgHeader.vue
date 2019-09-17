@@ -23,14 +23,12 @@ export default class NgHeader extends Vue {}
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  // height: 40px;
-  // line-height: 40px;
   font-weight: 700;
   background-color: #fff;
   background-image: url('../assets/logo-text.svg');
   background-position: top 1rem center;
   background-repeat: no-repeat;
-  background-size: 100% 15px;
+  background-size: 100% 12px;
   position: fixed;
   position: sticky;
   top: 0;
@@ -40,7 +38,7 @@ export default class NgHeader extends Vue {}
 
   h1 {
     padding-top: 1rem;
-    font-size: 1rem;
+    font-size: 12px;
     margin: 0;
     color: transparent;
   }
@@ -65,10 +63,10 @@ export default class NgHeader extends Vue {}
     width: 100%;
     text-transform: none;
     width: 100%;
-    padding: 0.25rem 0 0.75rem 0;
+    padding: 0 0 0.75rem 0;
     margin: 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 14px;
     color: #000000;
     font-weight: 400;
