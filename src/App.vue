@@ -25,6 +25,16 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+#app {
+  // height: calc(100vh - 1px);
+  // height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 1px;
+  width: 100%;
+}
+
 #devicecontent {
   width: 100%;
   height: 100vh;
