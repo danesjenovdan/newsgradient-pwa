@@ -40,7 +40,7 @@ body {
     height: 100vh;
     background-image: url(assets/iphonexs-frame.svg);
     background-position: top center;
-    background-size: 423px 100%;
+    background-size: 500px 856px;
     background-repeat: no-repeat;
     z-index: 3;
     pointer-events: none;
@@ -49,6 +49,7 @@ body {
   #devicecontent {
     width: 375px;
     height: 783px;
+    max-height: calc(100vh - 55px);
     margin: 0 auto;
     margin-top: 55px;
     overflow-y: scroll;
