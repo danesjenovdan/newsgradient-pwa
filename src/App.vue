@@ -38,9 +38,10 @@ body {
   height: 100%;
   position: relative;
   background-color: #e8e8e8;
+  overflow-y: auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   #deviceframe {
     position: absolute;
     top: 0;
@@ -61,7 +62,7 @@ body {
     max-height: calc(100vh - 55px);
     margin: 0 auto;
     margin-top: 55px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     /deep/ #header {
       width: 375px;
