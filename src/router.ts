@@ -29,7 +29,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     {
-      path: '/event/:eventId/:articleId',
+      path: '/event/:eventId/:articleId?',
       name: 'event',
       component: Event,
     }

@@ -36,7 +36,7 @@ export default class NgHeader extends Vue {}
   top: 0;
   left: 0;
   z-index: 2;
-  box-shadow: 0px 0px 10px 0px #ccc;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
   padding-top: 1rem;
   padding-bottom: 0.75rem;
 
@@ -49,13 +49,12 @@ export default class NgHeader extends Vue {}
   #back-to-listing {
     display: block;
     position: absolute;
-    top: 0;
+    top: 1rem;
     left: 0.8rem;
     color: #000;
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     text-decoration: none;
     padding-left: 1.25rem;
-
     background-image: url('../assets/arrow-left.svg');
     background-repeat: no-repeat;
     background-position: left center;

@@ -1,10 +1,10 @@
 <template>
   <div id="events">
-    <a
+    <router-link
       v-for="event in events"
       :key="event.id"
+      :to="`/event/${event.id}`"
       class="event"
-      @click="openRandomArticle(event.id)"
     >
       <div
         class="event-image"
@@ -28,15 +28,15 @@
           <div class="event-button">Compare headlines</div>
         </div>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DateTime } from 'luxon';
-import { mapState, mapMutations, mapActions } from 'vuex';
-import { eventRanges, getEvents, getArticles } from '../requests';
+import { mapState } from 'vuex';
+import { getEvents } from '../requests';
 
 @Component({
   components: {},
@@ -50,7 +50,6 @@ import { eventRanges, getEvents, getArticles } from '../requests';
   computed: {
     ...mapState([
       'currentEventRange',
-      'currentNewsEvent',
     ]),
   },
 
@@ -59,30 +58,12 @@ import { eventRanges, getEvents, getArticles } from '../requests';
   },
 
   methods: {
-    ...mapMutations([
-      'SET_CURRENT_NEWS_EVENT',
-    ]),
-    ...mapActions([
-      'updateArticleById',
-    ]),
     getRelativeTime(timestamp) {
       return DateTime.fromISO(timestamp).toRelative();
     },
     async refreshEvents() {
       const data = await getEvents(this.currentEventRange);
-      console.log(data);
       this.events = data.results;
-    },
-    async openRandomArticle(eventId) {
-      const event = await getArticles(eventId);
-      this.SET_CURRENT_NEWS_EVENT(event);
-      const article = event.results[Math.floor(Math.random() * event.results.length)];
-      this.updateArticleById({
-        eventId: eventId,
-        articleId: article.id,
-      });
-      this.$matomo.trackEvent('openRandomArticle', `${eventId}`, `${article.id}`);
-      this.$router.push(`/event/${eventId}/${article.id}`);
     },
   },
 })
@@ -99,6 +80,7 @@ export default class NgList extends Vue {};
   .event {
     display: flex;
     text-decoration: none;
+    color: inherit;
     position: relative;
     background: #fff;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
@@ -112,6 +94,17 @@ export default class NgList extends Vue {};
       flex: 1;
       background-position: center center;
       background-size: cover;
+      position: relative;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to bottom right, #e60000, #07f);
+        mix-blend-mode: color;
+      }
     }
 
     .event-content {
