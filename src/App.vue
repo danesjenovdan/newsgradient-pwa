@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view />
+    <div id="deviceframe"></div>
+    <div id="devicecontent">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -22,7 +25,38 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-#app {
-  padding-top: 79px; // to offset headers
+#devicecontent {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  #deviceframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url(assets/iphonexs-frame.svg);
+    background-position: top center;
+    background-size: 423px 100%;
+    background-repeat: no-repeat;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  #devicecontent {
+    width: 375px;
+    height: 783px;
+    margin: 0 auto;
+    margin-top: 55px;
+    overflow-y: scroll;
+
+    /deep/ #header,
+    /deep/ #subheader {
+      width: 375px;
+    }
+  }
 }
 </style>

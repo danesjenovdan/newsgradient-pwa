@@ -31,6 +31,7 @@ export default class NgHeader extends Vue {}
   background-repeat: no-repeat;
   background-size: 100% 15px;
   position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 2;
