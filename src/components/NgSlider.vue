@@ -157,10 +157,14 @@ export default {
     @mixin slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 0.625rem;
+      width: 1.25rem;
       height: 3.5rem;
       background: transparent;
-      background-image: url('../assets/slider-thumb.svg');
+      // background-image: url('../assets/slider-thumb.svg');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="white"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
       border: none;
       cursor: pointer;
     }
