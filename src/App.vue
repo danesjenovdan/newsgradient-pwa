@@ -26,8 +26,6 @@ body {
 }
 
 #app {
-  // height: calc(100vh - 1px);
-  // height: 100%;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -37,7 +35,7 @@ body {
 
 #devicecontent {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
   background-color: #e8e8e8;
 }
