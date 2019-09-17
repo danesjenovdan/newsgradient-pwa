@@ -3,7 +3,7 @@
     <div class="lead">
       Move the slider to see different perspectives
     </div>
-    <div class="icon-container">
+    <div v-if="icon" class="icon-container">
       <img class="icon" :src="icon" alt="icon" :style="`left: ${currentValue / max * 100}%`" />
     </div>
     <div class="slider-container">
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   props: {
     icon: {
@@ -43,14 +45,6 @@ export default {
       type: Number,
       default: 100,
     },
-    articleSlant: {
-      type: String,
-      default: '',
-    },
-    percentageSlant: {
-      type: Number,
-      default: 0,
-    },
   },
   data() {
     return {
@@ -61,11 +55,24 @@ export default {
     currentValue() {
       return this.switching ? this.rangeValue : this.value;
     },
+    articleSlant() {
+      const percentageMorePositive = ((this.value + 1) / this.max * 100);
+      return percentageMorePositive > 50 ? 'positive' : 'negative';
+    },
+    percentageSlant() {
+      const percentageMorePositive = ((this.value + 1) / this.max * 100);
+      return percentageMorePositive > 50
+        ? percentageMorePositive
+        : 100 - percentageMorePositive;
+    },
   },
   methods: {
+    ...mapMutations([
+      'SET_SLIDER_SWITCH_TO_VALUE',
+    ]),
     onInput(event) {
       this.rangeValue = Number(event.target.value);
-      this.$emit('change', this.rangeValue);
+      this.SET_SLIDER_SWITCH_TO_VALUE(this.rangeValue);
     },
   },
 };
@@ -74,12 +81,13 @@ export default {
 <style lang="scss" scoped>
 #slider {
   position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 0.5rem 1rem;
   background-color: #fff;
-  box-shadow: 0px 0px 10px 0px #ccc;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
 
   .lead {
     text-transform: uppercase;
@@ -149,10 +157,14 @@ export default {
     @mixin slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 0.625rem;
+      width: 1.25rem;
       height: 3.5rem;
       background: transparent;
-      background-image: url('../assets/slider-thumb.svg');
+      // background-image: url('../assets/slider-thumb.svg');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="white"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
       border: none;
       cursor: pointer;
     }

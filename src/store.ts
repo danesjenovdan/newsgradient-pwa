@@ -22,9 +22,13 @@ export default new Vuex.Store({
       previous: null,
       results: [],
     },
+    currentSortedArticles: [],
+    currentArticleIndex: 0,
     username: '',
     password: '',
     loggedIn: false,
+    sliderSwitching: false,
+    sliderSwitchToValue: 0,
   },
   mutations: {
     SET_HEADER_STATE(state, newHeaderState) {
@@ -35,6 +39,7 @@ export default new Vuex.Store({
     },
     SET_CURRENT_ARTICLE(state, newCurrentArticle) {
       state.currentArticle = newCurrentArticle;
+      state.currentArticleIndex = state.currentSortedArticles.indexOf(newCurrentArticle);
     },
     SET_CURRENT_ARTICLE_ID(state, newCurrentArticleId) {
       state.currentArticleId = newCurrentArticleId;
@@ -47,6 +52,7 @@ export default new Vuex.Store({
     },
     SET_CURRENT_NEWS_EVENT(state, newCurrentEvent) {
       state.currentNewsEvent = newCurrentEvent;
+      state.currentSortedArticles = newCurrentEvent.results.slice().sort((a: any, b: any) => a.sentimentRNN - b.sentimentRNN);
     },
     SET_USERNAME(state, newUsername: string) {
       state.username = newUsername;
@@ -60,11 +66,18 @@ export default new Vuex.Store({
     SET_LOGGED_IN(state, newLoginState) {
       state.loggedIn = newLoginState;
     },
+    SET_SLIDER_SWITCHING(state, newSliderSwitching) {
+      state.sliderSwitching = newSliderSwitching;
+    },
+    SET_SLIDER_SWITCH_TO_VALUE(state, newSliderSwitchToValue) {
+      state.sliderSwitchToValue = newSliderSwitchToValue;
+    },
   },
   actions: {
     async updateArticleById({ commit, state }, { eventId, articleId }) {
       if (state.currentNewsEvent.results.length === 0) {
-        state.currentNewsEvent = await getArticles(eventId);
+        const event = await getArticles(eventId);
+        commit('SET_CURRENT_NEWS_EVENT', event);
       }
       const theArticle = state.currentNewsEvent.results.find(article => article.id === parseInt(articleId));
       commit('SET_CURRENT_ARTICLE_ID', theArticle.id);

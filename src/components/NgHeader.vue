@@ -1,5 +1,5 @@
 <template>
-  <div id="header" :class="{ 'has-line': $route.path === '/' }">
+  <div id="header">
     <router-link
       v-if="$route.path !== '/'"
       to="/"
@@ -7,6 +7,9 @@
       @click="$matomo.trackEvent('backToListing', `${this.$route.params.eventId}`)"
     >List</router-link>
     <h1>Newsgradient</h1>
+    <p id="subheader" v-if="$route.path === '/'">
+      current TOP FIVE POLITICAL EVENTS as reported by US media
+    </p>
   </div>
 </template>
 
@@ -22,37 +25,23 @@ export default class NgHeader extends Vue {}
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  height: 40px;
-  line-height: 40px;
   font-weight: 700;
   background-color: #fff;
   background-image: url('../assets/logo-text.svg');
-  background-position: center center;
+  background-position: top 1rem center;
   background-repeat: no-repeat;
-  background-size: 100% 15px;
+  background-size: 100% 12px;
   position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 2;
-
-  &.has-line::after {
-    content: '';
-    display: block;
-    width: 75px;
-    height: 2px;
-    position: absolute;
-    top: 37px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-image: linear-gradient(to right, #07f, #e60000);
-  }
-
-  &:not(.has-line) {
-    box-shadow: 0px 0px 10px 0px #ccc;
-  }
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
 
   h1 {
-    font-size: 1rem;
+    font-size: 12px;
     margin: 0;
     color: transparent;
   }
@@ -60,17 +49,29 @@ export default class NgHeader extends Vue {}
   #back-to-listing {
     display: block;
     position: absolute;
-    top: 0;
+    top: 1rem;
     left: 0.8rem;
     color: #000;
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     text-decoration: none;
     padding-left: 1.25rem;
-
     background-image: url('../assets/arrow-left.svg');
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 1rem 1rem;
+  }
+
+  #subheader {
+    width: 100%;
+    text-transform: none;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    color: #000000;
+    font-weight: 400;
+    font-style: italic;
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div id="event-list">
     <div id="article-window"
+      v-if="!loading"
       v-touch:swipe.left="swipeLeftHandler"
       v-touch:swipe.right="swipeRightHandler"
     >
@@ -11,10 +12,14 @@
           </div>
           <div class="name">{{ currentNewshouse }}</div>
         </div>
-        <div class="title">{{ currentArticle.title }}</div>
+        <div class="title">
+          <span class="clamp">
+            {{ currentArticle.title }}
+          </span>
+        </div>
       </h3>
       <div class="ratio">
-        <div v-if="switching" class="ratio-item loader">
+        <div v-if="sliderSwitching" class="ratio-item loader">
           <animated-loader />
         </div>
         <template v-else-if="'og_image' in currentArticle || 'image' in currentArticle">
@@ -47,7 +52,7 @@
           @click="$matomo.trackEvent('readArticle', `${this.$route.params.eventId}`, `${currentArticle.id}`)"
         >Read more</a>
       </p>
-      <div class="arrows">
+      <!-- <div class="arrows">
         <div
           @click="nextArticle('negative')"
           class="arrow minus"
@@ -56,65 +61,38 @@
           @click="nextArticle('positive')"
           class="arrow plus"
         >More positive</div>
-      </div>
+      </div> -->
     </div>
-    <ng-slider
-      :icon="faviconUrl"
-      :switching="switching"
-      :value="currentArticleIndex"
-      :max="numberOfArticles"
-      :article-slant="articleSlant"
-      :percentage-slant="percentageSlant"
-      @change="changeArticle"
-    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import debounce from 'lodash.debounce';
 import AnimatedLoader from './AnimatedLoader.vue';
-import NgSlider from '@/components/NgSlider.vue';
+import { getArticles } from '../requests';
 
 @Component({
   components: {
     AnimatedLoader,
-    NgSlider,
   },
 
   data() {
     return {
-      switching: false,
+      loading: true,
     };
   },
 
   computed: {
     ...mapState([
-      'currentArticleId',
       'currentNewshouse',
-      'currentNewsEvent',
       'currentArticle',
+      'currentSortedArticles',
+      'currentArticleIndex',
+      'sliderSwitching',
+      'sliderSwitchToValue',
     ]),
-    numberOfArticles() {
-      return this.currentNewsEvent.count;
-    },
-    sortedArticles() {
-      return this.currentNewsEvent.results.slice().sort((a, b) => a.sentimentRNN - b.sentimentRNN);
-    },
-    currentArticleIndex() {
-      return this.sortedArticles.indexOf(this.currentArticle);
-    },
-    articleSlant() {
-      const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
-      return percentageMorePositive > 50 ? 'positive' : 'negative';
-    },
-    percentageSlant() {
-      const percentageMorePositive = ((this.currentArticleIndex + 1) / this.numberOfArticles * 100);
-      return percentageMorePositive > 50
-        ? percentageMorePositive
-        : 100 - percentageMorePositive;
-    },
     faviconUrl() {
       const { url } = this.currentArticle;
       if (url) {
@@ -134,7 +112,18 @@ import NgSlider from '@/components/NgSlider.vue';
     },
   },
 
+  watch: {
+    sliderSwitchToValue(newSwitchToValue) {
+      this.changeArticle(newSwitchToValue);
+    },
+  },
+
   methods: {
+    ...mapMutations([
+      'SET_CURRENT_NEWS_EVENT',
+      'SET_SLIDER_SWITCHING',
+      'SET_SLIDER_VALUE',
+    ]),
     ...mapActions([
       'updateArticleById',
     ]),
@@ -143,8 +132,8 @@ import NgSlider from '@/components/NgSlider.vue';
         ? this.currentArticleIndex - 1
         : this.currentArticleIndex + 1;
 
-      if (newArticleIndex >= 0 && newArticleIndex < this.sortedArticles.length) {
-        const newArticleId = this.sortedArticles[newArticleIndex].id;
+      if (newArticleIndex >= 0 && newArticleIndex < this.currentSortedArticles.length) {
+        const newArticleId = this.currentSortedArticles[newArticleIndex].id;
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
@@ -157,9 +146,9 @@ import NgSlider from '@/components/NgSlider.vue';
       }
     },
     changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
-      this.switching = true;
+      this.SET_SLIDER_SWITCHING(true);
       const newArticleIndex = sliderValue;
-      const newArticle = this.sortedArticles[newArticleIndex];
+      const newArticle = this.currentSortedArticles[newArticleIndex];
       if (newArticle) {
         const newArticleId = newArticle.id;
         this.updateArticleById({
@@ -171,7 +160,7 @@ import NgSlider from '@/components/NgSlider.vue';
     }, 0),
     stopSwitching: debounce(function stopSwitching(this: Vue) {
       requestAnimationFrame(() => {
-        this.switching = false;
+        this.SET_SLIDER_SWITCHING(false);
         const newPath = `/event/${this.$route.params.eventId}/${this.currentArticle.id}`;
         if (newPath !== this.$route.path) {
           this.$matomo.trackEvent(`openSliderArticle`, `${this.$route.params.eventId}`, `${this.currentArticle.id}`);
@@ -186,11 +175,30 @@ import NgSlider from '@/components/NgSlider.vue';
       this.nextArticle('negative');
     },
   },
-  created() {
-    this.updateArticleById({
-      eventId: this.$route.params.eventId,
-      articleId: this.$route.params.articleId,
+  async created() {
+    this.loading = true;
+
+    const eventId = Number(this.$route.params.eventId);
+    let articleId = this.$route.params.articleId != null
+      ? Number(this.$route.params.articleId)
+      : null;
+
+    if (articleId == null) {
+      const event = await getArticles(eventId);
+      this.SET_CURRENT_NEWS_EVENT(event);
+      const article = event.results[Math.floor(Math.random() * event.results.length)];
+      articleId = article.id;
+
+      this.$matomo.trackEvent('openRandomArticle', `${eventId}`, `${article.id}`);
+      this.$router.replace(`/event/${eventId}/${article.id}`);
+    }
+
+    await this.updateArticleById({
+      eventId,
+      articleId,
     });
+
+    this.loading = false;
 
     if (typeof window !== 'undefined') {
       window.onpopstate = (event) => {
@@ -212,13 +220,10 @@ export default class EventList extends Vue {}
 
 <style lang="scss">
 #event-list {
-  width: 100%;
-  height: 100vh;
-  margin-top: -79px;
-  padding-top: 40px;
-  padding-bottom: 110px;
   overflow-y: auto;
   background-color: #e8e8e8;
+  margin-top: auto;
+  margin-bottom: auto;
 
   #article-window {
     position: relative;
@@ -228,7 +233,7 @@ export default class EventList extends Vue {}
     background-color: #fff;
     margin: 0.5rem;
     min-height: calc(100% - 73px);
-    box-shadow: 0 0 6px -3px #ccc;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
 
     .article-title {
       font-weight: 700;
@@ -270,9 +275,14 @@ export default class EventList extends Vue {}
       }
 
       .title {
-        max-height: calc(3 * 1.2 * 1.1rem);
-        overflow: hidden;
         margin: auto 0;
+
+        .clamp {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
     }
 
