@@ -3,7 +3,7 @@
     <ng-header />
     <ng-sub-header />
     <ng-list />
-    <login-wall v-if="!loggedIn" />
+    <!-- <login-wall v-if="!loggedIn" /> -->
   </div>
 </template>
 

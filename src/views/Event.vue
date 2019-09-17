@@ -2,7 +2,7 @@
   <div id="event">
     <ng-header />
     <event-list />
-    <login-wall v-if="!loggedIn" />
+    <!-- <login-wall v-if="!loggedIn" /> -->
   </div>
 </template>
 
