@@ -104,6 +104,10 @@ export default class NgList extends Vue {};
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
     margin-bottom: 0.5rem;
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
     .event-image {
       flex: 1;
       background-position: center center;
