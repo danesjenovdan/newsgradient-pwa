@@ -1,5 +1,5 @@
 <template>
-  <div id="header" :class="{ 'has-line': $route.path === '/' }">
+  <div id="header">
     <router-link
       v-if="$route.path !== '/'"
       to="/"
@@ -7,6 +7,7 @@
       @click="$matomo.trackEvent('backToListing', `${this.$route.params.eventId}`)"
     >List</router-link>
     <h1>Newsgradient</h1>
+    <p id="subheader">current TOP FIVE POLITICAL EVENTS as reported by US media</p>
   </div>
 </template>
 
@@ -22,12 +23,12 @@ export default class NgHeader extends Vue {}
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  height: 40px;
-  line-height: 40px;
+  // height: 40px;
+  // line-height: 40px;
   font-weight: 700;
   background-color: #fff;
   background-image: url('../assets/logo-text.svg');
-  background-position: center center;
+  background-position: top 1rem center;
   background-repeat: no-repeat;
   background-size: 100% 15px;
   position: fixed;
@@ -35,24 +36,10 @@ export default class NgHeader extends Vue {}
   top: 0;
   left: 0;
   z-index: 2;
-
-  &.has-line::after {
-    content: '';
-    display: block;
-    width: 75px;
-    height: 2px;
-    position: absolute;
-    top: 37px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-image: linear-gradient(to right, #07f, #e60000);
-  }
-
-  &:not(.has-line) {
-    box-shadow: 0px 0px 10px 0px #ccc;
-  }
+  box-shadow: 0px 0px 10px 0px #ccc;
 
   h1 {
+    padding-top: 1rem;
     font-size: 1rem;
     margin: 0;
     color: transparent;
@@ -72,6 +59,20 @@ export default class NgHeader extends Vue {}
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 1rem 1rem;
+  }
+
+  #subheader {
+    width: 100%;
+    text-transform: none;
+    width: 100%;
+    padding: 0.25rem 0 0.75rem 0;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000000;
+    font-weight: 400;
+    font-style: italic;
   }
 }
 </style>

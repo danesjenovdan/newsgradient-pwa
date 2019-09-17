@@ -54,8 +54,7 @@ body {
     margin-top: 55px;
     overflow-y: scroll;
 
-    /deep/ #header,
-    /deep/ #subheader {
+    /deep/ #header {
       width: 375px;
     }
   }
