@@ -7,7 +7,9 @@
       @click="$matomo.trackEvent('backToListing', `${this.$route.params.eventId}`)"
     >List</router-link>
     <h1>Newsgradient</h1>
-    <p id="subheader">current TOP FIVE POLITICAL EVENTS as reported by US media</p>
+    <p id="subheader" v-if="$route.path === '/'">
+      current TOP FIVE POLITICAL EVENTS as reported by US media
+    </p>
   </div>
 </template>
 
@@ -35,9 +37,10 @@ export default class NgHeader extends Vue {}
   left: 0;
   z-index: 2;
   box-shadow: 0px 0px 10px 0px #ccc;
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
 
   h1 {
-    padding-top: 1rem;
     font-size: 12px;
     margin: 0;
     color: transparent;
@@ -63,7 +66,6 @@ export default class NgHeader extends Vue {}
     width: 100%;
     text-transform: none;
     width: 100%;
-    padding: 0 0 0.75rem 0;
     margin: 0;
     text-align: center;
     font-size: 10px;
