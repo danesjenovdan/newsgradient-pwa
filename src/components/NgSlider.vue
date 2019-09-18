@@ -7,7 +7,10 @@
       <img class="icon" :src="icon" alt="icon" :style="`left: ${currentValue / max * 100}%`" />
     </div>
     <div class="slider-container">
-      <div class="slider-track" />
+      <div class="slider-track">
+        <div class="slider-arrow"></div>
+        <div class="slider-arrow"></div>
+      </div>
       <input
         type="range"
         class="slider"
@@ -135,11 +138,32 @@ export default {
     .slider-track {
       position: absolute;
       top: calc(1rem - 0.125rem);
-      left: 1rem;
-      right: 1rem;
+      left: 0.65rem;
+      right: 0.65rem;
       height: 4px;
       background: #fff;
       border-radius: 5rem;
+
+      .slider-arrow {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(-1rem + 0.125rem);
+        left: -0.75rem;
+        width: 1.5rem;
+        height: 2rem;
+        background-image: url('../assets/slider-arrow.svg');
+        background-repeat: no-repeat;
+        background-size: 2rem 2rem;
+        z-index: 9;
+        cursor: pointer;
+      }
+
+      .slider-arrow:last-of-type {
+        left: auto;
+        right: -0.75rem;
+        transform: rotate(180deg);
+      }
     }
 
     .slider {
