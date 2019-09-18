@@ -25,6 +25,10 @@
       This story is <strong>more {{ articleSlant }}</strong>
       than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of coverage.
     </div> -->
+    <div class="labels">
+      <span>NEGATIVE</span>
+      <span>POSITIVE</span>
+    </div>
   </div>
 </template>
 
@@ -96,7 +100,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0.5rem 1rem 1.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   background-color: #fff;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
 
@@ -147,10 +151,23 @@ export default {
     }
   }
 
+  .labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+
+    span {
+      margin: 0 0.5rem;
+    }
+  }
+
   .sentiment {
     margin-top: 0.5rem;
     font-size: 0.7rem;
     text-align: center;
+    color: #333;
   }
 
   .slider-container {
