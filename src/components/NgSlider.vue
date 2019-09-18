@@ -157,6 +157,7 @@ export default {
     font-size: 0.75rem;
     font-weight: 600;
     margin-top: 0.25rem;
+    color: #333;
 
     span {
       margin: 0 0.5rem;
@@ -167,7 +168,6 @@ export default {
     margin-top: 0.5rem;
     font-size: 0.7rem;
     text-align: center;
-    color: #333;
   }
 
   .slider-container {
