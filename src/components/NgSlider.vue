@@ -8,8 +8,8 @@
     </div>
     <div class="slider-container">
       <div class="slider-track">
-        <div class="slider-arrow"></div>
-        <div class="slider-arrow"></div>
+        <div class="slider-arrow" @click="onArrowClick(-1)"></div>
+        <div class="slider-arrow" @click="onArrowClick(1)"></div>
       </div>
       <input
         type="range"
@@ -75,6 +75,10 @@ export default {
     ]),
     onInput(event) {
       this.rangeValue = Number(event.target.value);
+      this.SET_SLIDER_SWITCH_TO_VALUE(this.rangeValue);
+    },
+    onArrowClick(direction) {
+      this.rangeValue = this.currentValue + direction;
       this.SET_SLIDER_SWITCH_TO_VALUE(this.rangeValue);
     },
   },

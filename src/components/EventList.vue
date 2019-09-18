@@ -52,16 +52,6 @@
           @click="$matomo.trackEvent('readArticle', `${this.$route.params.eventId}`, `${currentArticle.id}`)"
         >Read more</a>
       </p>
-      <div class="arrows">
-        <div
-          @click="nextArticle('negative')"
-          class="arrow minus"
-        >More negative</div>
-        <div
-          @click="nextArticle('positive')"
-          class="arrow plus"
-        >More positive</div>
-      </div>
     </div>
   </div>
 </template>
@@ -331,46 +321,6 @@ export default class EventList extends Vue {}
       text-align: center;
       text-decoration: underline;
       color: #07f;
-    }
-
-    .arrows {
-      border-top: 1px solid #eee;
-      display: flex;
-      padding: 0 0.75rem;
-      margin: 0 -0.375rem;
-      margin-top: auto;
-
-      .arrow {
-        flex: 1;
-        border-radius: 5rem;
-        height: 2rem;
-        margin: 0.75rem 0.375rem;
-        padding: 0 1rem;
-        text-align: center;
-        line-height: 2rem;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 0.7rem;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 2rem 35%;
-
-        &.minus {
-          color: #07f;
-          background-color: rgba(#07f, 0.25);
-          background-image: url('../assets/arrow-left-blue.svg');
-          background-position: left center;
-          padding-left: 1.5rem;
-        }
-
-        &.plus {
-          color: #e60000;
-          background-color: rgba(#e60000, 0.25);
-          background-image: url('../assets/arrow-right-red.svg');
-          background-position: right center;
-          padding-right: 1.5rem;
-        }
-      }
     }
   }
 }
