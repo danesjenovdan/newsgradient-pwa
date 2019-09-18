@@ -1,6 +1,7 @@
 <template>
   <div id="slider">
-    <div class="lead">
+    <div v-if="showHelp" class="hand"></div>
+    <div v-if="showHelp" class="lead">
       Move the slider to see different perspectives
     </div>
     <div v-if="icon" class="icon-container">
@@ -20,10 +21,10 @@
         @input="onInput"
       />
     </div>
-    <div class="sentiment">
+    <!-- <div class="sentiment">
       This story is <strong>more {{ articleSlant }}</strong>
       than <strong>{{ percentageSlant.toFixed(0) }}%</strong> of coverage.
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -52,6 +53,7 @@ export default {
   data() {
     return {
       rangeValue: 50,
+      showHelp: true,
     };
   },
   computed: {
@@ -74,10 +76,12 @@ export default {
       'SET_SLIDER_SWITCH_TO_VALUE',
     ]),
     onInput(event) {
+      this.showHelp = false;
       this.rangeValue = Number(event.target.value);
       this.SET_SLIDER_SWITCH_TO_VALUE(this.rangeValue);
     },
     onArrowClick(direction) {
+      this.showHelp = false;
       this.rangeValue = this.currentValue + direction;
       this.SET_SLIDER_SWITCH_TO_VALUE(this.rangeValue);
     },
@@ -92,16 +96,36 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 1.5rem 1rem;
   background-color: #fff;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
 
   .lead {
+    position: absolute;
+    left: 0;
+    right: 0;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 0.7rem;
+    font-size: 1rem;
     text-align: center;
-    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+    margin-top: -1rem;
+    transform: translateY(-100%);
+    background-color: rgba(#e8e8e8, 0.75);
+  }
+
+  .hand {
+    position: fixed;
+    bottom: 0;
+    left: 35%;
+    width: 3rem;
+    height: 3rem;
+    background-image: url('../assets/hand-pointer.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    z-index: 9;
+    pointer-events: none;
   }
 
   .icon-container {
@@ -152,13 +176,13 @@ export default {
         content: '';
         display: block;
         position: absolute;
-        top: calc(-1rem + 0.125rem);
+        top: calc(-2rem + 0.125rem);
         left: -0.75rem;
-        width: 1.5rem;
-        height: 2rem;
+        width: 2rem;
+        height: 4rem;
         background-image: url('../assets/slider-arrow.svg');
         background-repeat: no-repeat;
-        background-size: 2rem 2rem;
+        background-size: 2rem 4rem;
         z-index: 9;
         cursor: pointer;
       }
