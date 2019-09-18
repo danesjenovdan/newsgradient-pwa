@@ -108,7 +108,7 @@ export default class NgList extends Vue {};
     }
 
     .event-content {
-      flex: 2;
+      flex: 2.25;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -123,14 +123,14 @@ export default class NgList extends Vue {};
 
       .event-title {
         margin: 0;
-        font-size: 1rem;
+        font-size: 0.875rem;
         font-weight: 700;
-        line-height: 1.1;
+        line-height: 1.2;
         position: relative;
 
         .clamp {
           display: -webkit-box;
-          -webkit-line-clamp: 2;
+          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
@@ -150,10 +150,7 @@ export default class NgList extends Vue {};
       .event-data {
         display: flex;
         flex-wrap: wrap;
-        // flex-direction: column;
         align-items: center;
-        margin-top: 0.5rem;
-        border-top: 1px solid #444;
         line-height: 1;
         padding-top: 0.5rem;
 
@@ -171,14 +168,13 @@ export default class NgList extends Vue {};
 
         .event-button {
           background-color: #07f;
-          font-size: 0.6875rem;
+          font-size: 0.625rem;
           margin-left: auto;
-          // margin-bottom: 1rem;
-          padding: 1px 1.75rem 0 1rem;
+          padding: 0 1.75rem 0 0.75rem;
           transform: rotate(0.05deg);
           color: #fff;
           text-transform: uppercase;
-          line-height: 2rem;
+          line-height: 1.5rem;
           border-radius: 5rem;
           background-image: url('../assets/arrow-right-white.svg');
           background-repeat: no-repeat;
