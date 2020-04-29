@@ -15,7 +15,8 @@
       :style="{ left: gradientMarkerLeft }"
     >
       <div id="newshouse-name">
-        {{ `${currentNewshouse.substring(0, 10)}${currentNewshouse.length > 10 ? '...' : ''}`.replace(' ', '\xa0') }}
+        {{ `${currentNewshouse.substring(0, 10)}${currentNewshouse.length > 10 ? '...' : ''}`
+          .replace(' ', '\xa0') }}
       </div>
     </div>
   </div>
@@ -36,19 +37,23 @@ import { mapState, mapActions } from 'vuex';
 
     minSentiment() {
       // @ts-ignore
-      const sortedNewsEvent = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
+      const sortedNewsEvent = this.currentNewsEvent.results
+        // @ts-ignore
+        .sort((a, b) => a.sentiment - b.sentiment);
       return sortedNewsEvent.length > 0 ? sortedNewsEvent[0].sentiment : 0;
     },
 
     maxSentiment() {
       // @ts-ignore
-      const sortedNewsEvent = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
+      const sortedNewsEvent = this.currentNewsEvent.results
+        // @ts-ignore
+        .sort((a, b) => b.sentiment - a.sentiment);
       return sortedNewsEvent.length > 0 ? sortedNewsEvent[0].sentiment : 0;
     },
 
     gradientMarkerLeft() {
       // @ts-ignore
-      return `${((this.currentSentiment - this.minSentiment) / (this.maxSentiment - this.minSentiment) * 80) + 10}%`;
+      return `${(((this.currentSentiment - this.minSentiment) / (this.maxSentiment - this.minSentiment)) * 80) + 10}%`;
     },
   },
 
@@ -63,9 +68,12 @@ import { mapState, mapActions } from 'vuex';
 
     stepNegative() {
       // @ts-ignore
-      const sortedArticles = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
-      // @ts-ignore
-      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
+      const sortedArticles = this.currentNewsEvent.results
+        // @ts-ignore
+        .sort((a, b) => a.sentiment - b.sentiment);
+      const currentArticleIndex = sortedArticles
+        // @ts-ignore
+        .indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
 
       if (currentArticleIndex > 0) {
         const newArticleId = sortedArticles[currentArticleIndex - 1].id;
@@ -82,9 +90,12 @@ import { mapState, mapActions } from 'vuex';
 
     stepPositive() {
       // @ts-ignore
-      const sortedArticles = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
-      // @ts-ignore
-      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
+      const sortedArticles = this.currentNewsEvent.results
+        // @ts-ignore
+        .sort((a, b) => b.sentiment - a.sentiment);
+      const currentArticleIndex = sortedArticles
+        // @ts-ignore
+        .indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
 
       if (currentArticleIndex > 0) {
         const newArticleId = sortedArticles[currentArticleIndex - 1].id;

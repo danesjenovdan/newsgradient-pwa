@@ -49,7 +49,10 @@
           :href="currentArticle.url"
           class="read-more"
           target="_blank"
-          @click="$matomo.trackEvent('readArticle', `${this.$route.params.eventId}`, `${currentArticle.id}`)"
+          @click="$matomo.trackEvent(
+            'readArticle',
+            `${this.$route.params.eventId}`,
+            `${currentArticle.id}`)"
         >Read more</a>
       </p>
     </div>
@@ -215,15 +218,15 @@ import { getArticles } from '../requests';
 
     if (typeof window !== 'undefined') {
       // @ts-ignore
-      window.onpopstate = (event) => {
+      window.onpopstate = () => {
         const { pathname: path } = window.location;
         const match = /\/event\/(\d+)\/(\d+)\/?$/.exec(path);
         if (match) {
-          const [, eventId, articleId] = match;
+          const [, eid, aid] = match;
           // @ts-ignore
           this.updateArticleById({
-            eventId,
-            articleId,
+            eid,
+            aid,
           });
         }
       };
