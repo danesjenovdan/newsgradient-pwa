@@ -1,20 +1,19 @@
 <template>
-  <div id="app" class="app">
-    <div id="deviceframe"></div>
-    <div id="devicecontent">
-      <router-view />
-    </div>
+  <div id="app">
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900&display=swap');
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -23,6 +22,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Lato', sans-serif;
+  background-color: #efefef;
 }
 
 #app {
@@ -33,40 +33,9 @@ body {
   width: 100%;
 }
 
-#devicecontent {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background-color: #e8e8e8;
-  overflow-y: auto;
-}
-
-@media (min-width: 1000px) {
-  #deviceframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-image: url(assets/iphonexs-frame.svg);
-    background-position: top center;
-    background-size: 500px 856px;
-    background-repeat: no-repeat;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  #devicecontent {
-    width: 375px;
-    height: 783px;
-    max-height: calc(100vh - 55px);
-    margin: 0 auto;
-    margin-top: 55px;
-    overflow-y: auto;
-
-    /deep/ #header {
-      width: 375px;
-    }
-  }
+// TODO: responsive breakpoints
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>

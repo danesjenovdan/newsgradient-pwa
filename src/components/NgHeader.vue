@@ -1,77 +1,103 @@
 <template>
   <div id="header">
-    <router-link
-      v-if="$route.path !== '/'"
-      to="/"
-      id="back-to-listing"
-      @click="$matomo.trackEvent('backToListing', `${this.$route.params.eventId}`)"
-    >List</router-link>
-    <h1>Newsgradient</h1>
-    <p id="subheader" v-if="$route.path === '/'">
-      current TOP FIVE POLITICAL EVENTS as reported by US media
-    </p>
+    <div class="container">
+      <div class="flex-row">
+        <router-link to="/" class="logo-link">
+          <h1>NEWSGRADIENT</h1>
+        </router-link>
+        <h2>
+          5 most reported events by Bosnian<br />
+          press sorted by the partisan bias.
+        </h2>
+        <nav>
+          <ul>
+            <li><router-link exact to="/">Events</router-link></li>
+            <li><router-link exact to="/about">About</router-link></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component
-export default class NgHeader extends Vue {}
-</script>
-
-<style scoped lang="scss">
+<style lang="scss" scoped>
 #header {
-  width: 100%;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 700;
   background-color: #fff;
-  background-image: url('../assets/logo-text.svg');
-  background-position: top 1rem center;
-  background-repeat: no-repeat;
-  background-size: 100% 12px;
   position: fixed;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 2;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
-  padding-top: 1rem;
-  padding-bottom: 0.75rem;
+  box-shadow: 0px -10px 20px 10px rgba(0, 0, 0, 0.25);
+  padding: 1.5rem 0;
+  margin-bottom: 10rem;
 
-  h1 {
-    font-size: 12px;
-    margin: 0;
-    color: transparent;
-  }
+  .flex-row {
+    display: flex;
+    align-items: center;
 
-  #back-to-listing {
-    display: block;
-    position: absolute;
-    top: 1rem;
-    left: 0.8rem;
-    color: #000;
-    font-size: 0.625rem;
-    text-decoration: none;
-    padding-left: 1.25rem;
-    background-image: url('../assets/arrow-left.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 1rem 1rem;
-  }
+    .logo-link {
+      text-decoration: none;
+      display: block;
 
-  #subheader {
-    width: 100%;
-    text-transform: none;
-    width: 100%;
-    margin: 0;
-    text-align: center;
-    font-size: 10px;
-    line-height: 14px;
-    color: #000000;
-    font-weight: 400;
-    font-style: italic;
+      h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: transparent;
+        background-image: url('../assets/logo-text.svg');
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 10em 100%;
+        letter-spacing: 0.175em;
+      }
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.2;
+      margin-left: 0.5rem;
+    }
+
+    nav {
+      margin-left: auto;
+
+      ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        li {
+          margin-right: 4rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          a {
+            text-decoration: none;
+            color: #3f3942;
+            font-size: 1.65rem;
+            font-weight: 900;
+            line-height: 1;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+            &.router-link-active {
+              text-decoration: underline;
+              color: #ea4243;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
