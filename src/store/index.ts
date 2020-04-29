@@ -79,7 +79,7 @@ export default new Vuex.Store({
         const event = await getArticles(eventId);
         commit('SET_CURRENT_NEWS_EVENT', event);
       }
-      const theArticle = state.currentNewsEvent.results.find((article) => article.id === parseInt(articleId));
+      const theArticle = state.currentNewsEvent.results.find((article) => article.id === parseInt(articleId, 10));
       commit('SET_CURRENT_ARTICLE_ID', theArticle.id);
       commit('SET_CURRENT_ARTICLE', theArticle);
       commit('SET_CURRENT_NEWSHOUSE', theArticle.medium.title);
