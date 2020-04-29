@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import './registerServiceWorker';
-import store from './store';
 import Vue2TouchEvents from 'vue2-touch-events';
 import VueMatomo from 'vue-matomo';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import './registerServiceWorker';
 
 Vue.use(Vue2TouchEvents, {
   swipeTolerance: 100,
