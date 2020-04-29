@@ -24,7 +24,7 @@ import NgEmbed from '@/components/NgEmbed.vue';
 
   computed: {
     ...mapState([
-      'currentArticleUrl'
+      'currentArticleUrl',
     ]),
   },
 
@@ -38,7 +38,7 @@ import NgEmbed from '@/components/NgEmbed.vue';
     this.updateArticleById({
       eventId: this.$route.params.eventId,
       articleId: this.$route.params.articleId,
-    });;
+    });
   },
 })
 

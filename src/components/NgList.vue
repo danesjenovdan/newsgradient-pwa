@@ -68,7 +68,7 @@ import { getEvents } from '../requests';
   },
 })
 
-export default class NgList extends Vue {};
+export default class NgList extends Vue {}
 </script>
 
 <style lang="scss" scoped>

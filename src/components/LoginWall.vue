@@ -25,7 +25,7 @@
         @click="checkLogin"
       >Submit</button>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script lang="ts">
@@ -53,7 +53,7 @@ import { mapMutations } from 'vuex';
         this.TOGGLE_LOGGED_IN();
       } else {
         alert('Sorry, this is a closed beta, you need the correct username and password. If you would like to try it out send an email to ziga@danesjenovdan.si');
-      };
+      }
     },
   },
 
@@ -79,10 +79,10 @@ export default class LoginWall extends Vue {}
   left: 0;
 
   background-color: #ffffff;
-  
+
   padding: 30px;
   padding-top: 100px;
-  
+
   .login-container {
     position: relative;
     margin: auto;

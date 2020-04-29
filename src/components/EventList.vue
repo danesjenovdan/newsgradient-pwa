@@ -153,7 +153,7 @@ import { getArticles } from '../requests';
         this.SET_SLIDER_SWITCHING(false);
         const newPath = `/event/${this.$route.params.eventId}/${this.currentArticle.id}`;
         if (newPath !== this.$route.path) {
-          this.$matomo.trackEvent(`openSliderArticle`, `${this.$route.params.eventId}`, `${this.currentArticle.id}`);
+          this.$matomo.trackEvent('openSliderArticle', `${this.$route.params.eventId}`, `${this.currentArticle.id}`);
           this.$router.push(newPath);
         }
       });

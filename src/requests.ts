@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseApiUrl = 'https://api.ng.djnd.si/v1';
-let axiosInstance = axios.create({ baseURL: baseApiUrl });
+const axiosInstance = axios.create({ baseURL: baseApiUrl });
 
 export const eventRanges = {
   today: 'today',
@@ -16,8 +16,8 @@ export const getEvents = (eventRange: string) => axiosInstance
       // range: eventRange,
       is_visible: true,
     },
-  }).then(response => response.data)
-  .catch((error) => { throw error });
+  }).then((response) => response.data)
+  .catch((error) => { throw error; });
 
 export const getArticles = (eventId: Number) => axiosInstance
   .get('/articles/', {
@@ -25,5 +25,5 @@ export const getArticles = (eventId: Number) => axiosInstance
       event: eventId,
       limit: 300,
     },
-  }).then(response => response.data)
-  .catch((error) => { throw error });
+  }).then((response) => response.data)
+  .catch((error) => { throw error; });

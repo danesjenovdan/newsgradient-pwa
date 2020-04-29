@@ -60,15 +60,15 @@ import { mapState, mapActions } from 'vuex';
 
     stepNegative() {
       const sortedArticles = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
-      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find(article => article.id === this.currentArticleId));
+      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
 
       if (currentArticleIndex > 0) {
-        const newArticleId = sortedArticles[currentArticleIndex - 1].id
+        const newArticleId = sortedArticles[currentArticleIndex - 1].id;
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
         });
-        this.$router.push(`/article/${this.$route.params.eventId}/${newArticleId}`)
+        this.$router.push(`/article/${this.$route.params.eventId}/${newArticleId}`);
       } else {
         alert('This is the most negative article about this event.');
       }
@@ -76,15 +76,15 @@ import { mapState, mapActions } from 'vuex';
 
     stepPositive() {
       const sortedArticles = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
-      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find(article => article.id === this.currentArticleId));
+      const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
 
       if (currentArticleIndex > 0) {
-        const newArticleId = sortedArticles[currentArticleIndex - 1].id
+        const newArticleId = sortedArticles[currentArticleIndex - 1].id;
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
         });
-        this.$router.push(`/article/${this.$route.params.eventId}/${newArticleId}`)
+        this.$router.push(`/article/${this.$route.params.eventId}/${newArticleId}`);
       } else {
         alert('This is the most positive article about this event.');
       }
@@ -149,7 +149,7 @@ export default class NewsGradient extends Vue {
     border-top: 10px solid #000000;
     font-size: 0;
     line-height: 0;
-    
+
     #newshouse-name {
       position: absolute;
       left: -40px;
