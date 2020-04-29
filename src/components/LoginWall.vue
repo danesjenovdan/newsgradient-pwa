@@ -46,10 +46,15 @@ import { mapMutations } from 'vuex';
       'SET_LOGGED_IN',
     ]),
     checkLogin() {
+      // @ts-ignore
       if ((this.username === this.password) && (this.username === 'usagm')) {
+        // @ts-ignore
         window.localStorage.setItem('ngUsername', this.username);
+        // @ts-ignore
         window.localStorage.setItem('ngPassword', this.password);
+        // @ts-ignore
         this.$matomo.trackEvent('loggedIn', 'usagm');
+        // @ts-ignore
         this.TOGGLE_LOGGED_IN();
       } else {
         alert('Sorry, this is a closed beta, you need the correct username and password. If you would like to try it out send an email to ziga@danesjenovdan.si');
@@ -58,11 +63,16 @@ import { mapMutations } from 'vuex';
   },
 
   created() {
+    // @ts-ignore
     this.username = window.localStorage.getItem('ngUsername');
+    // @ts-ignore
     this.password = window.localStorage.getItem('ngPassword');
 
+    // @ts-ignore
     console.log(this.password);
+    // @ts-ignore
     if ((this.username === this.password) && (this.username === 'usagm')) {
+      // @ts-ignore
       this.SET_LOGGED_IN(true);
     }
   },

@@ -54,6 +54,7 @@ import { getEvents } from '../requests';
   },
 
   async created() {
+    // @ts-ignore
     this.refreshEvents();
   },
 
@@ -62,7 +63,9 @@ import { getEvents } from '../requests';
       return DateTime.fromISO(timestamp).toRelative();
     },
     async refreshEvents() {
+      // @ts-ignore
       const data = await getEvents(this.currentEventRange);
+      // @ts-ignore
       this.events = data.results;
     },
   },

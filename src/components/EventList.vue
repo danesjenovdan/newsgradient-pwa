@@ -84,6 +84,7 @@ import { getArticles } from '../requests';
       'sliderSwitchToValue',
     ]),
     faviconUrl() {
+      // @ts-ignore
       const { url } = this.currentArticle;
       if (url) {
         const start = url.indexOf('//') + 2;
@@ -94,6 +95,7 @@ import { getArticles } from '../requests';
     },
     shortArticleText() {
       const max = 170;
+      // @ts-ignore
       const text = this.currentArticle.og_description || this.currentArticle.content || 'No article description available.';
       if (text.length <= max) {
         return text;
@@ -104,6 +106,7 @@ import { getArticles } from '../requests';
 
   watch: {
     sliderSwitchToValue(newSwitchToValue) {
+      // @ts-ignore
       this.changeArticle(newSwitchToValue);
     },
   },
@@ -119,15 +122,21 @@ import { getArticles } from '../requests';
     ]),
     nextArticle(direction: String) {
       const newArticleIndex = direction === 'negative'
+        // @ts-ignore
         ? this.currentArticleIndex - 1
+        // @ts-ignore
         : this.currentArticleIndex + 1;
 
+      // @ts-ignore
       if (newArticleIndex >= 0 && newArticleIndex < this.currentSortedArticles.length) {
+        // @ts-ignore
         const newArticleId = this.currentSortedArticles[newArticleIndex].id;
+        // @ts-ignore
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
         });
+        // @ts-ignore
         this.$matomo.trackEvent(`openNext${direction}Article`, `${this.$route.params.eventId}`, `${newArticleId}`);
         this.$router.push(`/event/${this.$route.params.eventId}/${newArticleId}`);
       } else {
@@ -136,36 +145,46 @@ import { getArticles } from '../requests';
       }
     },
     changeArticle: debounce(function changeArticle(this: Vue, sliderValue) {
+      // @ts-ignore
       this.SET_SLIDER_SWITCHING(true);
       const newArticleIndex = sliderValue;
+      // @ts-ignore
       const newArticle = this.currentSortedArticles[newArticleIndex];
       if (newArticle) {
         const newArticleId = newArticle.id;
+        // @ts-ignore
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
         });
       }
+      // @ts-ignore
       this.stopSwitching();
     }, 0),
     stopSwitching: debounce(function stopSwitching(this: Vue) {
       requestAnimationFrame(() => {
+        // @ts-ignore
         this.SET_SLIDER_SWITCHING(false);
+        // @ts-ignore
         const newPath = `/event/${this.$route.params.eventId}/${this.currentArticle.id}`;
         if (newPath !== this.$route.path) {
+          // @ts-ignore
           this.$matomo.trackEvent('openSliderArticle', `${this.$route.params.eventId}`, `${this.currentArticle.id}`);
           this.$router.push(newPath);
         }
       });
     }, 100),
     swipeLeftHandler() {
+      // @ts-ignore
       this.nextArticle('positive');
     },
     swipeRightHandler() {
+      // @ts-ignore
       this.nextArticle('negative');
     },
   },
   async created() {
+    // @ts-ignore
     this.loading = true;
 
     const eventId = Number(this.$route.params.eventId);
@@ -175,27 +194,33 @@ import { getArticles } from '../requests';
 
     if (articleId == null) {
       const event = await getArticles(eventId);
+      // @ts-ignore
       this.SET_CURRENT_NEWS_EVENT(event);
       const article = event.results[Math.floor(Math.random() * event.results.length)];
       articleId = article.id;
 
+      // @ts-ignore
       this.$matomo.trackEvent('openRandomArticle', `${eventId}`, `${article.id}`);
       this.$router.replace(`/event/${eventId}/${article.id}`);
     }
 
+    // @ts-ignore
     await this.updateArticleById({
       eventId,
       articleId,
     });
 
+    // @ts-ignore
     this.loading = false;
 
     if (typeof window !== 'undefined') {
+      // @ts-ignore
       window.onpopstate = (event) => {
         const { pathname: path } = window.location;
         const match = /\/event\/(\d+)\/(\d+)\/?$/.exec(path);
         if (match) {
           const [, eventId, articleId] = match;
+          // @ts-ignore
           this.updateArticleById({
             eventId,
             articleId,

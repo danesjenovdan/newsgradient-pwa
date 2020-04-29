@@ -35,6 +35,7 @@ import NgEmbed from '@/components/NgEmbed.vue';
   },
 
   created() {
+    // @ts-ignore
     this.updateArticleById({
       eventId: this.$route.params.eventId,
       articleId: this.$route.params.articleId,

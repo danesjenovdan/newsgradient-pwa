@@ -39,6 +39,7 @@ export default new Vuex.Store({
     },
     SET_CURRENT_ARTICLE(state, newCurrentArticle) {
       state.currentArticle = newCurrentArticle;
+      // @ts-ignore
       state.currentArticleIndex = state.currentSortedArticles.indexOf(newCurrentArticle);
     },
     SET_CURRENT_ARTICLE_ID(state, newCurrentArticleId) {
@@ -52,7 +53,8 @@ export default new Vuex.Store({
     },
     SET_CURRENT_NEWS_EVENT(state, newCurrentEvent) {
       state.currentNewsEvent = newCurrentEvent;
-      state.currentSortedArticles = newCurrentEvent.results.slice().sort((a: any, b: any) => a.sentimentRNN - b.sentimentRNN);
+      state.currentSortedArticles = newCurrentEvent.results.slice()
+        .sort((a: any, b: any) => a.sentimentRNN - b.sentimentRNN);
     },
     SET_USERNAME(state, newUsername: string) {
       state.username = newUsername;
@@ -79,10 +81,16 @@ export default new Vuex.Store({
         const event = await getArticles(eventId);
         commit('SET_CURRENT_NEWS_EVENT', event);
       }
-      const theArticle = state.currentNewsEvent.results.find((article) => article.id === parseInt(articleId, 10));
+      const theArticle = state.currentNewsEvent.results
+        // @ts-ignore
+        .find((article) => article.id === parseInt(articleId, 10));
+      // @ts-ignore
       commit('SET_CURRENT_ARTICLE_ID', theArticle.id);
+      // @ts-ignore
       commit('SET_CURRENT_ARTICLE', theArticle);
+      // @ts-ignore
       commit('SET_CURRENT_NEWSHOUSE', theArticle.medium.title);
+      // @ts-ignore
       commit('SET_CURRENT_SENTIMENT', theArticle.sentiment);
     },
   },

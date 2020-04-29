@@ -34,9 +34,11 @@ import LoginWall from '@/components/LoginWall.vue';
       'loggedIn',
     ]),
     sliderValue() {
+      // @ts-ignore
       return this.currentArticleIndex;
     },
     sliderMax() {
+      // @ts-ignore
       return this.currentNewsEvent.count;
     },
   },

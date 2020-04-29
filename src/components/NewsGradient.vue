@@ -35,16 +35,19 @@ import { mapState, mapActions } from 'vuex';
     ]),
 
     minSentiment() {
+      // @ts-ignore
       const sortedNewsEvent = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
       return sortedNewsEvent.length > 0 ? sortedNewsEvent[0].sentiment : 0;
     },
 
     maxSentiment() {
+      // @ts-ignore
       const sortedNewsEvent = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
       return sortedNewsEvent.length > 0 ? sortedNewsEvent[0].sentiment : 0;
     },
 
     gradientMarkerLeft() {
+      // @ts-ignore
       return `${((this.currentSentiment - this.minSentiment) / (this.maxSentiment - this.minSentiment) * 80) + 10}%`;
     },
   },
@@ -59,11 +62,14 @@ import { mapState, mapActions } from 'vuex';
     ]),
 
     stepNegative() {
+      // @ts-ignore
       const sortedArticles = this.currentNewsEvent.results.sort((a, b) => a.sentiment - b.sentiment);
+      // @ts-ignore
       const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
 
       if (currentArticleIndex > 0) {
         const newArticleId = sortedArticles[currentArticleIndex - 1].id;
+        // @ts-ignore
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
@@ -75,11 +81,14 @@ import { mapState, mapActions } from 'vuex';
     },
 
     stepPositive() {
+      // @ts-ignore
       const sortedArticles = this.currentNewsEvent.results.sort((a, b) => b.sentiment - a.sentiment);
+      // @ts-ignore
       const currentArticleIndex = sortedArticles.indexOf(sortedArticles.find((article) => article.id === this.currentArticleId));
 
       if (currentArticleIndex > 0) {
         const newArticleId = sortedArticles[currentArticleIndex - 1].id;
+        // @ts-ignore
         this.updateArticleById({
           eventId: this.$route.params.eventId,
           articleId: newArticleId,
