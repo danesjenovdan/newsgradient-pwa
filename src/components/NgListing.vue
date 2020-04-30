@@ -14,31 +14,10 @@
             <div class="event-data">
               <div class="event-count">{{ event.count }} articles</div>
             </div>
-            <div class="event-article" v-for="n in 3" :key="n">
-              <div class="article-medium">
-                <img
-                  src="https://www.google.com/s2/favicons?domain=cnn.com"
-                  alt="medium icon"
-                  class="favicon"
-                />
-                <router-link :to="`/medium/${n}`">
-                  See this newshouse on the chart (>)
-                </router-link>
-              </div>
-              <div class="article-content">
-                <div class="image-ratio">
-                  <div
-                    class="article-image"
-                    :style="{
-                      backgroundImage: `url(${event.image || '/img/washington-placeholder.jpg'})`,
-                    }"
-                  ></div>
-                </div>
-                <div class="article-title">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas hic quibusdam
-                  voluptatibus, ex alias id quae in voluptas repellendus nesciunt rerum nulla harum
-                  quos ullam atque, natus labore eveniet!
-                </div>
+            <div class="event-articles">
+              <div class="event-article-container" v-for="n in 3" :key="n">
+                <ng-article-preview v-if="i === 0" :article-id="event.id" :image="event.image" />
+                <ng-article-headline v-else :article-id="event.id" :image="event.image" />
               </div>
             </div>
           </div>
@@ -46,49 +25,42 @@
         </div>
       </div>
     </div>
-    <!-- <router-link :to="`/event/${event.id}`">
-
-    </router-link> -->
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+<script>
 import { DateTime } from 'luxon';
 import { mapState } from 'vuex';
+import NgArticleHeadline from '@/components/NgArticleHeadline.vue';
+import NgArticlePreview from '@/components/NgArticlePreview.vue';
 import { getEvents } from '../requests';
 
-@Component({
-  components: {},
-
+export default {
+  components: {
+    NgArticleHeadline,
+    NgArticlePreview,
+  },
   data() {
     return {
       events: [],
     };
   },
-
   computed: {
     ...mapState(['currentEventRange']),
   },
-
   async created() {
-    // @ts-ignore
     this.refreshEvents();
   },
-
   methods: {
     getRelativeTime(timestamp) {
       return DateTime.fromISO(timestamp).toRelative();
     },
     async refreshEvents() {
-      // @ts-ignore
       const data = await getEvents(this.currentEventRange);
-      // @ts-ignore
       this.events = data.results;
     },
   },
-})
-export default class NgList extends Vue {}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -110,6 +82,7 @@ export default class NgList extends Vue {}
       }
 
       .event-button {
+        margin-top: 1rem;
         float: right;
         background-color: #07f;
         font-size: 0.95rem;
@@ -154,6 +127,8 @@ export default class NgList extends Vue {}
 
         .event-data {
           margin-top: 1rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid #000;
 
           .event-count {
             color: #e00;
@@ -162,30 +137,14 @@ export default class NgList extends Vue {}
           }
         }
 
-        .event-article {
-          margin-top: 0.75rem;
-          padding-top: 0.75rem;
-          border-top: 1px solid #000;
+        .event-articles {
+          display: flex;
+          flex-direction: column;
+          margin: 0 -0.5rem;
 
-          .article-medium {
-            //
-          }
-
-          .article-content {
-            display: flex;
-
-            .image-ratio {
-              flex-basis: 33.333%;
-              flex-shrink: 0;
-
-              .article-image {
-                height: 0;
-                padding-top: 50%;
-                background-position: center center;
-                background-size: cover;
-                position: relative;
-              }
-            }
+          .event-article-container {
+            flex: 1;
+            padding: 0 0.5rem;
           }
         }
       }
@@ -203,100 +162,19 @@ export default class NgList extends Vue {}
           }
 
           .event-data {
+            border-bottom: 0;
+
             .event-count {
               font-size: 1.35rem;
             }
+          }
+
+          .event-articles {
+            flex-direction: row;
           }
         }
       }
     }
   }
-
-  // TODO: mobile views
-  // .event {
-  //   display: flex;
-  //   text-decoration: none;
-  //   color: inherit;
-  //   position: relative;
-  //   background: #fff;
-  //   box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
-  //   margin-bottom: 0.5rem;
-
-  //   &:last-child {
-  //     margin-bottom: 0;
-  //   }
-
-  //   .event-image {
-  //     flex: 1;
-  //     background-position: center center;
-  //     background-size: cover;
-  //     position: relative;
-
-  //     &::after {
-  //       content: '';
-  //       display: block;
-  //       position: absolute;
-  //       width: 100%;
-  //       height: 100%;
-  //       background-image: linear-gradient(to bottom right, #e60000, #07f);
-  //       mix-blend-mode: color;
-  //     }
-  //   }
-
-  //   .event-content {
-  //     flex: 2.25;
-  //     display: flex;
-  //     flex-direction: column;
-  //     justify-content: flex-end;
-  //     height: 100%;
-  //     padding: 0.5rem;
-
-  //     .event-title,
-  //     .event-data {
-  //       width: 100%;
-  //       line-height: 1;
-  //     }
-
-  //     .event-title {
-  //       margin: 0;
-  //       font-size: 0.875rem;
-  //       font-weight: 700;
-  //       line-height: 1.2;
-  //       position: relative;
-
-  //       .event-detail {
-  //         display: flex;
-  //         align-items: center;
-  //         line-height: 1.25rem;
-
-  //         .event-time {
-  //           font-size: 0.625rem;
-  //           font-weight: 400;
-  //         }
-  //       }
-  //     }
-
-  //     .event-data {
-  //       display: flex;
-  //       flex-wrap: wrap;
-  //       align-items: center;
-  //       line-height: 1;
-  //       padding-top: 0.5rem;
-
-  //       .event-detail {
-  //         display: flex;
-  //         align-items: center;
-  //         line-height: 1.25rem;
-
-  //         .event-count {
-  //           font-size: 0.625rem;
-  //           color: #e60000;
-  //           font-weight: 500;
-  //         }
-  //       }
-
-  //     }
-  //   }
-  // }
 }
 </style>
