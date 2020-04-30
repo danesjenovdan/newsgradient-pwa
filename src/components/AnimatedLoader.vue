@@ -44,7 +44,7 @@ export default {};
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .lds-ripple div:nth-child(1) {
-  border-color: #e60000;
+  border-color: #e00;
 }
 .lds-ripple div:nth-child(2) {
   border-color: #07f;

@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="ng-header">
     <div class="container">
       <div class="flex-row">
         <router-link to="/" class="logo-link">
@@ -21,7 +21,7 @@
 </template>
 
 <style lang="scss" scoped>
-#header {
+#ng-header {
   background-color: #fff;
   position: fixed;
   position: sticky;
@@ -30,7 +30,6 @@
   z-index: 2;
   box-shadow: 0px -10px 20px 10px rgba(0, 0, 0, 0.25);
   padding: 1.5rem 0;
-  margin-bottom: 10rem;
 
   .flex-row {
     display: flex;
@@ -81,7 +80,7 @@
 
           a {
             text-decoration: none;
-            color: #3f3942;
+            color: inherit;
             font-size: 1.65rem;
             font-weight: 900;
             line-height: 1;
@@ -92,7 +91,7 @@
 
             &.router-link-active {
               text-decoration: underline;
-              color: #ea4243;
+              color: #e00;
             }
           }
         }
