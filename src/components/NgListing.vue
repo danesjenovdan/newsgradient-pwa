@@ -163,6 +163,7 @@ export default {
 
           .event-data {
             border-bottom: 0;
+            padding-bottom: 1rem;
 
             .event-count {
               font-size: 1.35rem;

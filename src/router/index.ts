@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Listing from '../views/Listing.vue';
+import Event from '../views/Event.vue';
 // import Article from '../views/Article.vue';
-// import Event from '../views/Event.vue';
 
 Vue.use(VueRouter);
 
@@ -11,6 +11,11 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'listing',
     component: Listing,
+  },
+  {
+    path: '/event/:eventId',
+    name: 'event',
+    component: Event,
   },
   // {
   //   path: '/article/:eventId/:articleId',
@@ -24,11 +29,6 @@ const routes: Array<RouteConfig> = [
   //   // this generates a separate chunk (about.[hash].js) for this route
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  // },
-  // {
-  //   path: '/event/:eventId/:articleId?',
-  //   name: 'event',
-  //   component: Event,
   // },
 ];
 

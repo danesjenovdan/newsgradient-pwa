@@ -28,9 +28,11 @@
           Eius vitae dolor totam iure quasi. Et, accusantium est magni aspernatur sapiente
           distinctio aperiam.
         </div>
-        <router-link class="read-more" :to="`/event/${articleId}`">
-          Read more
-        </router-link>
+        <div>
+          <router-link class="read-more" :to="`/event/${articleId}`">
+            Read more
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -128,7 +130,7 @@ export default {
       }
 
       .read-more {
-        display: block;
+        display: inline-block;
         color: #07f;
 
         &:hover {
