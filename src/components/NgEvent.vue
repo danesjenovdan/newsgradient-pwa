@@ -6,13 +6,27 @@
     <hr class="top-line" />
     <div class="container">
       <div class="carousel">
-        <div class="left-arrow">( &lt; )</div>
+        <div class="left-arrow">( &lt; ) <br> Liberal</div>
         <div class="event-articles" v-if="articles.length">
-          <div class="event-article-container" v-for="article in articles" :key="article.id">
+          <div
+            class="event-article-container"
+            v-for="article in articles.slice(0, 3)"
+            :key="article.id"
+          >
+            <ng-article-preview :article-id="article.id" :image="article.image" />
+          </div>
+          <div class="section-title-container">
+            <div class="section-title">FACT REPORTING AND ANALISYS</div>
+          </div>
+          <div
+            class="event-article-container"
+            v-for="article in articles.slice(3)"
+            :key="article.id"
+          >
             <ng-article-preview :article-id="article.id" :image="article.image" />
           </div>
         </div>
-        <div class="right-arrow">( &gt; )</div>
+        <div class="right-arrow">( &gt; ) <br> Conservative</div>
       </div>
     </div>
   </div>
@@ -91,7 +105,7 @@ export default {
     .right-arrow {
       flex-basis: 80px;
       flex-shrink: 0;
-      font-size: 2rem;
+      font-size: 1rem;
       margin-top: 250px;
       text-align: center;
     }
@@ -108,6 +122,21 @@ export default {
         flex-basis: 33.333%;
         padding: 0 0.5rem;
         margin-bottom: 1rem;
+      }
+
+      .section-title-container {
+        flex: 1;
+        flex-basis: 100%;
+        padding: 0 0.5rem;
+        margin-bottom: 1rem;
+
+        .section-title {
+          text-align: center;
+          border-top: 2px solid #ccc;
+          padding: 0.25rem 0;
+          background-image: linear-gradient(to bottom, #fff 0%, transparent 100%);
+          font-weight: 700;
+        }
       }
     }
   }
