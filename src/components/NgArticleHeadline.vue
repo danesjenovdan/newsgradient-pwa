@@ -22,6 +22,9 @@
         ></div>
       </div>
       <div class="article-content">
+        <div class="tags">
+          <div class="tag">FACT REPORTING AND ANALISYS</div>
+        </div>
         <h4 class="article-title">Lorem ipsum dolor sit amet</h4>
         <router-link class="read-more" :to="`/event/${articleId}`">
           Read more
@@ -103,6 +106,19 @@ export default {
 
     .article-content {
       margin-left: 1rem;
+
+      .tags {
+        display: flex;
+        margin-bottom: 0.25rem;
+
+        .tag {
+          display: inline-block;
+          font-size: 0.65rem;
+          background-color: #07f;
+          color: #fff;
+          padding: 0.25rem 0.5rem;
+        }
+      }
 
       .article-title {
         display: inline;

@@ -16,7 +16,12 @@
             </div>
             <div class="event-articles">
               <div class="event-article-container" v-for="n in 3" :key="n">
-                <ng-article-preview v-if="i === 0" :article-id="event.id" :image="event.image" />
+                <ng-article-preview
+                  v-if="i === 0"
+                  :article-id="event.id"
+                  :image="event.image"
+                  show-tags
+                />
                 <ng-article-headline v-else :article-id="event.id" :image="event.image" />
               </div>
             </div>

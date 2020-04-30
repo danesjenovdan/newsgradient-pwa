@@ -21,6 +21,9 @@
           <!-- TODO: replace (>) with icon -->
         </router-link>
       </div>
+      <div v-if="showTags" class="tags">
+        <div class="tag">FACT REPORTING AND ANALISYS</div>
+      </div>
       <div class="article-content">
         <h4 class="article-title">Lorem ipsum dolor sit amet</h4>
         <div class="article-description">
@@ -48,6 +51,10 @@ export default {
     image: {
       type: String,
       default: '',
+    },
+    showTags: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -107,6 +114,18 @@ export default {
       &:hover {
         text-decoration: none;
       }
+    }
+  }
+
+  .tags {
+    margin: 0.75rem 0 0.5rem;
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background-color: #07f;
+      color: #fff;
+      padding: 0.25rem 0.5rem;
     }
   }
 
