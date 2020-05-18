@@ -5,10 +5,10 @@
         <p>Trump’s impeachment speech comments</p>
       </div>
       <div class="section-line"></div>
-      <!--<div class="row">
+      <div class="row">
         <div class="column">
-          <div class="side-column">
-            Some Text in Column One
+          <div class="cards">
+            <ArticleCard />
           </div>
         </div>
         <div class="column">
@@ -21,7 +21,7 @@
             Some Text in Column Three
           </div>
         </div>
-        </div>-->
+      </div>
 
       <section class="carousel" aria-label="Gallery">
         <ol class="carousel__viewport">
@@ -118,6 +118,11 @@
   flex-direction: column;
   text-align: center;
   flex: 1;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
 }
 @keyframes tonext {
   75% {
@@ -345,7 +350,8 @@ li {
 </style>
 <script>
 import Selector from '../components/Selector'
+import ArticleCard from '../components/ArticleCard'
 export default {
-  components: { Selector }
+  components: { ArticleCard, Selector }
 }
 </script>
