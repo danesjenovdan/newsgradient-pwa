@@ -4,7 +4,7 @@
       <div class="flex">
         <nuxt-link to="/" class="flex flex--1 mr8">
           <h1 hidden>NEWSGRADIENT</h1>
-          <img src="@/assets/svg/logo-text.svg" class="" width="300" />
+          <img src="@/assets/svg/logo-text.svg" class="logo-image" />
         </nuxt-link>
         <h2 class="">
           5 most reported events by Bosnian<br />
@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/variables';
+
 .ng-header {
   background-color: #fff;
   top: 0;
@@ -50,6 +52,13 @@ export default {
 .logo-link {
   text-decoration: none;
   display: block;
+}
+.logo-image {
+  width: 100px;
+
+  @media (min-width: $small) {
+    width: 300px;
+  }
 }
 
 h2 {
