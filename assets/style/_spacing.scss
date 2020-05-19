@@ -1,0 +1,48 @@
+$spaces: 1, 2, 3, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64;
+
+
+.m {
+  @each $space in $spaces {
+    &t#{$space} {
+      margin-top: #{$space}px;
+    }
+  }
+  @each $space in $spaces {
+    &b#{$space} {
+      margin-bottom: #{$space}px;
+    }
+  }
+  @each $space in $spaces {
+    &l#{$space} {
+      margin-left: #{$space}px;
+    }
+  }
+  @each $space in $spaces {
+    &r#{$space} {
+      margin-right: #{$space}px;
+    }
+  }
+}
+
+.p {
+  @each $space in $spaces {
+    &t#{$space} {
+      padding-top: #{$space}px;
+    }
+  }
+  @each $space in $spaces {
+    &b#{$space} {
+      padding-bottom: #{$space}px;
+    }
+  }
+  @each $space in $spaces {
+    &l#{$space} {
+      padding-left: #{$space}px;
+    }
+  }
+  @each $space in $spaces {
+    &r#{$space} {
+      padding-right: #{$space}px;
+    }
+  }
+}

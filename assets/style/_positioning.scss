@@ -1,4 +1,4 @@
-$positions: center, start, end, space-between, space-evenly;
+$positions: center, start, end, space-between, space-evenly, space-around, flex-start, flex-end;
 $flexes: 1, 2, 3, 4, 5, 6, 7, 8, 9;
 
 .flex {
@@ -9,14 +9,24 @@ $flexes: 1, 2, 3, 4, 5, 6, 7, 8, 9;
       justify-content: $position;
     }
   }
+
   @each $position in $positions {
     &-align--#{$position} {
       align-items: $position;
     }
   }
+
  @each $flex in $flexes {
    &--#{$flex} {
      flex: $flex;
    }
  }
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--row {
+    flex-direction: row;
+  }
 }
