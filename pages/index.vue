@@ -12,13 +12,13 @@
           </div>
         </div>
         <div class="column">
-          <div class="main-column">
-            Some Text in Column Two
+          <div class="cards">
+            <ArticleCard />
           </div>
         </div>
         <div class="column">
-          <div class="side-column">
-            Some Text in Column Three
+          <div class="cards">
+            <ArticleCard />
           </div>
         </div>
       </div>
@@ -65,8 +65,11 @@
       <!--        </aside>-->
       <!--      </section>-->
     </div>
-
-    <Selector />
+    <div class="row">
+      <div class="column">
+        <Selector />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -87,13 +90,17 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  overflow: scroll;
   width: 100%;
+  margin-bottom: 5%;
 }
 .column {
   display: flex;
   flex-direction: column;
   text-align: center;
   flex: 1;
+  width: 33%;
+  justify-content: space-evenly;
 }
 
 .cards {
