@@ -36,6 +36,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 15vh;
   background-color: white;
   box-shadow: 0px -10px 20px 0px rgba(0, 0, 0, 0.25);
   padding: 1.5rem 0;

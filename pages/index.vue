@@ -1,22 +1,24 @@
 <template>
-  <div class="container">
-    <div>
-      <div class="section-title">
-        <p>Trump’s impeachment speech comments</p>
+  <div>
+    <div class="container content-wrapper">
+      <div>
+        <div class="section-title">
+          <p>Trump’s impeachment speech comments</p>
+        </div>
+        <div class="section-line"></div>
       </div>
-      <div class="section-line"></div>
+      <b-row>
+        <b-col sm="12" md="6" lg="4">
+          <ArticleCard />
+        </b-col>
+        <b-col sm="12" md="6" lg="4">
+          <ArticleCard />
+        </b-col>
+        <b-col sm="12" md="6" lg="4">
+          <ArticleCard />
+        </b-col>
+      </b-row>
     </div>
-    <b-row>
-      <b-col>
-        <ArticleCard />
-      </b-col>
-      <b-col>
-        <ArticleCard />
-      </b-col>
-      <b-col>
-        <ArticleCard />
-      </b-col>
-    </b-row>
     <b-row>
       <b-col>
         <Selector />
@@ -34,9 +36,12 @@
   line-height: 35px;
 }
 .section-line {
-  /*width: 1923px;*/
   height: 5px;
   background-image: linear-gradient(to right, #0076fe 0%, #e50001 100%);
+}
+
+.content-wrapper {
+  margin-bottom: 15vh;
 }
 </style>
 <script>

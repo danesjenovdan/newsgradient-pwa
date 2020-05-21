@@ -1,5 +1,5 @@
 <template>
-  <div class="card flex flex--column flex-align--center m8">
+  <div class="card flex flex--column flex-align--center">
     <img src="https://picsum.photos/600/300/?image=25" class="card__image" />
     <div class="flex flex-justify--space-between flex-align--center card__header">
       <span class="text--italic">Vigrin News</span>
@@ -36,16 +36,9 @@ export default {
 <style lang="scss" scoped>
 .card {
   background: white;
-  max-width: 350px;
+  width: 100%;
   min-height: 450px;
-  /*a {*/
-  /*  text-decoration: none;*/
-  /*  color: #0177ff;*/
-  /*  text-align: left;*/
-  /*}*/
-  /*p {*/
-  /*  color: black;*/
-  /*}*/
+
   &__body {
     width: 90%;
   }

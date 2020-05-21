@@ -50,13 +50,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/style/variables';
 
-.container {
-  width: 50%;
-  @media (max-width: $small) {
-    width: 100%;
-    padding: 20px;
-  }
-}
 .about-text {
   font-size: 40px;
   font-style: italic;
