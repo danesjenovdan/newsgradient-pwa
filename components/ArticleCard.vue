@@ -7,7 +7,7 @@
     <div class="card-content">
       <div class="top-content">
         <div class="top-content__logo">
-          <img src="../assets/img/v-logo.png" class="source-logo" />
+          <img src="~/assets/img/v-logo.png" class="source-logo" />
         </div>
         <div class="top-content__title">
           <p>{{ sourceTitle }}</p>
