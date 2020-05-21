@@ -1,39 +1,22 @@
 <template>
-  <article class="card">
-    <img
-      src="http://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg"
-      alt="A banana that looks like a bird"
-    />
-    <div class="card-content">
-      <div class="top-content">
-        <div class="top-content__logo">
-          <img src="~/assets/img/v-logo.png" class="source-logo" />
-        </div>
-        <div class="top-content__title">
-          <p>{{ sourceTitle }}</p>
-          <p>Virgin News</p>
-        </div>
-        <div class="top-content__url">
-          <a :href="link">See this newshouse on the chart</a>
-        </div>
-        <div class="top-content__chart-button">
-          <img src="../assets/svg/arrow-right-blue-circle.svg" class="button-icon" />
-        </div>
-      </div>
-      <h2>{{ articleTitle }}</h2>
-      <h2>Trump insists all is well at G7, even as disputes boil</h2>
-      <p>
-        {{ articleContent }}
-      </p>
-      <p>
-        Even after President Donald Trump claimed all was well at the Group of 7 summit, which got underway Sunday on
-        France's Atlantic coast, there was evidence of rancor behind the scenes...
-      </p>
-      <a :href="link" style="read-more">
-        Read more
-      </a>
+  <div class="card flex flex--column flex-align--center m8">
+    <img src="https://picsum.photos/600/300/?image=25" class="card__image" />
+    <div class="flex flex-justify--space-between flex-align--center card__header">
+      <span class="text--italic">Vigrin News</span>
+      <span class="text--italic">See this newshouse on the chart</span>
     </div>
-  </article>
+    <div class="card__body mt8">
+      <span class="card__title">
+        Klemen
+      </span>
+      /
+      <span class="card__text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -53,15 +36,31 @@ export default {
 <style lang="scss" scoped>
 .card {
   background: white;
-  margin-bottom: 2em;
-  position: relative;
-  a {
-    text-decoration: none;
-    color: #0177ff;
-    text-align: left;
+  max-width: 350px;
+  min-height: 450px;
+  /*a {*/
+  /*  text-decoration: none;*/
+  /*  color: #0177ff;*/
+  /*  text-align: left;*/
+  /*}*/
+  /*p {*/
+  /*  color: black;*/
+  /*}*/
+  &__body {
+    width: 90%;
   }
-  p {
-    color: black;
+
+  &__image {
+    width: 100%;
+  }
+
+  &__header {
+    width: 90%;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
   }
 }
 
