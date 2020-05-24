@@ -4,6 +4,24 @@
     <ArticleCard class="item__sub" />
     <ArticleCard class="item__sub" />
     <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
+    <ArticleCard class="item__sub" />
   </div>
 </template>
 
@@ -16,14 +34,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/style/variables';
+
 .item {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 10px;
-  margin-right: 10px;
+  justify-content: center;
 
   &__sub {
-    width: calc(100% / 3);
+    width: calc(90% / 3);
+
+    @media (max-width: $medium) {
+      width: calc(90% / 2);
+    }
   }
 }
 </style>

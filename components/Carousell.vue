@@ -1,18 +1,18 @@
 <template>
   <div class="carousel__container flex flex-justify--center flex-align--center">
-    <div class="carousel__subitem carousel__subitem--left">
+    <div v-if="this.$store.state.carousel.selectedItem !== 1" class="carousel__subitem carousel__item--left">
       <CarousellItem />
     </div>
-    <div class="carousel__arrow flex flex-align--center flex-justify--center">
+    <div @click="decrement" class="carousel__arrow">
       <img src="@/assets/svg/carousel/left-arrow.svg" />
     </div>
     <div class="carousel__item">
       <CarousellItem />
     </div>
-    <div class="carousel__arrow flex flex-align--center flex-justify--center">
+    <div @click="increment" class="carousel__arrow">
       <img src="@/assets/svg/carousel/right-arrow.svg" />
     </div>
-    <div class="carousel__subitem carousel__subitem--right">
+    <div v-if="this.$store.state.carousel.selectedItem !== 5" class="carousel__subitem carousel__item--right">
       <CarousellItem />
     </div>
   </div>
@@ -20,37 +20,53 @@
 
 <script>
 import CarousellItem from './CarousellItem'
+
 export default {
   name: 'Carousell',
-  components: { CarousellItem }
+  components: { CarousellItem },
+  methods: {
+    decrement() {
+      this.$store.commit('carousel/DECREMENT_ITEM')
+    },
+    increment() {
+      this.$store.commit('carousel/INCREMENT_ITEM')
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .carousel {
   &__container {
-    width: 100vw;
-  }
-
-  &__item {
     position: relative;
   }
 
   &__subitem {
-    position: relative;
+    width: 65vw;
+    position: absolute;
+    opacity: 0.3;
+  }
+
+  &__item {
+    width: 65vw;
 
     &--left {
-      left: 0;
+      left: -55vw;
     }
+
     &--right {
-      right: 0;
+      right: -55vw;
     }
   }
 
   &__arrow {
     width: 5vw;
     cursor: pointer;
-    position: relative;
+
+    img {
+      position: fixed;
+      top: 45%;
+    }
   }
 }
 </style>

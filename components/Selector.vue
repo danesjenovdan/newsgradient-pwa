@@ -3,11 +3,11 @@
     <ul class="choice-bar">
       <li
         v-for="choice in choices"
-        :key="choice"
-        :class="{ active: choice === selectedChoice }"
-        @click="selectedChoice = choice"
+        :key="choice.key"
+        :class="{ active: choice.key === $store.state.carousel.selectedItem }"
+        @click="setChoice(choice.key)"
       >
-        {{ choice }}
+        {{ choice.name }}
       </li>
     </ul>
   </div>
@@ -23,8 +23,18 @@ export default {
   name: 'Selector',
   data() {
     return {
-      choices: [FAR_LEFT, LIBERAL, NEUTRAL, CONSERVATIVE, FAR_RIGHT],
-      selectedChoice: NEUTRAL
+      choices: [
+        { key: 1, name: FAR_LEFT },
+        { key: 2, name: LIBERAL },
+        { key: 3, name: NEUTRAL },
+        { key: 4, name: CONSERVATIVE },
+        { key: 5, name: FAR_RIGHT }
+      ]
+    }
+  },
+  methods: {
+    setChoice(key) {
+      this.$store.commit('carousel/SET_ITEM', key)
     }
   }
 }

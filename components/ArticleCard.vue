@@ -38,6 +38,7 @@ export default {
   background: white;
   width: 100%;
   min-height: 450px;
+  margin: 5px;
 
   &__body {
     width: 90%;
