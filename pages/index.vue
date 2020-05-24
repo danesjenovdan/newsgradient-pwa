@@ -1,23 +1,17 @@
 <template>
   <div>
-    <div class="container content-wrapper">
-      <div>
-        <div class="section-title">
-          <p>Trump’s impeachment speech comments</p>
+    <div class="content-wrapper">
+      <div class="container--width">
+        <div>
+          <div class="section-title">
+            <p>Trump’s impeachment speech comments</p>
+          </div>
         </div>
-        <div class="section-line"></div>
+        <div class="section-line mb24"></div>
       </div>
-      <b-row>
-        <b-col sm="12" md="6" lg="4">
-          <ArticleCard />
-        </b-col>
-        <b-col sm="12" md="6" lg="4">
-          <ArticleCard />
-        </b-col>
-        <b-col sm="12" md="6" lg="4">
-          <ArticleCard />
-        </b-col>
-      </b-row>
+    </div>
+    <div>
+      <Carousell />
     </div>
     <b-row>
       <b-col>
@@ -37,17 +31,18 @@
 }
 .section-line {
   height: 5px;
+  width: 100vw;
   background-image: linear-gradient(to right, #0076fe 0%, #e50001 100%);
 }
 
 .content-wrapper {
-  margin-bottom: 15vh;
+  margin-bottom: 5vh;
 }
 </style>
 <script>
 import Selector from '../components/Selector'
-import ArticleCard from '../components/ArticleCard'
+import Carousell from '../components/Carousell'
 export default {
-  components: { ArticleCard, Selector }
+  components: { Carousell, Selector }
 }
 </script>
