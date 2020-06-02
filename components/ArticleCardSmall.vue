@@ -1,19 +1,18 @@
 <template>
-  <div class="card flex flex--column flex-align--center">
-    <img :src="imageUrl" class="card__image" />
+  <div class="card flex">
     <div class="flex flex-justify--space-between flex-align--center card__header">
       <span class="text--italic">{{ sourceTitle }}</span>
       <span class="text--italic">See this newshouse on the chart</span>
     </div>
-    <div class="card__body mt8">
-      <div class="card__text-wrapper">
-        <span class="card__title">
-          {{ title }}
-        </span>
-        <span class="card__text">/ {{ content }} </span>
-      </div>
-      <div>
-        <a :href="articleUrl">Read more</a>
+    <div class="flex">
+      <img :src="imageUrl" class="card__image" />
+      <div class="card__body">
+        <div class="card__text-wrapper">
+          <span class="card__title">
+            {{ title }}
+          </span>
+          <a :href="articleUrl">Read more</a>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +20,7 @@
 
 <script>
 export default {
-  name: 'ArticleCard',
+  name: 'ArticleCardSmall',
   props: {
     imageUrl: {
       type: String,
@@ -58,18 +57,15 @@ export default {
 .card {
   background: transparent;
   width: 100%;
-  height: 400px;
+  height: 33%;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 5px;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: none;
+  border-left: none;
   border-radius: 0;
-
   &:first-child {
-    margin-left: 0;
-  }
-  &:last-child {
-    margin-right: 0;
+    border-top: 1px solid black;
   }
 
   &--small {
@@ -84,7 +80,7 @@ export default {
   }
 
   &__image {
-    width: 100%;
+    width: 40%;
   }
 
   &__header {
@@ -97,9 +93,6 @@ export default {
   }
 
   &__text-wrapper {
-    height: 20%;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
 
   &__text {

@@ -1,48 +1,45 @@
 <template>
-  <div>
-    <div class="content-wrapper">
-      <div class="container--width">
-        <div>
-          <div class="section-title">
-            <p>Trump’s impeachment speech comments</p>
-          </div>
+  <div class="flex flex-align--center flex-justify--center">
+    <div class="container-landing ">
+      <div class="mt16 mb16">
+        Select component
+      </div>
+      <div class="flex flex--wrap">
+        <div
+          v-for="(event, index) in topEvents"
+          :key="event.id"
+          :class="{ 'large-container': index === 0, 'small-container': index > 0 }"
+        >
+          <EventWrapper :title="event.title" :articles="event.articles" :is-main="index === 0" />
         </div>
-        <div class="section-line mb24"></div>
       </div>
     </div>
-    <div>
-      <Carousell />
-    </div>
-    <b-row>
-      <b-col>
-        <Selector />
-      </b-col>
-    </b-row>
   </div>
 </template>
 
-<style>
-.section-title {
-  text-align: center;
-  margin: 1.5rem 0;
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 35px;
-}
-.section-line {
-  height: 5px;
-  width: 100vw;
-  background-image: linear-gradient(to right, #0076fe 0%, #e50001 100%);
-}
-
-.content-wrapper {
-  margin-bottom: 5vh;
-}
-</style>
 <script>
-import Selector from '../components/Selector'
-import Carousell from '../components/Carousell'
+import EventWrapper from '../components/EventWrapper'
 export default {
-  components: { Carousell, Selector }
+  components: { EventWrapper },
+  computed: {
+    topEvents() {
+      return this.$store.state.events.topEvents
+    }
+  },
+  mounted() {
+    this.$store.dispatch('events/getTopEvents')
+  }
 }
 </script>
+<style scoped>
+.container-landing {
+  width: 90%;
+}
+.large-container {
+  width: 66%;
+}
+
+.small-container {
+  width: 33%;
+}
+</style>

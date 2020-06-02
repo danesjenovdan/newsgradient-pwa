@@ -18,7 +18,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'
+        href:
+          'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'
       }
     ]
   },
@@ -54,7 +55,10 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: false,
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'http://localhost:8000'
+  },
   /*
    ** Build configuration
    */
