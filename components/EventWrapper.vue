@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper flex flex--column">
+  <div class="flex flex--column">
     <Divider class="w-100" />
     <div :class="{ 'title--small': !isMain }" class="title">
       {{ title }}
@@ -31,6 +31,11 @@
         :article-url="article.url"
         class="article-wrapper"
       />
+    </div>
+    <div class="w-100 flex flex-justify--end text--uppercase mt16">
+      <button class="more-button">
+        More Articles <img src="@/assets/svg/small-right-arrow.svg" style="vertical-align: inherit;" />
+      </button>
     </div>
   </div>
 </template>

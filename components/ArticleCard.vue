@@ -1,19 +1,32 @@
 <template>
-  <div class="card flex flex--column flex-align--center">
-    <img :src="imageUrl" class="card__image" />
-    <div class="flex flex-justify--space-between flex-align--center card__header">
-      <span class="text--italic">{{ sourceTitle }}</span>
-      <span class="text--italic">See this newshouse on the chart</span>
+  <div class="event-article-preview">
+    <div class="image-ratio">
+      <div :style="{ backgroundImage: `url(${imageUrl})` }" class="article-image"></div>
     </div>
-    <div class="card__body mt8">
-      <div class="card__text-wrapper">
-        <span class="card__title">
-          {{ title }}
-        </span>
-        <span class="card__text">/ {{ content }} </span>
+    <div class="article-info">
+      <div class="article-medium">
+        <div class="medium-brand">
+          <img src="https://www.google.com/s2/favicons?domain=cnn.com" alt="medium icon" class="favicon" />
+          <span class="medium-name">CNN.com</span>
+        </div>
+        <router-link :to="`/medium/TODO`" class="medium-link">
+          See this newshouse on the chart (>)
+          <!-- TODO: replace (>) with icon -->
+        </router-link>
       </div>
-      <div>
-        <a :href="articleUrl">Read more</a>
+      <div v-if="showTags" class="tags">
+        <div class="tag">FACT REPORTING AND ANALISYS</div>
+      </div>
+      <div class="article-content">
+        <h4 class="article-title">{{ title }}</h4>
+        <div class="article-description">
+          {{ content | trim }}
+        </div>
+        <div>
+          <a :href="articleUrl" class="read-more" target="_blank">
+            Read more
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +34,11 @@
 
 <script>
 export default {
-  name: 'ArticleCard',
+  filters: {
+    trim(value) {
+      return value.toString().slice(0, 220) + '...'
+    }
+  },
   props: {
     imageUrl: {
       type: String,
@@ -55,55 +72,87 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  background: transparent;
+.event-article-preview {
+  border: 1px solid #3f3942;
   width: 100%;
-  height: 400px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   margin: 5px;
-  border: 1px solid black;
-  border-radius: 0;
-
-  &:first-child {
-    margin-left: 0;
+  .image-ratio {
+    margin-bottom: 0.65rem;
+    .article-image {
+      height: 0;
+      padding-top: 56.25%;
+      background-position: center center;
+      background-size: cover;
+      position: relative;
+    }
   }
-  &:last-child {
-    margin-right: 0;
+  // TODO: this is copied in multiple places; extract to own component
+  .article-medium {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    .medium-brand {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      .favicon {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+      .medium-name {
+        margin-left: 0.5rem;
+        color: #000;
+        font-size: 1rem;
+        font-style: italic;
+        line-height: 1.25rem;
+      }
+    }
+    .medium-link {
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      color: #07f;
+      line-height: 1.25rem;
+      margin-left: auto;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
-
-  &--small {
-    background: transparent;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 0;
+  .tags {
+    margin: 0.75rem 0 0.5rem;
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background-color: #07f;
+      color: #fff;
+      padding: 0.25rem 0.5rem;
+    }
   }
-
-  &__body {
-    width: 90%;
-  }
-
-  &__image {
-    width: 100%;
-  }
-
-  &__header {
-    width: 90%;
-  }
-
-  &__title {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-
-  &__text-wrapper {
-    height: 20%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  &__text {
-    font-size: 0.8rem;
+  .article-info {
+    padding: 0 0.65rem 0.65rem;
+    .article-content {
+      .article-title {
+        display: inline;
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        &::after {
+          content: ' /\a0';
+        }
+      }
+      .article-description {
+        display: inline;
+      }
+      .read-more {
+        display: inline-block;
+        color: #07f;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 </style>

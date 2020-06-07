@@ -1,7 +1,6 @@
 export const API = {
   news: {
-    topEvents: async () => {
-
-    }
+    topEvents: '/api/v1/news/top-events/',
+    articles: '/api/v1/news/articles/'
   }
 }

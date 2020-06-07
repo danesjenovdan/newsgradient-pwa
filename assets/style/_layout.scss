@@ -1,23 +1,23 @@
 @import 'variables';
 
-.container {
-  width: 65%;
-  height: 100%;
-
-  &--fluid {
-    width: 100%;
-  }
-
-  @media (max-width: $large) {
-    width: 80%;
-    padding: 20px;
-  }
-
-  @media (max-width: $small) {
-    width: 100%;
-    padding: 20px;
-  }
-}
+  //.container {
+  //  width: 65%;
+  //  height: 100%;
+  //
+  //  &--fluid {
+  //    width: 100%;
+  //  }
+  //
+  //  @media (max-width: $large) {
+  //    width: 80%;
+  //    padding: 20px;
+  //  }
+  //
+  //  @media (max-width: $small) {
+  //    width: 100%;
+  //    padding: 20px;
+  //  }
+  //}
 // 20, 30, 40, 50, 60, 70, 80, 90, 100;
 $widths: 10;
 .w {

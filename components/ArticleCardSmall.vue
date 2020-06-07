@@ -2,17 +2,20 @@
   <div class="card flex">
     <div class="flex flex-justify--space-between flex-align--center card__header">
       <span class="text--italic">{{ sourceTitle }}</span>
-      <span class="text--italic">See this newshouse on the chart</span>
+      <span class="text--italic newshouse-text"
+        >See this newshouse on the chart
+        <img src="@/assets/svg/right-arrow.svg" width="10" style="vertical-align: inherit"
+      /></span>
     </div>
     <div class="flex">
-      <img :src="imageUrl" class="card__image" />
+      <div class="image-ratio">
+        <div :style="{ backgroundImage: `url(${imageUrl})` }" class="article-image"></div>
+      </div>
       <div class="card__body">
         <div class="card__text-wrapper">
-          <span class="card__title">
-            {{ title }}
-          </span>
-          <a :href="articleUrl">Read more</a>
+          <span class="card__title"> {{ title }} </span>/
         </div>
+        <a :href="articleUrl" target="_blank">Read more</a>
       </div>
     </div>
   </div>
@@ -57,13 +60,25 @@ export default {
 .card {
   background: transparent;
   width: 100%;
-  height: 33%;
+  height: 55%;
   text-overflow: ellipsis;
   overflow: hidden;
   border-bottom: 1px solid black;
   border-right: none;
   border-left: none;
   border-radius: 0;
+
+  .image-ratio {
+    margin-bottom: 0.65rem;
+    .article-image {
+      height: 0;
+      padding-top: 56.25%;
+      background-position: center center;
+      background-size: cover;
+      position: relative;
+    }
+  }
+
   &:first-child {
     border-top: 1px solid black;
   }
@@ -77,10 +92,12 @@ export default {
 
   &__body {
     width: 90%;
+    margin-left: 10px;
   }
 
   &__image {
-    width: 40%;
+    width: 100px;
+    height: 80px;
   }
 
   &__header {
@@ -89,10 +106,7 @@ export default {
 
   &__title {
     font-size: 1rem;
-    font-weight: bold;
-  }
-
-  &__text-wrapper {
+    font-weight: 700;
   }
 
   &__text {

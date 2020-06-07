@@ -35,6 +35,7 @@ export default {
   methods: {
     setChoice(key) {
       this.$store.commit('carousel/SET_ITEM', key)
+      this.$emit('change', key)
     }
   }
 }
@@ -46,10 +47,10 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 15vh;
+  height: 11vh;
   background-color: white;
-  box-shadow: 0px -10px 20px 0px rgba(0, 0, 0, 0.25);
-  padding: 1.5rem 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  padding-top: 1rem;
 }
 
 .choice-bar {
@@ -67,8 +68,8 @@ export default {
   }
 
   li:before {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     content: '';
     line-height: 30px;
     border: 7px solid #dddddd;
@@ -85,7 +86,7 @@ export default {
     content: '';
     position: absolute;
     background-color: #dddddd;
-    top: 25px;
+    top: 18px;
     left: -50%;
     z-index: -1;
   }
