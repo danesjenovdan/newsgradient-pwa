@@ -15,7 +15,7 @@
     </div>
     <b-row>
       <b-col>
-        <Selector />
+        <Selector @change="slantChanged" />
       </b-col>
     </b-row>
   </div>
@@ -43,6 +43,14 @@
 import Selector from '../../components/Selector'
 import Carousell from '../../components/Carousell'
 export default {
-  components: { Carousell, Selector }
+  components: { Carousell, Selector },
+  mounted() {
+    this.$store.dispatch('events/getEventArticles', { eventId: this.$route.params.id })
+  },
+  methods: {
+    slantChanged(slant) {
+      this.$store.dispatch('carousel/setSlant', slant)
+    }
+  }
 }
 </script>

@@ -70,6 +70,7 @@ export default {
 
   .image-ratio {
     margin-bottom: 0.65rem;
+    width: 60%;
     .article-image {
       height: 0;
       padding-top: 56.25%;

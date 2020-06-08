@@ -6,15 +6,27 @@
       </div>
       <div class="flex flex--wrap">
         <div v-for="(event, index) in topEvents" :key="event.id" class="col-lg-8 col-12 mb40">
-          <EventWrapper :title="event.title" :articles="event.articles" :is-main="index === 0" />
+          <EventWrapper
+            :title="event.title"
+            :articles="event.articles"
+            :article-count="event.articleCount"
+            :event-uri="event.id"
+            :is-main="index === 0"
+          />
         </div>
         <div v-for="event in otherEvents" :key="event.id" class="col-lg-4 col-12">
-          <EventWrapper :title="event.title" :articles="event.articles" :is-main="false" />
+          <EventWrapper
+            :title="event.title"
+            :articles="event.articles"
+            :is-main="false"
+            :event-uri="event.id"
+            :article-count="event.articleCount"
+          />
         </div>
       </div>
     </div>
     <div>
-      <Selector @change="getEvents" />
+      <Selector @change="slantChanged" />
     </div>
   </div>
 </template>
@@ -23,7 +35,6 @@
 import EventWrapper from '../components/EventWrapper'
 import Selector from '../components/Selector'
 import TimingSelect from '../components/TimingSelect'
-import { TIMERANGE } from '../constants'
 export default {
   components: { TimingSelect, Selector, EventWrapper },
   computed: {
@@ -32,10 +43,26 @@ export default {
     },
     otherEvents() {
       return this.$store.state.events.topEvents.slice(1)
+    },
+    currentSlant() {
+      return this.$store.state.carousel.selectedSlant
+    },
+    currentTimerange() {
+      return this.$store.state.events.timerange
+    }
+  },
+  watch: {
+    currentSlant() {
+      const params = { slant: this.$store.state.carousel.selectedSlant, timerange: this.$store.state.events.timerange }
+      this.getEvents(params)
+    },
+    currentTimerange() {
+      const params = { slant: this.$store.state.carousel.selectedSlant, timerange: this.$store.state.events.timerange }
+      this.getEvents(params)
     }
   },
   mounted() {
-    const params = { slant: this.$store.state.carousel.selectedItem, timerange: TIMERANGE.TODAY }
+    const params = { slant: this.$store.state.carousel.selectedSlant, timerange: this.$store.state.events.timerange }
     this.getEvents(params)
   },
   methods: {
@@ -43,8 +70,10 @@ export default {
       this.$store.dispatch('events/getTopEvents', params)
     },
     timerangeChanged(value) {
-      const params = { slant: this.$store.state.carousel.selectedItem, timerange: value }
-      this.getEvents(params)
+      this.$store.dispatch('events/setTimerange', value)
+    },
+    slantChanged(slant) {
+      this.$store.dispatch('carousel/setSlant', slant)
     }
   }
 }

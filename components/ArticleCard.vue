@@ -14,9 +14,6 @@
           <!-- TODO: replace (>) with icon -->
         </router-link>
       </div>
-      <div v-if="showTags" class="tags">
-        <div class="tag">FACT REPORTING AND ANALISYS</div>
-      </div>
       <div class="article-content">
         <h4 class="article-title">{{ title }}</h4>
         <div class="article-description">
@@ -75,7 +72,18 @@ export default {
 .event-article-preview {
   border: 1px solid #3f3942;
   width: 100%;
-  margin: 5px;
+  height: 100%;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+
   .image-ratio {
     margin-bottom: 0.65rem;
     .article-image {
@@ -86,7 +94,6 @@ export default {
       position: relative;
     }
   }
-  // TODO: this is copied in multiple places; extract to own component
   .article-medium {
     display: flex;
     flex-wrap: wrap;

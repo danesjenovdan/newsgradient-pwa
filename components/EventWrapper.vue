@@ -8,17 +8,17 @@
       <span class="date-display">Last published:</span> <span class="date-display__date">{{ lastPublished }}</span>
     </div>
     <div class="articles mt16 mb8">{{ articleCount }} articles</div>
-    <div v-if="isMain" class="flex flex-justify--space-between">
-      <ArticleCard
-        v-for="article in articles"
-        :key="article.id"
-        :title="article.title"
-        :content="article.content"
-        :image-url="article.image"
-        :source-title="article.medium.title"
-        :article-url="article.url"
-        class="article-wrapper"
-      />
+    <div v-if="isMain" class="row">
+      <div v-for="article in articles" :key="article.id" class="col-lg-4 col-12">
+        <ArticleCard
+          :title="article.title"
+          :content="article.content"
+          :image-url="article.image"
+          :source-title="article.medium.title"
+          :article-url="article.url"
+          class="article-wrapper"
+        />
+      </div>
     </div>
     <div v-else class="flex flex--column flex">
       <ArticleCardSmall
@@ -33,9 +33,9 @@
       />
     </div>
     <div class="w-100 flex flex-justify--end text--uppercase mt16">
-      <button class="more-button">
+      <nuxt-link :to="'/events/' + eventUri" class="more-button">
         More Articles <img src="@/assets/svg/small-right-arrow.svg" style="vertical-align: inherit;" />
-      </button>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -63,6 +63,11 @@ export default {
     articleCount: {
       type: Number,
       default: 0
+    },
+    eventUri: {
+      default: 'uri',
+      type: String,
+      required: true
     },
     articles: {
       type: Array,

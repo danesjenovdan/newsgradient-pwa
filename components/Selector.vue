@@ -4,7 +4,7 @@
       <li
         v-for="choice in choices"
         :key="choice.key"
-        :class="{ active: choice.key === $store.state.carousel.selectedItem }"
+        :class="{ active: choice.key === $store.state.carousel.selectedSlant }"
         @click="setChoice(choice.key)"
       >
         {{ choice.name }}
@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     setChoice(key) {
-      this.$store.commit('carousel/SET_ITEM', key)
       this.$emit('change', key)
     }
   }

@@ -1,27 +1,15 @@
 <template>
-  <div class="item">
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
-    <ArticleCard class="item__sub" />
+  <div class="item row">
+    <div v-for="article in articles" :key="article.id" class="col-4 mb8">
+      <ArticleCard
+        :title="article.title"
+        :content="article.content"
+        :image-url="article.image"
+        :source-title="article.medium.title"
+        :article-url="article.url"
+        class="item__sub"
+      />
+    </div>
   </div>
 </template>
 
@@ -29,7 +17,13 @@
 import ArticleCard from './ArticleCard'
 export default {
   name: 'CarousellItem',
-  components: { ArticleCard }
+  components: { ArticleCard },
+  props: {
+    articles: {
+      type: Array,
+      default: () => []
+    }
+  }
 }
 </script>
 
@@ -37,16 +31,6 @@ export default {
 @import '@/assets/style/variables';
 
 .item {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  &__sub {
-    width: calc(90% / 3);
-
-    @media (max-width: $medium) {
-      width: calc(90% / 2);
-    }
-  }
+  overflow: hidden;
 }
 </style>

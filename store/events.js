@@ -1,8 +1,10 @@
 import { API } from '../api'
+import { TIMERANGE } from '../constants'
 
 export const state = () => ({
   topEvents: [],
-  articles: []
+  articles: {},
+  timerange: TIMERANGE.TODAY
 })
 
 export const mutations = {
@@ -11,6 +13,9 @@ export const mutations = {
   },
   SET_ARTICLES(state, payload) {
     state.articles = payload
+  },
+  SET_TIMERANGE(state, payload) {
+    state.timerange = payload
   }
 }
 
@@ -35,12 +40,26 @@ export const actions = {
       context.commit('SET_TOP_EVENTS', response.data)
     } catch (e) {}
   },
-  async getEventArticles(context, payload = {}) {
+  async getEventArticles(context, { eventId }) {
     try {
       // debugger
-      const url = API.news.topEvents + payload.eventId + '/'
+      const url = API.news.articles + eventId + '/'
       const response = await this.$axios.get(url)
-      context.commit('SET_ARTICLES', response.data)
+      const data = response.data
+      const result = {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: []
+      }
+      data.forEach((article) => {
+        result[parseInt(article.medium.slant)].push(article)
+      })
+      context.commit('SET_ARTICLES', result)
     } catch (e) {}
+  },
+  setTimerange(context, payload) {
+    context.commit('SET_TIMERANGE', payload)
   }
 }
