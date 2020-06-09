@@ -6,8 +6,8 @@
     <div class="article-info">
       <div class="article-medium">
         <div class="medium-brand">
-          <img src="https://www.google.com/s2/favicons?domain=cnn.com" alt="medium icon" class="favicon" />
-          <span class="medium-name">CNN.com</span>
+          <img :src="faviconUrl" alt="" class="favicon" />
+          <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
         </div>
         <router-link :to="`/medium/TODO`" class="medium-link">
           See this newshouse on the chart (>)
@@ -54,6 +54,18 @@ export default {
       default: 'NewsHouse'
     },
     articleUrl: {
+      type: String,
+      default: ''
+    },
+    faviconUrl: {
+      type: String,
+      default: ''
+    },
+    mediumName: {
+      type: String,
+      default: ''
+    },
+    mediumUrl: {
       type: String,
       default: ''
     }

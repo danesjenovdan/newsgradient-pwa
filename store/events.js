@@ -4,7 +4,8 @@ import { TIMERANGE } from '../constants'
 export const state = () => ({
   topEvents: [],
   articles: {},
-  timerange: TIMERANGE.TODAY
+  timerange: TIMERANGE.TODAY,
+  eventTitle: ''
 })
 
 export const mutations = {
@@ -16,6 +17,9 @@ export const mutations = {
   },
   SET_TIMERANGE(state, payload) {
     state.timerange = payload
+  },
+  SET_EVENT_TITLE(state, payload) {
+    state.eventTitle = payload
   }
 }
 
@@ -53,10 +57,11 @@ export const actions = {
         4: [],
         5: []
       }
-      data.forEach((article) => {
+      data.articles.forEach((article) => {
         result[parseInt(article.medium.slant)].push(article)
       })
       context.commit('SET_ARTICLES', result)
+      context.commit('SET_EVENT_TITLE', data.title)
     } catch (e) {}
   },
   setTimerange(context, payload) {

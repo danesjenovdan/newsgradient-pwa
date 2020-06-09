@@ -4,7 +4,7 @@
       <div class="container--width">
         <div>
           <div class="section-title">
-            <p>Trump’s impeachment speech comments</p>
+            <p>{{ $store.state.events.eventTitle }}</p>
           </div>
         </div>
         <div class="section-line mb24"></div>

@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    build: .
+    environment:
+      COMPOSE_HTTP_TIMEOUT: 300
+    command: sh -c "npm run build && npm run start"
+    ports:
+      - "127.0.0.1:50000:3000"

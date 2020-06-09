@@ -57,7 +57,7 @@ export default {
    */
   axios: {
     proxy: false,
-    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'http://localhost:8000'
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:20000' : 'https://ng.arcus-dev.si'
   },
   /*
    ** Build configuration

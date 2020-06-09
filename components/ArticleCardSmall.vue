@@ -1,7 +1,10 @@
 <template>
   <div class="card flex">
     <div class="flex flex-justify--space-between flex-align--center card__header">
-      <span class="text--italic">{{ sourceTitle }}</span>
+      <div class="medium-brand">
+        <img :src="faviconUrl" alt="" class="favicon" />
+        <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
+      </div>
       <span class="text--italic newshouse-text"
         >See this newshouse on the chart
         <img src="@/assets/svg/right-arrow.svg" width="10" style="vertical-align: inherit"
@@ -42,6 +45,18 @@ export default {
       default: 'NewsHouse'
     },
     articleUrl: {
+      type: String,
+      default: ''
+    },
+    faviconUrl: {
+      type: String,
+      default: ''
+    },
+    mediumName: {
+      type: String,
+      default: ''
+    },
+    mediumUrl: {
       type: String,
       default: ''
     }
@@ -112,6 +127,24 @@ export default {
 
   &__text {
     font-size: 0.8rem;
+  }
+}
+.medium-brand {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  .favicon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .medium-name {
+    margin-left: 0.5rem;
+    color: #000;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.25rem;
   }
 }
 </style>

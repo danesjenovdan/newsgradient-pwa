@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex--column">
+  <div class="flex flex--column mb24">
     <Divider class="w-100" />
     <div :class="{ 'title--small': !isMain }" class="title">
       {{ title }}
@@ -16,6 +16,9 @@
           :image-url="article.image"
           :source-title="article.medium.title"
           :article-url="article.url"
+          :favicon-url="article.medium.favicon"
+          :medium-url="article.medium.uri"
+          :medium-name="article.medium.title"
           class="article-wrapper"
         />
       </div>
@@ -29,13 +32,20 @@
         :image-url="article.image"
         :source-title="article.medium.title"
         :article-url="article.url"
+        :favicon-url="article.medium.favicon"
+        :medium-url="article.medium.uri"
+        :medium-name="article.medium.title"
         class="article-wrapper"
       />
     </div>
     <div class="w-100 flex flex-justify--end text--uppercase mt16">
-      <nuxt-link :to="'/events/' + eventUri" class="more-button">
+      <button
+        :to="'/events/' + eventUri"
+        @click="$router.push('/events/' + eventUri)"
+        class="more-button text--uppercase"
+      >
         More Articles <img src="@/assets/svg/small-right-arrow.svg" style="vertical-align: inherit;" />
-      </nuxt-link>
+      </button>
     </div>
   </div>
 </template>
