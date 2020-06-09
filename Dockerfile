@@ -2,7 +2,7 @@ FROM node:lts-alpine
 
 ADD package.json /app/
 WORKDIR /app
-RUN yarn install
+RUN yarn install --production
 
 ADD . /app
 
