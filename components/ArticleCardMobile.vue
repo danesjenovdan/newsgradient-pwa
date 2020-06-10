@@ -8,8 +8,8 @@
           <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
         </div>
         <router-link :to="`/medium/TODO`" class="medium-link">
-          See this newshouse on the chart (>)
-          <!-- TODO: replace (>) with icon -->
+          See this newshouse on the chart
+          <img src="@/assets/svg/carousel/right-arrow.svg" width="10" style="vertical-align: inherit" />
         </router-link>
       </div>
       <hr />
@@ -139,6 +139,8 @@ export default {
       color: #07f;
       line-height: 1.25rem;
       margin-left: auto;
+      display: inline;
+      vertical-align: middle;
       &:hover {
         text-decoration: none;
       }
@@ -158,6 +160,8 @@ export default {
     .article-content {
       .article-description {
         display: inline;
+        font-size: 0.9rem;
+        font-weight: 400;
       }
       .read-more {
         display: inline-block;

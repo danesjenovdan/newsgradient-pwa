@@ -8,7 +8,7 @@
         />
       </div>
       <div @click="decrement" class="carousel__arrow">
-        <img src="@/assets/svg/carousel/left-arrow.svg" />
+        <img src="@/assets/svg/carousel/right-arrow.svg" class="back-button" />
       </div>
       <div class="carousel__item">
         <CarousellItem

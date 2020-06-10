@@ -7,8 +7,8 @@
       </div>
       <span class="text--italic newshouse-text"
         >See this newshouse on the chart
-        <img src="@/assets/svg/right-arrow.svg" width="10" style="vertical-align: inherit"
-      /></span>
+        <img src="@/assets/svg/carousel/right-arrow.svg" width="10" style="vertical-align: inherit" />
+      </span>
     </div>
     <div class="flex">
       <div class="image-ratio">

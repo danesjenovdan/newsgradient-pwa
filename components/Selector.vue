@@ -12,6 +12,19 @@
         </li>
       </ul>
     </div>
+    <div v-if="!isInfoSeen" class="notification" @click="checkSeen">
+      <div class="notification--icon">
+        <img src="@/assets/img/info-icon.png" class="notification--icon-img" />
+      </div>
+      <div class="text--center notification__text">
+        <p class="notification__text--title">
+          Pick a perspective to see the stories!
+        </p>
+        <p class="notification__text--desc">
+          Browse among different views on the same event by selecting one of the options below.
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -31,12 +44,23 @@ export default {
         { key: 3, name: NEUTRAL },
         { key: 4, name: CONSERVATIVE },
         { key: 5, name: FAR_RIGHT }
-      ]
+      ],
+      isInfoSeen: false
     }
+  },
+  mounted() {
+    if (!localStorage.isInfoSeen) {
+      localStorage.isInfoSeen = false
+    }
+    this.isInfoSeen = localStorage.isInfoSeen === 'true'
   },
   methods: {
     setChoice(key) {
       this.$emit('change', key)
+    },
+    checkSeen() {
+      localStorage.isInfoSeen = true
+      this.isInfoSeen = localStorage.isInfoSeen
     }
   }
 }
@@ -54,6 +78,65 @@ export default {
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   padding-top: 1rem;
+}
+
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 200px;
+  position: absolute;
+  left: 10%;
+  bottom: 13vh;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  @media (min-width: $small) {
+    width: 400px;
+    left: calc(50% - 200px);
+  }
+
+  &__text {
+    font-size: 1.1rem;
+    &--title {
+      font-weight: 700;
+    }
+    &--desc {
+      font-weight: 100;
+    }
+  }
+  &:before {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    transform: rotate(45deg);
+    bottom: -5%;
+    left: calc(50% - 25px);
+  }
+
+  &--icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    left: calc(50% - 35px);
+    top: -35px;
+    background-color: #cecece;
+    border: 5px solid white;
+  }
+  &--icon-img {
+    width: 27px;
+    height: 42px;
+  }
 }
 
 .choice-bar {

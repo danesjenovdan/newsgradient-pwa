@@ -1,5 +1,6 @@
 <template>
-  <div class="container--fluid flex flex-align--center flex-justify--center">
+  <div class="container--fluid flex flex-align--center flex-justify--center flex--column">
+    <Header />
     <div class="container-landing ">
       <div v-if="!isMobile" class="col-md-3 mt16 mb16">
         <TimingSelect @change="timerangeChanged" />
@@ -60,13 +61,9 @@ import EventWrapper from '../components/EventWrapper'
 import Selector from '../components/Selector'
 import TimingSelect from '../components/TimingSelect'
 import MobileEvent from '../components/MobileEvent'
+import Header from '../components/Header'
 export default {
-  components: { MobileEvent, TimingSelect, Selector, EventWrapper },
-  data() {
-    return {
-      windowWidth: window.innerWidth
-    }
-  },
+  components: { Header, MobileEvent, TimingSelect, Selector, EventWrapper },
   computed: {
     topEvents() {
       return this.$store.state.events.topEvents.slice(0, 1)
@@ -84,7 +81,7 @@ export default {
       return this.$store.state.events.timerange
     },
     isMobile() {
-      return this.windowWidth <= 768
+      return this.$store.state.sizing.windowWidth <= 768
     }
   },
   watch: {
@@ -98,12 +95,8 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('resize', this.calcWidth)
     const params = { slant: this.$store.state.carousel.selectedSlant, timerange: this.$store.state.events.timerange }
     this.getEvents(params)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.calcWidth)
   },
   methods: {
     getEvents(params) {
@@ -114,9 +107,6 @@ export default {
     },
     slantChanged(slant) {
       this.$store.dispatch('carousel/setSlant', slant)
-    },
-    calcWidth() {
-      this.windowWidth = window.innerWidth
     }
   }
 }

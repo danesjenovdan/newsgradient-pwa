@@ -1,14 +1,20 @@
 <template>
   <div>
-    <div class="content-wrapper">
-      <div class="container--width">
-        <div>
-          <div>
-            <h1 class="section-title">{{ $store.state.events.eventTitle }}</h1>
+    <div class="container--fluid">
+      <SubHeader v-if="isMobile">
+        <div class="flex flex-align--center">
+          <div class="flex--1">
+            <img
+              @click="$router.go(-1)"
+              src="@/assets/svg/carousel/right-arrow.svg"
+              class="back-button back-button--header"
+            />
           </div>
+          <div class="flex--5 text--center header--title">{{ $store.state.events.eventTitle }}</div>
+          <div class="flex--1"></div>
         </div>
-        <div class="section-line mb24"></div>
-      </div>
+      </SubHeader>
+      <Header v-else />
     </div>
     <div>
       <Carousell :is-mobile="isMobile" />
@@ -49,31 +55,21 @@
 <script>
 import Selector from '../../components/Selector'
 import Carousell from '../../components/Carousell'
+import SubHeader from '../../components/SubHeader'
+import Header from '../../components/Header'
 export default {
-  components: { Carousell, Selector },
-  data() {
-    return {
-      windowWidth: window.innerWidth
-    }
-  },
+  components: { Header, SubHeader, Carousell, Selector },
   computed: {
     isMobile() {
-      return this.windowWidth <= 768
+      return this.$store.state.sizing.windowWidth <= 768
     }
   },
   mounted() {
-    window.addEventListener('resize', this.calcWidth)
     this.$store.dispatch('events/getEventArticles', { eventId: this.$route.params.id })
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.calcWidth)
   },
   methods: {
     slantChanged(slant) {
       this.$store.dispatch('carousel/setSlant', slant)
-    },
-    calcWidth() {
-      this.windowWidth = window.innerWidth
     }
   }
 }

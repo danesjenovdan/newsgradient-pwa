@@ -1,9 +1,29 @@
 <template>
   <div style="overflow-x: hidden;">
-    <Header />
     <nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      windowWidth: window.innerWidth
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.calcWidth)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.calcWidth)
+  },
+  methods: {
+    calcWidth() {
+      this.$store.commit('sizing/SET_WIDTH', window.innerWidth)
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 @import '@/assets/style/variables';
@@ -34,9 +54,3 @@ body {
   margin: 0;
 }
 </style>
-<script>
-import Header from '../components/Header'
-export default {
-  components: { Header }
-}
-</script>
