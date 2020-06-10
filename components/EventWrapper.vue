@@ -9,7 +9,7 @@
     </div>
     <div class="articles mt16 mb8">{{ articleCount }} articles</div>
     <div v-if="isMain" class="row">
-      <div v-for="article in articles" :key="article.id" class="col-lg-4 col-12">
+      <div v-for="article in articles" :key="article.id" class="col-lg-4 col-md-6">
         <ArticleCard
           :title="article.title"
           :content="article.content"

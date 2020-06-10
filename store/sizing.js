@@ -1,5 +1,5 @@
 export const state = () => ({
-  windowWidth: 3
+  windowWidth: window.innerWidth
 })
 
 export const mutations = {
