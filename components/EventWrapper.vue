@@ -5,7 +5,7 @@
       {{ title }}
     </div>
     <div>
-      <span class="date-display">Last published:</span> <span class="date-display__date">{{ lastPublished }}</span>
+      <span class="date-display">Last published:</span> <span class="date-display__date">{{ firstPublish }}</span>
     </div>
     <div class="articles mt16 mb8">{{ articleCount }} articles</div>
     <div v-if="isMain" class="row">
@@ -66,7 +66,7 @@ export default {
       type: String,
       default: 'No title'
     },
-    lastPublished: {
+    firstPublish: {
       type: String,
       default: '20 hours ago'
     },
