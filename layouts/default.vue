@@ -12,6 +12,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('sizing/SET_WIDTH', window.innerWidth)
     window.addEventListener('resize', this.calcWidth)
   },
   beforeDestroy() {
