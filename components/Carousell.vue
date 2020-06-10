@@ -1,35 +1,55 @@
 <template>
   <div class="carousel__container flex flex-justify--center flex-align--center">
-    <div v-if="this.$store.state.carousel.selectedSlant !== 1" class="carousel__subitem carousel__item--left">
-      <CarousellItem
-        :articles="getArticles(this.$store.state.carousel.selectedSlant - 1)"
-        class="carousel-item-selector"
-      />
-    </div>
-    <div @click="decrement" class="carousel__arrow">
-      <img src="@/assets/svg/carousel/left-arrow.svg" />
-    </div>
-    <div class="carousel__item">
-      <CarousellItem :articles="getArticles(this.$store.state.carousel.selectedSlant)" class="carousel-item-selector" />
-    </div>
-    <div @click="increment" class="carousel__arrow">
-      <img src="@/assets/svg/carousel/right-arrow.svg" />
-    </div>
-    <div v-if="this.$store.state.carousel.selectedSlant !== 5" class="carousel__subitem carousel__item--right">
-      <CarousellItem
-        :articles="getArticles(this.$store.state.carousel.selectedSlant + 1)"
-        class="carousel-item-selector-item"
-      />
-    </div>
+    <template v-if="!isMobile">
+      <div v-if="this.$store.state.carousel.selectedSlant !== 1" class="carousel__subitem carousel__item--left">
+        <CarousellItem
+          :articles="getArticles(this.$store.state.carousel.selectedSlant - 1)"
+          class="carousel-item-selector"
+        />
+      </div>
+      <div @click="decrement" class="carousel__arrow">
+        <img src="@/assets/svg/carousel/left-arrow.svg" />
+      </div>
+      <div class="carousel__item">
+        <CarousellItem
+          :articles="getArticles(this.$store.state.carousel.selectedSlant)"
+          class="carousel-item-selector"
+        />
+      </div>
+      <div @click="increment" class="carousel__arrow">
+        <img src="@/assets/svg/carousel/right-arrow.svg" />
+      </div>
+      <div v-if="this.$store.state.carousel.selectedSlant !== 5" class="carousel__subitem carousel__item--right">
+        <CarousellItem
+          :articles="getArticles(this.$store.state.carousel.selectedSlant + 1)"
+          class="carousel-item-selector-item"
+        />
+      </div>
+    </template>
+    <template v-else>
+      <div class="carousel__item">
+        <CarousellItemMobile
+          :articles="getArticles(this.$store.state.carousel.selectedSlant)"
+          class="carousel-item-selector"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import CarousellItem from './CarousellItem'
+import CarousellItemMobile from './CarousellItemMobile'
 
 export default {
   name: 'Carousell',
-  components: { CarousellItem },
+  components: { CarousellItemMobile, CarousellItem },
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     calculateMainHeight() {
       const carouselItems = document.getElementsByClassName('carousel-item-selector')
@@ -62,6 +82,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/style/variables';
+
 .carousel {
   &__container {
     position: relative;
@@ -78,6 +100,9 @@ export default {
 
   &__item {
     width: 65vw;
+    @media (max-width: $medium) {
+      width: 90%;
+    }
 
     &--left {
       left: -55vw;
