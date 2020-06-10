@@ -10,7 +10,7 @@
           5 most reported events by Bosnian<br />
           press sorted by the partisan bias.
         </h2>
-        <TimingSelect class="timing-container" />
+        <TimingSelect @change="timerangeChanged" class="timing-container" />
       </div>
       <div class="links-container">
         <nuxt-link :class="['link', { 'link--active': '/' === $route.path }]" to="/" class="link events-link">
@@ -35,6 +35,11 @@ export default {
         { to: '/about', title: 'About' }
       ]
     }
+  },
+  methods: {
+    timerangeChanged(value) {
+      this.$store.dispatch('events/setTimerange', value)
+    }
   }
 }
 </script>
@@ -48,13 +53,12 @@ export default {
   left: 0;
   width: 100%;
   box-shadow: 0px -10px 20px 10px rgba(0, 0, 0, 0.25);
-  padding: 3px 20px;
+  padding: 10px 20px;
   @media (min-width: $small) {
     padding: 15px 40px;
   }
 
   &__text {
-    font-size: 1.5rem;
     @media (max-width: $medium) {
       display: none;
     }
@@ -98,7 +102,7 @@ h2 {
 .link {
   color: #3f3942;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   @media (max-width: $medium) {
     display: flex;
@@ -108,8 +112,7 @@ h2 {
     font-size: 1rem;
     background-color: #ea4243;
     color: white;
-    width: 50%;
-    height: 25px;
+    width: 80%;
     border-radius: 12px;
   }
 

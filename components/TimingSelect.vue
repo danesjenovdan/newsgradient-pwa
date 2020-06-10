@@ -51,9 +51,9 @@ export default {
     appearance: none;
     transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
     text-align: center;
-
+    text-align-last: center;
     @media (max-width: $medium) {
-      height: 25px;
+      height: unset;
     }
   }
 
