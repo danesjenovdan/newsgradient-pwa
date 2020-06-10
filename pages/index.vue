@@ -1,7 +1,7 @@
 <template>
   <div class="container--fluid flex flex-align--center flex-justify--center">
     <div class="container-landing ">
-      <div class="col-2 mt16 mb16">
+      <div class="col-md-3 mt16 mb16 timing-container">
         <TimingSelect @change="timerangeChanged" />
       </div>
       <div class="flex flex--wrap">
@@ -79,6 +79,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+@import '@/assets/style/variables';
+
 .container-landing {
   width: 90%;
   margin-bottom: 15vh;
@@ -89,5 +91,12 @@ export default {
 
 .small-container {
   width: 33%;
+}
+
+.timing-container {
+  display: none;
+  @media (min-width: $medium) {
+    display: block;
+  }
 }
 </style>

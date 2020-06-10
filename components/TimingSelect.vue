@@ -33,22 +33,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/style/variables';
+
 .timing-select {
   position: relative;
 
   select {
     width: 100%;
     height: 40px;
-    font-size: 100%;
+    font-size: 1rem;
     cursor: pointer;
     border-radius: 20px;
-    background-color: #ededed;
+    background-color: transparent;
     border: 1px solid #bcbcbc;
     color: black;
     font-weight: 300;
     appearance: none;
     transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
     text-align: center;
+
+    @media (max-width: $medium) {
+      height: 25px;
+    }
   }
 
   /* For IE <= 11 */

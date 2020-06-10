@@ -5,7 +5,13 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@import '@/assets/style/variables';
+
+html {
+  font-size: 62.5%;
+}
+
 body {
   font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -15,6 +21,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+
+  @media (max-width: $small) {
+    font-size: 12px;
+  }
 }
 
 body {

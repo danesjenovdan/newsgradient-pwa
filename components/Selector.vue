@@ -1,15 +1,17 @@
 <template>
   <div id="ng-selector">
-    <ul class="choice-bar">
-      <li
-        v-for="choice in choices"
-        :key="choice.key"
-        :class="{ active: choice.key === $store.state.carousel.selectedSlant }"
-        @click="setChoice(choice.key)"
-      >
-        {{ choice.name }}
-      </li>
-    </ul>
+    <div class="container">
+      <ul class="choice-bar">
+        <li
+          v-for="choice in choices"
+          :key="choice.key"
+          :class="{ active: choice.key === $store.state.carousel.selectedSlant }"
+          @click="setChoice(choice.key)"
+        >
+          {{ choice.name }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -41,6 +43,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/variables';
+
 #ng-selector {
   position: fixed;
   bottom: 0;
@@ -53,7 +57,7 @@ export default {
 }
 
 .choice-bar {
-  margin: 0 20%;
+  width: 100%;
 
   li {
     list-style-type: none;
@@ -64,6 +68,10 @@ export default {
     text-align: center;
     text-transform: uppercase;
     color: #7d7d7d;
+    font-style: italic;
+    @media (max-width: $small) {
+      font-size: 10px;
+    }
   }
 
   li:before {
@@ -71,12 +79,17 @@ export default {
     height: 45px;
     content: '';
     line-height: 30px;
-    border: 7px solid #dddddd;
+    border: 4px solid #dddddd;
     background-color: #dddddd;
     display: block;
     text-align: center;
     margin: 0 auto 10px auto;
     border-radius: 50%;
+
+    @media (max-width: $small) {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   li:after {
@@ -88,6 +101,9 @@ export default {
     top: 18px;
     left: -50%;
     z-index: -1;
+    @media (max-width: $small) {
+      top: 12px;
+    }
   }
 
   li:first-child:after {
@@ -102,5 +118,11 @@ export default {
   li.active + li:after {
     background-color: #dddddd;
   }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
 }
 </style>
