@@ -16,7 +16,7 @@
       </SubHeader>
       <Header v-else />
     </div>
-    <div>
+    <div class="mt24">
       <Carousell :is-mobile="isMobile" />
     </div>
     <b-row>

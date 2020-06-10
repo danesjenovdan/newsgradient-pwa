@@ -1,6 +1,6 @@
 <template>
   <div class="item row">
-    <div v-for="article in articles" :key="article.id" class="col-4 mb8">
+    <div v-for="article in articles" :key="article.id" class="col-lg-6 col-md-6 mb8">
       <ArticleCard
         :title="article.title"
         :content="article.content"
