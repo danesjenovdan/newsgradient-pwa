@@ -106,12 +106,12 @@ export default {
 
     &--left {
       left: -55vw;
-      overflow-y: hidden;
+      overflow: hidden;
     }
 
     &--right {
       right: -55vw;
-      overflow-y: hidden;
+      overflow: hidden;
     }
   }
 
