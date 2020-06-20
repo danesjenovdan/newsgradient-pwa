@@ -5,10 +5,6 @@
         <img :src="faviconUrl" alt="" class="favicon" />
         <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
       </div>
-      <span class="text--italic newshouse-text"
-        >See this newshouse on the chart
-        <img src="@/assets/svg/carousel/right-arrow.svg" width="10" style="vertical-align: inherit" />
-      </span>
     </div>
     <div class="flex">
       <div class="image-ratio">
@@ -18,7 +14,7 @@
         <div class="card__text-wrapper">
           <span class="card__title"> {{ title }} </span>/
         </div>
-        <a :href="articleUrl" target="_blank">Read more</a>
+        <a :href="articleUrl" target="_blank" class="read-more">Read more</a>
       </div>
     </div>
   </div>
@@ -82,6 +78,10 @@ export default {
   border-right: none;
   border-left: none;
   border-radius: 0;
+  transition: background-color 0.15s;
+  &:hover {
+    background-color: #fbfbfb;
+  }
 
   .image-ratio {
     margin-bottom: 0.65rem;
@@ -123,6 +123,10 @@ export default {
   &__title {
     font-size: 1rem;
     font-weight: 700;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__text {
@@ -146,5 +150,10 @@ export default {
     font-style: italic;
     line-height: 1.25rem;
   }
+}
+.read-more {
+  display: inline-block;
+  color: #07f;
+  text-decoration: underline;
 }
 </style>

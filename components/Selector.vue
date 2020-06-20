@@ -57,6 +57,7 @@ export default {
   methods: {
     setChoice(key) {
       this.$emit('change', key)
+      this.checkSeen()
     },
     checkSeen() {
       localStorage.isInfoSeen = true
@@ -91,8 +92,9 @@ export default {
   left: 10%;
   bottom: 13vh;
   background-color: white;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 22px -3px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  padding: 10px;
 
   @media (min-width: $small) {
     width: 400px;
@@ -112,12 +114,14 @@ export default {
     position: absolute;
     display: block;
     content: '';
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: white;
     transform: rotate(45deg);
-    bottom: -5%;
-    left: calc(50% - 25px);
+    bottom: -20px;
+    left: calc(50% - 20px);
+    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+    z-index: 100;
   }
 
   &--icon {
@@ -152,11 +156,14 @@ export default {
     text-transform: uppercase;
     color: #7d7d7d;
     font-style: italic;
+
     @media (max-width: $small) {
       font-size: 10px;
     }
   }
-
+  li:hover:before {
+    background-color: #0177ff;
+  }
   li:before {
     width: 45px;
     height: 45px;
@@ -168,6 +175,7 @@ export default {
     text-align: center;
     margin: 0 auto 10px auto;
     border-radius: 50%;
+    transition: background-color 0.2s;
 
     @media (max-width: $small) {
       width: 30px;

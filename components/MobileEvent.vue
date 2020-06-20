@@ -38,7 +38,7 @@ export default {
       if (value.toString().length <= 70) {
         return value
       }
-      return value.toString().slice(0, 70) + '...'
+      return value.toString().slice(0, 70) + ' ...'
     }
   },
   props: {

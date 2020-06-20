@@ -9,10 +9,6 @@
           <img :src="faviconUrl" alt="" class="favicon" />
           <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
         </div>
-        <router-link :to="`/medium/TODO`" class="medium-link">
-          See this newshouse on the chart
-          <img src="@/assets/svg/carousel/right-arrow.svg" width="10" style="vertical-align: inherit" />
-        </router-link>
       </div>
       <div class="article-content">
         <h4 class="article-title">{{ title }}</h4>
@@ -33,7 +29,7 @@
 export default {
   filters: {
     trim(value) {
-      return value.toString().slice(0, 220) + '...'
+      return value.toString().slice(0, 220) + ' ...'
     }
   },
   props: {
@@ -88,12 +84,16 @@ export default {
   margin-bottom: 10px;
   margin-left: 5px;
   margin-right: 5px;
+  transition: background-color 0.15s;
 
   &:first-child {
     margin-left: 0;
   }
   &:last-child {
     margin-right: 0;
+  }
+  &:hover {
+    background-color: #fbfbfb;
   }
 
   .image-ratio {
@@ -155,23 +155,24 @@ export default {
     padding: 0 0.65rem 0.65rem;
     .article-content {
       .article-title {
-        display: inline;
+        display: block;
         margin: 0;
         font-size: 1.25rem;
         font-weight: 700;
+        color: #3f3942;
+        line-height: 1;
         &::after {
           content: ' /\a0';
         }
       }
       .article-description {
-        display: inline;
+        display: block;
+        line-height: 1.3;
       }
       .read-more {
         display: inline-block;
         color: #07f;
-        &:hover {
-          text-decoration: none;
-        }
+        text-decoration: underline;
       }
     }
   }

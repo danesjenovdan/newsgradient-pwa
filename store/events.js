@@ -26,12 +26,8 @@ export const mutations = {
 export const actions = {
   async getTopEvents(context, payload = {}) {
     try {
-      // debugger
       let url = API.news.topEvents
       const qp = {}
-      if (payload.timerange) {
-        qp.timerange = payload.timerange
-      }
       if (payload.slant) {
         qp.slant = payload.slant
       }

@@ -7,8 +7,15 @@
           class="carousel-item-selector"
         />
       </div>
-      <div @click="decrement" class="carousel__arrow">
-        <img src="@/assets/svg/carousel/right-arrow.svg" class="back-button" />
+      <div @click="decrement" class="carousel__arrow mr8">
+        <img
+          v-if="this.$store.state.carousel.selectedSlant !== 1"
+          src="@/assets/svg/carousel/right-arrow.svg"
+          class="back-button"
+        />
+        <span v-if="this.$store.state.carousel.selectedSlant !== 1">
+          {{ getLeftArrowText }}
+        </span>
       </div>
       <div class="carousel__item">
         <CarousellItem
@@ -17,7 +24,14 @@
         />
       </div>
       <div @click="increment" class="carousel__arrow">
-        <img src="@/assets/svg/carousel/right-arrow.svg" />
+        <img
+          v-if="this.$store.state.carousel.selectedSlant !== 5"
+          src="@/assets/svg/carousel/right-arrow.svg"
+          alt="arrow"
+        />
+        <span v-if="this.$store.state.carousel.selectedSlant !== 5">
+          {{ getRightArrowText }}
+        </span>
       </div>
       <div v-if="this.$store.state.carousel.selectedSlant !== 5" class="carousel__subitem carousel__item--right">
         <CarousellItem
@@ -38,6 +52,7 @@
 </template>
 
 <script>
+import { SLANTS } from '../constants'
 import CarousellItem from './CarousellItem'
 import CarousellItemMobile from './CarousellItemMobile'
 
@@ -62,6 +77,12 @@ export default {
         }
       })
       return height
+    },
+    getLeftArrowText() {
+      return SLANTS[this.$store.state.carousel.selectedSlant - 1]
+    },
+    getRightArrowText() {
+      return SLANTS[this.$store.state.carousel.selectedSlant + 1]
     }
   },
   methods: {
@@ -105,25 +126,32 @@ export default {
     }
 
     &--left {
-      left: -55vw;
+      left: -60vw;
       overflow: hidden;
     }
 
     &--right {
-      right: -55vw;
+      right: -60vw;
       overflow: hidden;
     }
   }
 
   &__arrow {
-    width: 3vw;
+    width: 50px;
     cursor: pointer;
-    margin: 10px;
+    margin: 25px;
 
     img {
       position: fixed;
       top: 45%;
-      width: 3vw;
+      width: 50px;
+      margin-bottom: 10px;
+    }
+    span {
+      position: fixed;
+      top: 52%;
+      font-weight: 700;
+      font-style: italic;
     }
   }
 }

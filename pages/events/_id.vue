@@ -15,6 +15,12 @@
         </div>
       </SubHeader>
       <Header v-else />
+      <div class="flex flex-align--center flex-justify--center" v-if="!isMobile">
+        <h1>
+          {{ $store.state.events.eventTitle }}
+        </h1>
+      </div>
+      <Divider v-if="!isMobile" />
     </div>
     <div class="mt24">
       <Carousell :is-mobile="isMobile" />
@@ -51,14 +57,22 @@
 .content-wrapper {
   margin-bottom: 5vh;
 }
+
+h1 {
+  text-align: center;
+  font-style: italic;
+  padding: 10px 40px;
+  font-weight: 700;
+}
 </style>
 <script>
 import Selector from '../../components/Selector'
 import Carousell from '../../components/Carousell'
 import SubHeader from '../../components/SubHeader'
 import Header from '../../components/Header'
+import Divider from '../../components/Divider'
 export default {
-  components: { Header, SubHeader, Carousell, Selector },
+  components: { Divider, Header, SubHeader, Carousell, Selector },
   computed: {
     isMobile() {
       return this.$store.state.sizing.windowWidth <= 768

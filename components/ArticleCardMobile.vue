@@ -7,10 +7,6 @@
           <img :src="faviconUrl" alt="" class="favicon" />
           <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
         </div>
-        <router-link :to="`/medium/TODO`" class="medium-link">
-          See this newshouse on the chart
-          <img src="@/assets/svg/carousel/right-arrow.svg" width="10" style="vertical-align: inherit" />
-        </router-link>
       </div>
       <hr />
       <h4 class="article-title">{{ title }}</h4>
@@ -40,7 +36,7 @@ export default {
   components: { Divider },
   filters: {
     trim(value) {
-      return value.toString().slice(0, 220) + '...'
+      return value.toString().slice(0, 220) + ' ...'
     }
   },
   props: {
@@ -159,16 +155,15 @@ export default {
   .article-info {
     .article-content {
       .article-description {
-        display: inline;
+        display: block;
         font-size: 0.9rem;
         font-weight: 400;
+        line-height: 1.3;
       }
       .read-more {
         display: inline-block;
         color: #07f;
-        &:hover {
-          text-decoration: none;
-        }
+        text-decoration: underline;
       }
     }
   }
@@ -178,9 +173,11 @@ export default {
   padding: 10px;
 }
 .article-title {
-  display: inline;
+  display: block;
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
+  color: #3f3942;
+  line-height: 1;
 }
 </style>

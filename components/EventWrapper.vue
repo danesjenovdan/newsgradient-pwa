@@ -1,13 +1,15 @@
 <template>
   <div class="flex flex--column mb24">
     <Divider class="w-100" />
-    <div :class="{ 'title--small': !isMain }" class="title">
+    <div :class="{ 'title--small': !isMain }" @click="$router.push('/events/' + eventUri)" class="title">
       {{ title }}
     </div>
     <div>
       <span class="date-display">Last published:</span> <span class="date-display__date">{{ firstPublish }}</span>
     </div>
-    <div class="articles mt16 mb8">{{ articleCount }} articles</div>
+    <div class="mt16 mb8">
+      <a class="articles" :href="'/events/' + eventUri"> {{ articleCount }} articles </a>
+    </div>
     <div v-if="isMain" class="row">
       <div v-for="article in articles" :key="article.id" class="col-lg-4 col-md-6">
         <ArticleCard
@@ -95,9 +97,16 @@ export default {
   font-size: 2rem;
   font-weight: bold;
   font-style: italic;
-
+  color: #3f3942;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: block;
+  line-height: 1em;
   &--small {
     font-size: 1.8rem;
+  }
+  &:hover {
+    color: #0177ff;
   }
 }
 .date-display {

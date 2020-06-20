@@ -10,7 +10,7 @@
           5 most reported events by Bosnian<br />
           press sorted by the partisan bias.
         </h2>
-        <TimingSelect @change="timerangeChanged" class="timing-container" />
+        <!--        <TimingSelect @change="timerangeChanged" class="timing-container" />-->
       </div>
       <div class="links-container">
         <nuxt-link :class="['link', { 'link--active': '/' === $route.path }]" to="/" class="link events-link">
@@ -24,10 +24,8 @@
   </div>
 </template>
 <script>
-import TimingSelect from './TimingSelect'
 export default {
   name: 'Header',
-  components: { TimingSelect },
   data() {
     return {
       links: [
@@ -102,8 +100,8 @@ h2 {
 .link {
   color: #3f3942;
   text-decoration: none;
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 900;
   @media (max-width: $medium) {
     display: flex;
     flex-direction: column;
@@ -120,12 +118,14 @@ h2 {
     color: #ea4243;
     text-decoration: underline;
     text-decoration-thickness: 4px;
+    /*border-bottom: 4px solid #ea4243;*/
   }
 
   &--active {
     color: #ea4243;
     text-decoration: underline;
     text-decoration-thickness: 4px;
+    /*border-bottom: 4px solid #ea4243;*/
   }
 }
 

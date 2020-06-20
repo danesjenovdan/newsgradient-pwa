@@ -2,10 +2,7 @@
   <div class="container--fluid flex flex-align--center flex-justify--center flex--column">
     <Header />
     <div class="container-landing ">
-      <div v-if="!isMobile" class="col-md-3 mt16 mb16">
-        <TimingSelect @change="timerangeChanged" />
-      </div>
-      <div v-else class="description-container">
+      <div v-if="isMobile" class="description-container">
         5 most reported events by Bosnian<br />
         press sorted by the partisan bias.
       </div>
@@ -59,11 +56,10 @@
 <script>
 import EventWrapper from '../components/EventWrapper'
 import Selector from '../components/Selector'
-import TimingSelect from '../components/TimingSelect'
 import MobileEvent from '../components/MobileEvent'
 import Header from '../components/Header'
 export default {
-  components: { Header, MobileEvent, TimingSelect, Selector, EventWrapper },
+  components: { Header, MobileEvent, Selector, EventWrapper },
   computed: {
     topEvents() {
       return this.$store.state.events.topEvents.slice(0, 1)
@@ -117,6 +113,10 @@ export default {
 .container-landing {
   width: 90%;
   margin-bottom: 15vh;
+  margin-top: 30px;
+  @media (max-width: $medium) {
+    margin-top: 0;
+  }
 }
 .large-container {
   width: 66%;

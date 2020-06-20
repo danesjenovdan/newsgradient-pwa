@@ -35,7 +35,7 @@
           <div v-if="selectedTitle === 2" src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
         </div>
       </div>
-      <div class="card flex flex--column">
+      <div class="card row flex flex--column">
         <span class="title mb16">Sed ut persipiciatis unde omnis</span>
         <span class="subtitle"
           >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -49,6 +49,13 @@
           ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
           labore et dolore magnam aliquam quaerat voluptatem.</span
         >
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="row">
+              DEVELOPED BY
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -86,7 +93,6 @@ export default {
 }
 .card {
   background-color: white;
-  padding: 40px;
   width: 100%;
 }
 .title {
