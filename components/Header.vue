@@ -119,6 +119,10 @@ h2 {
     text-decoration: underline;
     text-decoration-thickness: 4px;
     /*border-bottom: 4px solid #ea4243;*/
+    @media (max-width: $medium) {
+      color: white;
+      text-decoration: none;
+    }
   }
 
   &--active {

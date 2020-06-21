@@ -7,6 +7,8 @@
         :image-url="article.image"
         :source-title="article.medium.title"
         :article-url="article.url"
+        :favicon-url="article.medium.favicon"
+        :medium-name="article.medium.title"
         class="item__sub"
       />
     </div>

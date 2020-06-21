@@ -5,7 +5,7 @@
         <div class="flex flex-align--center">
           <div class="flex--1">
             <img
-              @click="$router.go(-1)"
+              @click="$router.push('/')"
               src="@/assets/svg/carousel/right-arrow.svg"
               class="back-button back-button--header"
             />

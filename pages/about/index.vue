@@ -5,7 +5,7 @@
         <div class="flex flex-align--center">
           <div class="flex--1">
             <img
-              @click="$router.go(-1)"
+              @click="$router.push('/')"
               src="@/assets/svg/carousel/right-arrow.svg"
               class="back-button back-button--header"
             />
@@ -25,17 +25,19 @@
     <div :class="{ container: !isMobile, 'container--fluid': isMobile }">
       <div class="flex flex-justify--space-evenly mt64">
         <div class="flex flex--column text--center title-holder">
-          <span @click="selectedTitle = 1" class="text--uppercase title text--cursor-pointer">How does this work?</span>
+          <span @click="selectedTitle = 1" class="text--uppercase tab-title text--cursor-pointer mb4"
+            >How does this work?</span
+          >
           <img v-if="selectedTitle === 1" src="@/assets/svg/underline-gradient.svg" class="gradient-underline" />
         </div>
         <div class="flex flex--column text--center title-holder">
-          <span @click="selectedTitle = 2" class="text--uppercase title text--cursor-pointer"
+          <span @click="selectedTitle = 2" class="text--uppercase tab-title text--cursor-pointer mb4"
             >How are media arranged?</span
           >
           <div v-if="selectedTitle === 2" src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
         </div>
       </div>
-      <div class="card row flex flex--column">
+      <div class="card flex flex--column">
         <span class="title mb16">Sed ut persipiciatis unde omnis</span>
         <span class="subtitle"
           >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -49,10 +51,27 @@
           ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
           labore et dolore magnam aliquam quaerat voluptatem.</span
         >
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="row">
-              DEVELOPED BY
+        <div class="row mt40">
+          <div class="flex flex--column flex-align--flex-start col-lg-8 col-12 sponsors">
+            <div class="title-container">
+              <strong>
+                DEVELOPED BY
+              </strong>
+            </div>
+            <div class="flex flex-justify--space-between flex-align--center image-wrapper">
+              <img src="@/assets/img/img1.png" height="40" />
+              <img src="@/assets/img/img2.png" height="120" />
+              <img src="@/assets/img/img3.png" height="40" />
+            </div>
+          </div>
+          <div class="flex flex--column col-lg-4 col-12 sponsors">
+            <div class="title-container">
+              <strong>
+                WITH SUPPORT OF
+              </strong>
+            </div>
+            <div class="flex flex-justify--center flex-align--center image-wrapper single-image">
+              <img src="@/assets/img/img4.png" height="80" width="80" style="width: unset" />
             </div>
           </div>
         </div>
@@ -85,21 +104,23 @@ export default {
 
 .about-text {
   font-size: 2rem;
-  font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   @media (max-width: $medium) {
     font-size: 1rem;
   }
 }
 .card {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   width: 100%;
+  padding: 40px;
+  border-radius: 0;
+  border: none;
 }
 .title {
   font-size: 1.5rem;
   font-weight: 700;
   @media (max-width: $medium) {
-    font-size: 0.7rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -118,5 +139,55 @@ export default {
   bottom: 0;
   background-image: linear-gradient(to right, #0076fe 0%, #e50001 100%);
   height: 5px;
+}
+
+.tab-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1.32px;
+  color: black;
+  @media (max-width: $medium) {
+    font-size: 0.9rem;
+  }
+}
+
+.image-wrapper {
+  width: 80%;
+
+  @media (max-width: $large) {
+    width: 100%;
+  }
+  height: 120px;
+  img {
+    width: 25%;
+  }
+}
+
+.title-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  @media (min-width: $medium) {
+    text-align: left;
+  }
+}
+
+.single-image {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  @media (max-width: $medium) {
+    justify-content: center;
+    align-items: start;
+  }
+}
+
+.sponsors {
+  &:last-child {
+    @media (max-width: $medium) {
+      margin-top: 40px;
+    }
+  }
 }
 </style>

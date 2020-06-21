@@ -1,5 +1,5 @@
 <template>
-  <div class="card flex">
+  <div @click="$router.push('/events/' + eventUri)" class="card flex">
     <div class="flex">
       <div class="image-ratio">
         <div
@@ -13,16 +13,17 @@
         <div class="card__text-wrapper">
           <span class="card__title"> {{ title | trim }} </span>
         </div>
-        <span v-if="firstPublish">First published: {{ firstPublish }}</span
+        <span v-if="firstPublish" class="text--italic">First published: {{ firstPublish }}</span
         ><br />
         <div class="flex flex-justify--space-between flex-align--center">
           <span class="articles">{{ articleCount }} articles</span>
           <button
             :to="'/events/' + eventUri"
             @click="$router.push('/events/' + eventUri)"
-            class="more-button text--uppercase"
+            class="more-button text--uppercase flex flex-align--center"
           >
-            Compare headlines <img src="@/assets/svg/small-right-arrow.svg" style="vertical-align: inherit;" />
+            Compare headlines
+            <img src="@/assets/svg/small-right-arrow.svg" style="vertical-align: inherit; margin-left: 2px" />
           </button>
         </div>
       </div>
@@ -121,6 +122,7 @@ export default {
   &__title {
     font-size: 0.95rem;
     font-weight: 700;
+    line-height: 1;
   }
 
   &__text {
