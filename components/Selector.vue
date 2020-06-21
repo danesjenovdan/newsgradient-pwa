@@ -12,7 +12,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="!isInfoSeen" class="notification" @click="checkSeen">
+    <div v-if="!isInfoSeen" @click="checkSeen" class="notification">
       <div class="notification--icon">
         <img src="@/assets/img/info-icon.png" class="notification--icon-img" />
       </div>

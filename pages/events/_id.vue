@@ -15,7 +15,7 @@
         </div>
       </SubHeader>
       <Header v-else />
-      <div class="flex flex-align--center flex-justify--center" v-if="!isMobile">
+      <div v-if="!isMobile" class="flex flex-align--center flex-justify--center">
         <h1>
           {{ $store.state.events.eventTitle }}
         </h1>

@@ -7,14 +7,8 @@
         press sorted by the partisan bias.
       </div>
       <div v-if="!isMobile" class="flex flex--wrap">
-        <div
-          v-for="(event, index) in topEvents"
-          :key="event.id"
-          v-if="event.articles.length"
-          class="col-lg-8 col-12 mb40"
-        >
+        <div v-for="(event, index) in topEvents" :key="event.id" class="col-lg-8 col-12 mb30">
           <EventWrapper
-            v-if="event.articles.length"
             :title="event.title"
             :articles="event.articles"
             :article-count="event.articleCount"
@@ -23,7 +17,7 @@
             :first-publish="event.firstPublish"
           />
         </div>
-        <div v-for="event in otherEvents" :key="event.id" v-if="event.articles.length" class="col-lg-4 col-12">
+        <div v-for="event in otherEvents" :key="event.id" class="col-lg-4 col-12 mb30">
           <EventWrapper
             :title="event.title"
             :articles="event.articles"

@@ -17,7 +17,7 @@
           {{ getLeftArrowText }}
         </span>
       </div>
-      <div class="carousel__item">
+      <div :class="{ 'carousel__item--empty': noArticles }" class="carousel__item">
         <CarousellItem
           :articles="getArticles(this.$store.state.carousel.selectedSlant)"
           class="carousel-item-selector"
@@ -71,7 +71,6 @@ export default {
       let height = 0
       Array.from(carouselItems).forEach((elem) => {
         const box = elem.getBoundingClientRect()
-        console.log(box.height)
         if (box.height > height) {
           height = box.height
         }
@@ -83,6 +82,13 @@ export default {
     },
     getRightArrowText() {
       return SLANTS[this.$store.state.carousel.selectedSlant + 1]
+    },
+    noArticles() {
+      const slant = this.$store.state.carousel.selectedSlant
+      if (!this.$store.state.events.articles[slant]) {
+        return false
+      }
+      return this.$store.state.events.articles[slant].length === 0
     }
   },
   methods: {
@@ -133,6 +139,10 @@ export default {
     &--right {
       right: -60vw;
       overflow: hidden;
+    }
+
+    &--empty {
+      height: 100vh;
     }
   }
 

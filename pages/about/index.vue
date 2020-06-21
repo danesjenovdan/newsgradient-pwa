@@ -174,12 +174,12 @@ export default {
 
 .single-image {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 
   @media (max-width: $medium) {
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
   }
 }
 
