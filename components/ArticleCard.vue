@@ -161,6 +161,8 @@ export default {
         font-weight: 700;
         color: #3f3942;
         line-height: 1;
+        word-break: break-word;
+
         &::after {
           content: ' /\a0';
         }

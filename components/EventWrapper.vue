@@ -61,7 +61,7 @@
           </div>
         </template>
       </div>
-      <div v-if="articleCount" class="w-100 flex flex-justify--end text--uppercase mt16">
+      <div v-if="articleCount" class="w-100 flex flex-justify--flex-end text--uppercase mt16">
         <button
           :to="'/events/' + eventUri"
           @click="$router.push('/events/' + eventUri)"
@@ -117,7 +117,7 @@ export default {
 }
 .title {
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 900;
   font-style: italic;
   color: #3f3942;
   transition: color 0.2s;

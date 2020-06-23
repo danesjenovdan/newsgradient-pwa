@@ -118,7 +118,7 @@ export default {
 }
 .title {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 900;
   @media (max-width: $medium) {
     font-size: 1.1rem;
   }
@@ -143,7 +143,7 @@ export default {
 
 .tab-title {
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: 1.32px;
   color: black;
   @media (max-width: $medium) {

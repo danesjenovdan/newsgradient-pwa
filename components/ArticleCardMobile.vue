@@ -176,8 +176,9 @@ export default {
   display: block;
   margin: 0;
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 900;
   color: #3f3942;
   line-height: 1;
+  word-break: break-word;
 }
 </style>

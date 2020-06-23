@@ -104,7 +104,7 @@ export default {
   &__text {
     font-size: 1.1rem;
     &--title {
-      font-weight: 700;
+      font-weight: 900;
     }
     &--desc {
       font-weight: 100;

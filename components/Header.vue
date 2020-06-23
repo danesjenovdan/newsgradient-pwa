@@ -99,9 +99,10 @@ h2 {
 
 .link {
   color: #3f3942;
-  text-decoration: none;
   font-size: 1.3rem;
   font-weight: 900;
+  border-bottom: 4px solid white;
+
   @media (max-width: $medium) {
     display: flex;
     flex-direction: column;
@@ -116,9 +117,7 @@ h2 {
 
   &:hover {
     color: #ea4243;
-    text-decoration: underline;
-    text-decoration-thickness: 4px;
-    /*border-bottom: 4px solid #ea4243;*/
+    border-bottom: 4px solid #ea4243;
     @media (max-width: $medium) {
       color: white;
       text-decoration: none;
@@ -127,9 +126,7 @@ h2 {
 
   &--active {
     color: #ea4243;
-    text-decoration: underline;
-    text-decoration-thickness: 4px;
-    /*border-bottom: 4px solid #ea4243;*/
+    border-bottom: 4px solid #ea4243;
   }
 }
 
@@ -145,5 +142,8 @@ h2 {
   @media (min-width: $medium) {
     display: none;
   }
+}
+a {
+  text-decoration: none;
 }
 </style>

@@ -122,7 +122,8 @@ export default {
 
   &__title {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 900;
+    color: #3f3942;
 
     &:hover {
       text-decoration: underline;
