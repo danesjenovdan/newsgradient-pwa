@@ -29,7 +29,7 @@
             </div>
           </template>
           <template v-else>
-            <div class="flex flex--column flex-justify--center flex-align--center empty__holder">
+            <div class="flex flex--column flex-justify--center flex-align--center empty__holder--main">
               <img src="@/assets/svg/missing-icon.svg" width="60" />
               <span class="empty__text">
                 There is no articles about this topic yet
@@ -169,7 +169,11 @@ export default {
 .empty {
   &__holder {
     margin-top: 50%;
+    &--main {
+      margin-top: 25%;
+    }
   }
+
   &__wrapper {
     height: 100%;
     border-top: 1px solid black;
