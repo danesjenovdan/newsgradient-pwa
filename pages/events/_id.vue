@@ -16,7 +16,7 @@
       </SubHeader>
       <Header v-else />
       <div v-if="!isMobile" class="flex flex-align--center flex-justify--center">
-        <h1 style="color: #3f3942">
+        <h1>
           {{ $store.state.events.eventTitle }}
         </h1>
       </div>
@@ -62,7 +62,9 @@ h1 {
   text-align: center;
   font-style: italic;
   padding: 10px 40px;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #3f3942;
 }
 </style>
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div class="event-article-preview">
     <div class="image-ratio">
-      <div :style="{ backgroundImage: `url(${imageUrl})` }" class="article-image"></div>
+      <div :style="{ backgroundImage: `url(${imageUrl}), url(/missing-image.png)` }" class="article-image"></div>
     </div>
     <div class="article-info">
       <div class="article-medium">
@@ -11,10 +11,11 @@
         </div>
       </div>
       <div class="article-content">
-        <h4 class="article-title">{{ title }}</h4>
-        <div class="article-description">
+        <span class="article-title">{{ title }}/</span>
+        <span class="article-description">
           {{ content | trim }}
-        </div>
+        </span>
+
         <div>
           <a :href="articleUrl" class="read-more" target="_blank">
             Read more
@@ -29,7 +30,7 @@
 export default {
   filters: {
     trim(value) {
-      return value.toString().slice(0, 220) + ' ...'
+      return value.toString().slice(0, 150) + ' ...'
     }
   },
   props: {
@@ -78,7 +79,7 @@ export default {
 
 <style lang="scss" scoped>
 .event-article-preview {
-  border: 1px solid #3f3942;
+  border: 1px solid #a8a5a9;
   width: 100%;
   height: 100%;
   margin-bottom: 10px;
@@ -154,22 +155,21 @@ export default {
   .article-info {
     padding: 0 0.65rem 0.65rem;
     .article-content {
+      display: block;
+      line-height: 1;
       .article-title {
-        display: block;
+        display: inline;
         margin: 0;
         font-size: 1.25rem;
         font-weight: 700;
         color: #3f3942;
         line-height: 1;
         word-break: break-word;
-
-        &::after {
-          content: ' /\a0';
-        }
       }
       .article-description {
-        display: block;
-        line-height: 1.3;
+        display: inline;
+        line-height: 1.2;
+        word-break: break-word;
       }
       .read-more {
         display: inline-block;

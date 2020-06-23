@@ -25,15 +25,15 @@
       </div>
       <div @click="increment" class="carousel__arrow">
         <img
-          v-if="this.$store.state.carousel.selectedSlant !== 5"
+          v-if="this.$store.state.carousel.selectedSlant !== 3"
           src="@/assets/svg/carousel/right-arrow.svg"
           alt="arrow"
         />
-        <span v-if="this.$store.state.carousel.selectedSlant !== 5">
+        <span v-if="this.$store.state.carousel.selectedSlant !== 3">
           {{ getRightArrowText }}
         </span>
       </div>
-      <div v-if="this.$store.state.carousel.selectedSlant !== 5" class="carousel__subitem carousel__item--right">
+      <div v-if="this.$store.state.carousel.selectedSlant !== 3" class="carousel__subitem carousel__item--right">
         <CarousellItem
           :articles="getArticles(this.$store.state.carousel.selectedSlant + 1)"
           class="carousel-item-selector-item"
@@ -99,7 +99,7 @@ export default {
       this.$store.commit('carousel/INCREMENT_ITEM')
     },
     getArticles(slant) {
-      if (slant - 1 < 1 || slant + 1 > 5) {
+      if (slant - 1 < 1 || slant + 1 > 3) {
         return []
       }
       return this.$store.state.events.articles[slant]
@@ -126,7 +126,7 @@ export default {
   }
 
   &__item {
-    width: 65vw;
+    width: 60vw;
     @media (max-width: $medium) {
       width: 90%;
     }
@@ -134,11 +134,17 @@ export default {
     &--left {
       left: -60vw;
       overflow: hidden;
+      @media (max-width: $large) {
+        left: -68vw;
+      }
     }
 
     &--right {
       right: -60vw;
       overflow: hidden;
+      @media (max-width: $large) {
+        right: -68vw;
+      }
     }
 
     &--empty {
@@ -159,7 +165,7 @@ export default {
     }
     span {
       position: fixed;
-      top: 52%;
+      top: 51%;
       font-weight: 700;
       font-style: italic;
     }

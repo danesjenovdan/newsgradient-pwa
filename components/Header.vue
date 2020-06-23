@@ -113,6 +113,7 @@ h2 {
     color: white;
     width: 80%;
     border-radius: 12px;
+    border: none;
   }
 
   &:hover {
@@ -121,6 +122,7 @@ h2 {
     @media (max-width: $medium) {
       color: white;
       text-decoration: none;
+      border: none;
     }
   }
 

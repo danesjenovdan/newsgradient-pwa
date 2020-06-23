@@ -12,6 +12,22 @@ export default {
         hid: 'description',
         name: 'description',
         content: process.env.npm_package_description || ''
+      },
+      { property: 'og:image', content: 'https://imgur.com/a/xBRacq3' },
+      { property: 'ogs:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:title', content: 'Otvorite parlamente' },
+      {
+        property: 'og:description',
+        content:
+          'Podpiši za otvaranje Parlamentarne skupštini Bosne i Hercegovine, Parlamenta Federacije BiH i Narodne skupštine Republike Srpske.'
+      },
+      { property: 'twitter:card', content: 'summary' },
+      { property: 'twitter:title', content: 'Otvorite parlamente' },
+      {
+        property: 'twitter:description',
+        content:
+          'Podpiši za otvaranje Parlamentarne skupštini Bosne i Hercegovine, Parlamenta Federacije BiH i Narodne skupštine Republike Srpske.'
       }
     ],
     link: [

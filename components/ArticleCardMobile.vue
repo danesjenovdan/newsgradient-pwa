@@ -12,7 +12,7 @@
       <h4 class="article-title">{{ title }}</h4>
     </div>
     <div class="image-ratio">
-      <div :style="{ backgroundImage: `url(${imageUrl})` }" class="article-image"></div>
+      <div :style="{ backgroundImage: `url(${imageUrl}), url(/missing-image.png)` }" class="article-image"></div>
     </div>
     <div class="article-info">
       <div class="article-content">
@@ -36,7 +36,7 @@ export default {
   components: { Divider },
   filters: {
     trim(value) {
-      return value.toString().slice(0, 220) + ' ...'
+      return value.toString().slice(0, 150) + ' ...'
     }
   },
   props: {
@@ -159,6 +159,7 @@ export default {
         font-size: 0.9rem;
         font-weight: 400;
         line-height: 1.3;
+        word-break: break-all;
       }
       .read-more {
         display: inline-block;

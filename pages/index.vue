@@ -106,10 +106,11 @@ export default {
 
 .container-landing {
   width: 90%;
-  margin-bottom: 15vh;
+  margin-bottom: 100px;
   margin-top: 30px;
   @media (max-width: $medium) {
     margin-top: 0;
+    margin-bottom: 80px;
   }
 }
 .large-container {

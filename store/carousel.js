@@ -1,5 +1,5 @@
 export const state = () => ({
-  selectedSlant: 3
+  selectedSlant: 2
 })
 
 export const mutations = {

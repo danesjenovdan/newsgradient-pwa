@@ -1,14 +1,14 @@
 <template>
-  <div class="card flex">
+  <div :class="{ 'card--one': onlyOne }" class="card flex">
     <div class="flex flex-justify--space-between flex-align--center card__header">
       <div class="medium-brand">
         <img :src="faviconUrl" alt="" class="favicon" />
         <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
       </div>
     </div>
-    <div class="flex">
+    <div class="flex" style="margin-bottom: 5px">
       <div class="image-ratio">
-        <div :style="{ backgroundImage: `url(${imageUrl})` }" class="article-image"></div>
+        <div :style="{ backgroundImage: `url(${imageUrl}), url(/missing-image.png)` }" class="article-image"></div>
       </div>
       <div class="card__body">
         <div class="card__text-wrapper">
@@ -55,6 +55,10 @@ export default {
     mediumUrl: {
       type: String,
       default: ''
+    },
+    onlyOne: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -73,7 +77,6 @@ export default {
   width: 100%;
   height: 55%;
   text-overflow: ellipsis;
-  overflow: hidden;
   border-bottom: 1px solid black;
   border-right: none;
   border-left: none;
@@ -81,6 +84,10 @@ export default {
   transition: background-color 0.15s;
   &:hover {
     background-color: #fbfbfb;
+  }
+
+  &--one {
+    border: none;
   }
 
   .image-ratio {

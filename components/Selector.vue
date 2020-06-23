@@ -28,23 +28,18 @@
   </div>
 </template>
 <script>
-const NEUTRAL = 'NEUTRAL'
-const LIBERAL = 'LIBERAL'
-const FAR_LEFT = 'FAR LEFT'
-const CONSERVATIVE = 'CONSERVATIVE'
-const FAR_RIGHT = 'FAR RIGHT'
+import { SLANTS } from '../constants'
 
 export default {
   name: 'Selector',
   data() {
     return {
-      choices: [
-        { key: 1, name: FAR_LEFT },
-        { key: 2, name: LIBERAL },
-        { key: 3, name: NEUTRAL },
-        { key: 4, name: CONSERVATIVE },
-        { key: 5, name: FAR_RIGHT }
-      ],
+      choices: Object.keys(SLANTS).map((slantKey) => {
+        return {
+          key: parseInt(slantKey),
+          name: SLANTS[slantKey]
+        }
+      }),
       isInfoSeen: false
     }
   },
@@ -56,7 +51,7 @@ export default {
   },
   methods: {
     setChoice(key) {
-      this.$emit('change', key)
+      this.$emit('change', parseInt(key))
       this.checkSeen()
     },
     checkSeen() {
@@ -75,10 +70,15 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 11vh;
+  height: 100px;
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: $medium) {
+    height: 80px;
+  }
 }
 
 .notification {
@@ -120,7 +120,7 @@ export default {
     transform: rotate(45deg);
     bottom: -20px;
     left: calc(50% - 20px);
-    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.25);
     z-index: 100;
   }
 
@@ -145,6 +145,9 @@ export default {
 
 .choice-bar {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   li {
     list-style-type: none;

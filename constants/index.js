@@ -6,15 +6,11 @@ export const TIMERANGE = {
 }
 
 const NEUTRAL = 'NEUTRAL'
-const LIBERAL = 'LIBERAL'
-const FAR_LEFT = 'FAR LEFT'
-const CONSERVATIVE = 'CONSERVATIVE'
-const FAR_RIGHT = 'FAR RIGHT'
+const LEFT = 'LEFT'
+const RIGHT = 'RIGHT'
 
 export const SLANTS = {
-  1: FAR_LEFT,
-  2: LIBERAL,
-  3: NEUTRAL,
-  4: CONSERVATIVE,
-  5: FAR_RIGHT
+  1: LEFT,
+  2: NEUTRAL,
+  3: RIGHT
 }

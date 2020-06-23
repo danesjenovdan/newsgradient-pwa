@@ -24,17 +24,25 @@
     </div>
     <div :class="{ container: !isMobile, 'container--fluid': isMobile }">
       <div class="flex flex-justify--space-evenly mt64">
-        <div class="flex flex--column text--center title-holder">
+        <div @mouseenter="onHover(1)" @mouseleave="onHover(null)" class="flex flex--column text--center title-holder">
           <span @click="selectedTitle = 1" class="text--uppercase tab-title text--cursor-pointer mb4"
             >How does this work?</span
           >
-          <img v-if="selectedTitle === 1" src="@/assets/svg/underline-gradient.svg" class="gradient-underline" />
+          <img
+            v-if="selectedTitle === 1 || hoverItem === 1"
+            src="@/assets/svg/underline-gradient.svg"
+            class="gradient-underline"
+          />
         </div>
-        <div class="flex flex--column text--center title-holder">
+        <div @mouseenter="onHover(2)" @mouseleave="onHover(null)" class="flex flex--column text--center title-holder">
           <span @click="selectedTitle = 2" class="text--uppercase tab-title text--cursor-pointer mb4"
             >How are media arranged?</span
           >
-          <div v-if="selectedTitle === 2" src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
+          <div
+            v-if="selectedTitle === 2 || hoverItem === 2"
+            src="@/assets/svg/underline-gradient.svg"
+            class="gradient-underline"
+          ></div>
         </div>
       </div>
       <div class="card flex flex--column">
@@ -59,9 +67,9 @@
               </strong>
             </div>
             <div class="flex flex-justify--space-between flex-align--center image-wrapper">
-              <img src="@/assets/img/img1.png" height="40" />
-              <img src="@/assets/img/img2.png" height="120" />
-              <img src="@/assets/img/img3.png" height="40" />
+              <img src="@/assets/img/img1.png" class="img1" />
+              <img src="@/assets/img/img2.png" class="img2" />
+              <img src="@/assets/img/img3.png" class="img1" />
             </div>
           </div>
           <div class="flex flex--column col-lg-4 col-12 sponsors">
@@ -88,12 +96,18 @@ export default {
   components: { Header, SubHeader },
   data() {
     return {
-      selectedTitle: 1
+      selectedTitle: 1,
+      hoverItem: null
     }
   },
   computed: {
     isMobile() {
       return this.$store.state.sizing.windowWidth <= 768
+    }
+  },
+  methods: {
+    onHover(val) {
+      this.hoverItem = val
     }
   }
 }
@@ -159,7 +173,17 @@ export default {
   }
   height: 120px;
   img {
-    width: 25%;
+    @media (max-width: $large) {
+    }
+  }
+  .img1,
+  .img2 {
+    width: 20%;
+  }
+  .img2 {
+    @media (max-width: $medium) {
+      width: 80px;
+    }
   }
 }
 

@@ -9,22 +9,25 @@
           class="article-image"
         ></div>
       </div>
-      <div class="card__body">
-        <div class="card__text-wrapper">
-          <span class="card__title"> {{ title | trim }} </span>
+      <div class="card__body flex flex--column flex-justify--space-between">
+        <div>
+          <div class="card__text-wrapper">
+            <span class="card__title"> {{ title | trim }} </span>
+          </div>
+          <span v-if="firstPublish" class="text--italic">First published: </span>{{ firstPublish }}
         </div>
-        <span v-if="firstPublish" class="text--italic">First published: {{ firstPublish }}</span
-        ><br />
-        <div class="flex flex-justify--space-between flex-align--center">
-          <span class="articles">{{ articleCount }} articles</span>
-          <button
-            :to="'/events/' + eventUri"
-            @click="$router.push('/events/' + eventUri)"
-            class="more-button text--uppercase flex flex-align--center"
-          >
-            Compare headlines
-            <img src="@/assets/svg/small-right-arrow.svg" style="vertical-align: inherit; margin-left: 2px" />
-          </button>
+        <div>
+          <div class="flex flex-justify--space-between flex-align--center">
+            <span class="articles">{{ articleCount }} articles</span>
+            <button
+              :to="'/events/' + eventUri"
+              @click="$router.push('/events/' + eventUri)"
+              class="more-button text--uppercase flex flex-align--center"
+            >
+              Compare headlines
+              <img src="@/assets/svg/puscica-bela.svg" style="vertical-align: inherit; width: 12px; margin-left: 2px" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -106,8 +109,7 @@ export default {
 
   &__body {
     width: 90%;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px;
   }
 
   &__image {
