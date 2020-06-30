@@ -10,7 +10,7 @@ export default {
     return {
       links: [
         { to: '/', title: 'Events' },
-        { to: '/about', title: 'About' }
+        { to: '/about', title: 'Više o' }
       ]
     }
   },

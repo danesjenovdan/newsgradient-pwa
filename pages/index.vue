@@ -3,8 +3,8 @@
     <Header />
     <div class="container-landing ">
       <div v-if="isMobile" class="description-container">
-        5 most reported events by Bosnian<br />
-        press sorted by the partisan bias.
+        Top pet događaja o kojima je izvještavala bosanskohercegovačka <br />
+        štampa poredani su prema strančkoj pristranosti
       </div>
       <div v-if="!isMobile" class="flex flex--wrap">
         <div v-for="(event, index) in topEvents" :key="event.id" class="col-lg-8 col-12 mb30">

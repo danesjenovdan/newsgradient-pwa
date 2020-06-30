@@ -14,7 +14,7 @@
         <div class="card__text-wrapper">
           <span class="card__title"> {{ title }} </span>/
         </div>
-        <a :href="articleUrl" target="_blank" class="read-more">Read more</a>
+        <a :href="articleUrl" target="_blank" class="read-more">Pročitaj više</a>
       </div>
     </div>
   </div>

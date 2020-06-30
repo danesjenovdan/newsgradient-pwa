@@ -21,7 +21,7 @@
         </div>
         <div>
           <a :href="articleUrl" class="read-more" target="_blank">
-            Read more
+            Pročitaj više
           </a>
         </div>
       </div>

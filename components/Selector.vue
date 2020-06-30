@@ -18,10 +18,10 @@
       </div>
       <div class="text--center notification__text">
         <p class="notification__text--title">
-          Pick a perspective to see the stories!
+          Izaberi perspektivu za pregled priča!
         </p>
         <p class="notification__text--desc">
-          Browse among different views on the same event by selecting one of the options below.
+          Pretražite različite perspektive istog događaja odabirom jedne od opcija u nastavku.
         </p>
       </div>
     </div>

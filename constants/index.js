@@ -5,9 +5,9 @@ export const TIMERANGE = {
   LAST_MONTH: 'last-month'
 }
 
-const NEUTRAL = 'NEUTRAL'
-const LEFT = 'LEFT'
-const RIGHT = 'RIGHT'
+const NEUTRAL = 'NEUTRALNO'
+const LEFT = 'LIJEVO'
+const RIGHT = 'DESNO'
 
 export const SLANTS = {
   1: LEFT,

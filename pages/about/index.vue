@@ -18,15 +18,15 @@
     </div>
     <div class="container mt48">
       <h2 class="about-text text--center">
-        Newsgradient helps you explore the differences in reporting on political events. It enables a fast and easy way
-        of accessing news representation across the whole spectrum of media landscape.
+        „Newsgradient" vam pomaže istražiti razlike u izvještavanju o političkim događajima. Omogućuje brz i jednostavan
+        pristup načinu predstavljanja vijesti u čitavom medijskom spektru.
       </h2>
     </div>
     <div :class="{ container: !isMobile, 'container--fluid': isMobile }">
       <div class="flex flex-justify--space-evenly mt64">
         <div @mouseenter="onHover(1)" @mouseleave="onHover(null)" class="flex flex--column text--center title-holder">
           <span @click="selectedTitle = 1" class="text--uppercase tab-title text--cursor-pointer mb4"
-            >How does this work?</span
+            >Kako ovo funkcionira?</span
           >
           <img
             v-if="selectedTitle === 1 || hoverItem === 1"
@@ -36,7 +36,7 @@
         </div>
         <div @mouseenter="onHover(2)" @mouseleave="onHover(null)" class="flex flex--column text--center title-holder">
           <span @click="selectedTitle = 2" class="text--uppercase tab-title text--cursor-pointer mb4"
-            >How are media arranged?</span
+            >Na koji način su mediji poredani?</span
           >
           <div
             v-if="selectedTitle === 2 || hoverItem === 2"
@@ -45,7 +45,39 @@
           ></div>
         </div>
       </div>
-      <div class="card flex flex--column">
+      <div v-if="selectedTitle === 1" class="card flex flex--column">
+        <span class="title mb16">Sed ut persipiciatis unde omnis</span>
+        <span class="subtitle">
+          Prikupljamo sve članke iz odabranih bosanskohercegovačih medija uz pomoć naših saradnika i prijatelja iz Event
+          Regestryija. Novinski članci o istom događaju se zajednički grupiraju. Događaji o kojima se najviše
+          izvještavalo su prikazani na početnoj stranici. Uz korištenu rigoroznu metodologiju koju je razvila Ad Fontes
+          Media, ocijenili smo medijsku ideolosku orjentaciju. Više o tome možete saznati ovdje.
+        </span>
+        <div class="row mt40">
+          <div class="flex flex--column flex-align--flex-start col-lg-8 col-12 sponsors">
+            <div class="title-container">
+              <strong>
+                RAZVILI
+              </strong>
+            </div>
+            <div class="flex flex-justify--space-between flex-align--center image-wrapper">
+              <img src="@/assets/img/img1.png" class="img1" />
+              <img src="@/assets/img/img3.png" class="img1" />
+            </div>
+          </div>
+          <div class="flex flex--column col-lg-4 col-12 sponsors">
+            <div class="title-container">
+              <strong>
+                UZ POMOĆ
+              </strong>
+            </div>
+            <div class="flex flex-justify--center flex-align--center image-wrapper single-image">
+              <img src="@/assets/img/img4.png" height="80" width="80" style="width: unset" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="selectedTitle === 2" class="card flex flex--column">
         <span class="title mb16">Sed ut persipiciatis unde omnis</span>
         <span class="subtitle"
           >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -63,7 +95,7 @@
           <div class="flex flex--column flex-align--flex-start col-lg-8 col-12 sponsors">
             <div class="title-container">
               <strong>
-                DEVELOPED BY
+                RAZVILI
               </strong>
             </div>
             <div class="flex flex-justify--space-between flex-align--center image-wrapper">
@@ -75,7 +107,7 @@
           <div class="flex flex--column col-lg-4 col-12 sponsors">
             <div class="title-container">
               <strong>
-                WITH SUPPORT OF
+                WUZ POMOĆ
               </strong>
             </div>
             <div class="flex flex-justify--center flex-align--center image-wrapper single-image">

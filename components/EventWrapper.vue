@@ -7,10 +7,11 @@
           {{ title }}
         </div>
         <div>
-          <span class="date-display">Last published:</span> <span class="date-display__date">{{ firstPublish }}</span>
+          <span class="date-display">Posljednja objava :</span>
+          <span class="date-display__date">{{ firstPublish }}</span>
         </div>
         <div class="mt16 mb8">
-          <a :href="'/events/' + eventUri" class="articles"> {{ articleCount }} articles </a>
+          <a :href="'/events/' + eventUri" class="articles"> {{ articleCount }} članaka </a>
         </div>
         <div v-if="isMain" :class="{ empty__wrapper: !articleCount, row: articleCount }">
           <template v-if="articleCount">
@@ -71,7 +72,7 @@
             @click="$router.push('/events/' + eventUri)"
             class="more-button text--uppercase"
           >
-            More Articles <img src="@/assets/svg/puscica-bela.svg" style="vertical-align: inherit; width: 15px" />
+            Više članaka <img src="@/assets/svg/puscica-bela.svg" style="vertical-align: inherit; width: 15px" />
           </button>
         </div>
       </div>

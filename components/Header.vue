@@ -7,17 +7,17 @@
           <img src="@/assets/svg/logo-text.svg" class="logo-image" />
         </nuxt-link>
         <h2 class="ng-header__text">
-          5 most reported events by Bosnian<br />
-          press sorted by the partisan bias.
+          Top pet događaja o kojima je izvještavala bosanskohercegovačka <br />
+          štampa poredani su prema strančkoj pristranosti
         </h2>
         <!--        <TimingSelect @change="timerangeChanged" class="timing-container" />-->
       </div>
       <div class="links-container">
         <nuxt-link :class="['link', { 'link--active': '/' === $route.path }]" to="/" class="link events-link">
-          Events
+          Događaji
         </nuxt-link>
         <nuxt-link :class="['link', { 'link--active': '/about' === $route.path }]" to="/about" class="link">
-          About
+          Više o
         </nuxt-link>
       </div>
     </div>
@@ -29,8 +29,8 @@ export default {
   data() {
     return {
       links: [
-        { to: '/', title: 'Events' },
-        { to: '/about', title: 'About' }
+        { to: '/', title: 'Događaji' },
+        { to: '/about', title: 'Više o' }
       ]
     }
   },

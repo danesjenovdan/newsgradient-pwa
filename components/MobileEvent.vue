@@ -18,7 +18,7 @@
         </div>
         <div>
           <div class="flex flex-justify--space-between flex-align--center">
-            <span class="articles">{{ articleCount }} articles</span>
+            <span class="articles">{{ articleCount }} članaka</span>
             <button
               :to="'/events/' + eventUri"
               @click="$router.push('/events/' + eventUri)"
