@@ -4,30 +4,31 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'NewsGradient',
+    title: 'Newsgradient BIH',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content:
+          'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti'
       },
       { property: 'og:image', content: 'https://imgur.com/a/xBRacq3' },
       { property: 'ogs:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
-      { property: 'og:title', content: 'Otvorite parlamente' },
+      { property: 'og:title', content: 'Newsgradient BIH' },
       {
         property: 'og:description',
         content:
-          'Podpiši za otvaranje Parlamentarne skupštini Bosne i Hercegovine, Parlamenta Federacije BiH i Narodne skupštine Republike Srpske.'
+          'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
       },
       { property: 'twitter:card', content: 'summary' },
-      { property: 'twitter:title', content: 'Otvorite parlamente' },
+      { property: 'twitter:title', content: 'Newsgradient BIH' },
       {
         property: 'twitter:description',
         content:
-          'Podpiši za otvaranje Parlamentarne skupštini Bosne i Hercegovine, Parlamenta Federacije BiH i Narodne skupštine Republike Srpske.'
+          'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
       }
     ],
     link: [

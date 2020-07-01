@@ -6,7 +6,7 @@
         <div :class="{ 'title--small': !isMain }" @click="$router.push('/events/' + eventUri)" class="title">
           {{ title }}
         </div>
-        <div>
+        <div v-if="articles.length">
           <span class="date-display">Posljednja objava :</span>
           <span class="date-display__date">{{ firstPublish }}</span>
         </div>
@@ -33,7 +33,7 @@
             <div class="flex flex--column flex-justify--center flex-align--center empty__holder--main">
               <img src="@/assets/svg/missing-icon.svg" width="60" />
               <span class="empty__text">
-                There is no articles about this topic yet
+                Jos uvijek nema clanaka o ovom dogadjaju
               </span>
             </div>
           </template>
@@ -59,7 +59,7 @@
             <div class="flex flex--column flex-justify--center flex-align--center empty__holder">
               <img src="@/assets/svg/missing-icon.svg" width="60" />
               <span class="empty__text">
-                There is no articles about this topic yet
+                Jos uvijek nema clanaka o ovom dogadjaju
               </span>
             </div>
           </template>

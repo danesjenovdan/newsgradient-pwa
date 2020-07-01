@@ -24,7 +24,7 @@
               @click="$router.push('/events/' + eventUri)"
               class="more-button text--uppercase flex flex-align--center"
             >
-              Compare headlines
+              Uporedite naslove
               <img src="@/assets/svg/puscica-bela.svg" style="vertical-align: inherit; width: 12px; margin-left: 2px" />
             </button>
           </div>
