@@ -144,6 +144,11 @@ export default {
     font-weight: 700;
     color: #3f3942;
     line-height: 1.1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    padding-bottom: 0.18em;
   }
 
   &__text {
