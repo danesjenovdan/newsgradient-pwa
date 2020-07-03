@@ -7,7 +7,7 @@
           {{ title }}
         </div>
         <div v-if="articles.length">
-          <span class="date-display">Posljednja objava :</span>
+          <span class="date-display">Posljednja objava:</span>
           <span class="date-display__date">{{ firstPublish }}</span>
         </div>
         <div class="mt16 mb8">
