@@ -2,7 +2,7 @@
   <div class="event-article-preview">
     <div class="image-ratio">
       <div
-        :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=344), url(/missing-image.png)` }"
+        :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=334), url(/missing-image.png)` }"
         class="article-image"
       ></div>
     </div>
@@ -89,6 +89,7 @@ export default {
   margin-bottom: 10px;
   margin-left: 5px;
   margin-right: 5px;
+  background-color: #f6f6f6;
   transition: background-color 0.15s ease-in-out;
   position: relative;
 

@@ -2,22 +2,22 @@
   <div :class="{ 'card--one': onlyOne }" class="card flex">
     <div class="flex flex-justify--space-between flex-align--center card__header">
       <div class="medium-brand">
-        <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" alt="" class="favicon" />
-        <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
+        <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" class="favicon" />
+        <a :href="mediumUrl" class="medium-name" target="_blank">{{ fixedMediumName }}</a>
       </div>
     </div>
-    <div class="flex" style="margin-bottom: 5px">
+    <div class="flex">
       <div class="image-ratio">
         <div
-          :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=205), url(/missing-image.png)` }"
+          :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=194), url(/missing-image.png)` }"
           class="article-image"
         ></div>
       </div>
       <div class="card__body">
         <div class="card__text-wrapper">
-          <span class="card__title"> {{ title }} </span>/
+          <span class="card__title"> {{ title }} /</span>
         </div>
-        <a :href="articleUrl" target="_blank" class="read-more">Pročitaj više</a>
+        <a :href="articleUrl" target="_blank" class="read-more stretched-link">Pročitaj više</a>
       </div>
     </div>
   </div>
@@ -55,20 +55,21 @@ export default {
       type: String,
       default: ''
     },
-    mediumUrl: {
-      type: String,
-      default: ''
-    },
+    // mediumUrl: {
+    //   type: String,
+    //   default: ''
+    // },
     onlyOne: {
       type: Boolean,
       default: false
     }
   },
   computed: {
-    setLogo() {
-      return {
-        /* LOGO */
-      }
+    mediumUrl() {
+      return this.articleUrl.slice(0, this.articleUrl.indexOf('/', this.articleUrl.indexOf('://') + 3))
+    },
+    fixedMediumName() {
+      return this.mediumName.replace('Oslobo?enje', 'Oslobođenje')
     }
   }
 }
@@ -80,22 +81,25 @@ export default {
   width: 100%;
   height: 55%;
   text-overflow: ellipsis;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #a8a5a9;
+  border-top: none;
   border-right: none;
   border-left: none;
   border-radius: 0;
+  background-color: #f6f6f6;
   transition: background-color 0.15s;
+
   &:hover {
     background-color: #fbfbfb;
   }
 
-  &--one {
-    border: none;
-  }
+  // &--one {
+  //   border: none;
+  // }
 
   .image-ratio {
-    margin-bottom: 0.65rem;
     width: 60%;
+
     .article-image {
       height: 0;
       padding-top: 56.25%;
@@ -106,7 +110,7 @@ export default {
   }
 
   &:first-child {
-    border-top: 1px solid black;
+    border-top: 1px solid #a8a5a9;
   }
 
   &--small {
@@ -119,6 +123,7 @@ export default {
   &__body {
     width: 90%;
     margin-left: 10px;
+    line-height: 1;
   }
 
   &__image {
@@ -131,29 +136,28 @@ export default {
   }
 
   &__title {
-    font-size: 1rem;
-    font-weight: 900;
+    font-size: 23px;
+    font-weight: 700;
     color: #3f3942;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    line-height: 1.1;
   }
 
   &__text {
     font-size: 0.8rem;
   }
 }
+
 .medium-brand {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 14px;
+
   .favicon {
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 26px;
+    height: 26px;
   }
+
   .medium-name {
     margin-left: 0.5rem;
     color: #000;
@@ -162,9 +166,11 @@ export default {
     line-height: 1.25rem;
   }
 }
+
 .read-more {
   display: inline-block;
   color: #07f;
   text-decoration: underline;
+  line-height: 1.3;
 }
 </style>

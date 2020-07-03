@@ -6,9 +6,12 @@
         <div :class="{ 'title--small': !isMain }" @click="$router.push('/events/' + eventUri)" class="title">
           {{ title }}
         </div>
-        <div v-if="articles.length" class="mt-1">
-          <span class="date-display">Posljednja objava:</span>
-          <span class="date-display__date">{{ firstPublish }}</span>
+        <div class="mt-1">
+          <template v-if="articles.length">
+            <span :class="['date-display', { 'date-display--small': !isMain }]">Posljednja objava:</span>
+            <span :class="['date-display__date', { 'date-display__date--small': !isMain }]">{{ firstPublish }}</span>
+          </template>
+          <span v-else>&nbsp;</span>
         </div>
         <div class="mt16 mb8">
           <a :href="'/events/' + eventUri" class="articles">{{ articleCount }} članaka</a>
@@ -31,14 +34,14 @@
           </template>
           <template v-else>
             <div class="flex flex--column flex-justify--center flex-align--center empty__holder--main">
-              <img src="@/assets/svg/missing-icon.svg" width="60" />
+              <img src="@/assets/svg/missing-icon.svg" class="missing-icon" />
               <span class="empty__text">
-                Jos uvijek nema clanaka o ovom dogadjaju
+                Ni jedan {{ selectedSlantString }} medij nije izvijestio o ovom dogadjaju.
               </span>
             </div>
           </template>
         </div>
-        <div v-else :class="{ empty__wrapper: !articleCount }" class="flex flex--column">
+        <div v-else :class="{ empty__wrapper: !articleCount }" class="flex flex--column mt-2 small-articles">
           <template v-if="articleCount">
             <ArticleCardSmall
               v-for="article in articles"
@@ -57,9 +60,9 @@
           </template>
           <template v-else>
             <div class="flex flex--column flex-justify--center flex-align--center empty__holder">
-              <img src="@/assets/svg/missing-icon.svg" width="60" />
+              <img src="@/assets/svg/missing-icon.svg" class="missing-icon" />
               <span class="empty__text">
-                Jos uvijek nema clanaka o ovom dogadjaju
+                Ni jedan {{ selectedSlantString }} medij nije izvijestio o ovom dogadjaju.
               </span>
             </div>
           </template>
@@ -113,6 +116,12 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  computed: {
+    selectedSlantString() {
+      const slant = this.$store.state.carousel.selectedSlant
+      return slant === 2 ? 'neutralan' : slant < 2 ? 'lijevo orijentiran' : 'desno orijentiran'
+    }
   }
 }
 </script>
@@ -133,7 +142,7 @@ export default {
   line-height: 1.1;
 
   &--small {
-    font-size: 1.8rem;
+    font-size: 27px;
   }
 
   &:hover {
@@ -151,6 +160,11 @@ export default {
     font-weight: 300;
     font-style: normal;
   }
+
+  &--small,
+  &__date--small {
+    font-size: 13px;
+  }
 }
 
 .articles {
@@ -159,8 +173,9 @@ export default {
 }
 
 .content-wrapper-custom {
-  padding: 25px 20px;
+  padding: 25px 25px;
   height: 100%;
+  min-height: 808px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -182,16 +197,37 @@ export default {
 
   &__wrapper {
     height: 100%;
-    border-top: 1px solid black;
+    // border-top: 1px solid black;
   }
 
   &__text {
-    margin-top: 5px;
+    margin-top: 8px;
     font-weight: 300;
+    font-style: italic;
+    font-size: 22px;
+    max-width: 350px;
+    text-align: center;
+    line-height: 1.1;
   }
 }
 
 .article-wrapper {
   height: 100%;
+}
+
+.small-articles {
+  margin-left: -25px;
+  margin-right: -25px;
+
+  .article-wrapper {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 14px;
+    padding-bottom: 20px;
+  }
+}
+
+.missing-icon {
+  width: 70px;
 }
 </style>

@@ -7,7 +7,7 @@
           class="carousel-item-selector"
         />
       </div>
-      <div @click="decrement" class="carousel__arrow mr8">
+      <div @click="decrement" class="carousel__arrow carousel__arrow--left">
         <img
           v-if="this.$store.state.carousel.selectedSlant !== 1"
           src="@/assets/svg/carousel/right-arrow.svg"
@@ -23,7 +23,7 @@
           class="carousel-item-selector"
         />
       </div>
-      <div @click="increment" class="carousel__arrow">
+      <div @click="increment" class="carousel__arrow carousel__arrow--right">
         <img
           v-if="this.$store.state.carousel.selectedSlant !== 3"
           src="@/assets/svg/carousel/right-arrow.svg"
@@ -153,19 +153,27 @@ export default {
   }
 
   &__arrow {
-    width: 50px;
+    width: 60px;
     cursor: pointer;
     margin: 25px;
+    text-align: center;
+    position: fixed;
+    top: 45%;
+
+    &--left {
+      left: 14%;
+    }
+
+    &--right {
+      right: 14%;
+    }
 
     img {
-      position: fixed;
-      top: 45%;
-      width: 50px;
-      margin-bottom: 10px;
+      width: 60px;
+      margin-bottom: 5px;
     }
+
     span {
-      position: fixed;
-      top: 51%;
       font-weight: 700;
       font-style: italic;
     }

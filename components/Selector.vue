@@ -75,6 +75,7 @@ export default {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
+  z-index: 99999;
 
   @media (max-width: $medium) {
     height: 80px;
@@ -159,6 +160,7 @@ export default {
     text-transform: uppercase;
     color: #7d7d7d;
     font-style: italic;
+    cursor: pointer;
 
     @media (max-width: $small) {
       font-size: 10px;
@@ -179,6 +181,7 @@ export default {
     margin: 0 auto 10px auto;
     border-radius: 50%;
     transition: background-color 0.2s;
+    cursor: pointer;
 
     @media (max-width: $small) {
       width: 30px;

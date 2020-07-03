@@ -61,9 +61,9 @@
 h1 {
   text-align: center;
   font-style: italic;
-  padding: 10px 40px;
+  margin: 36px 0 25px 0;
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 40px;
   color: #3f3942;
 }
 </style>

@@ -7,7 +7,7 @@
         štampa poredani su prema strančkoj pristranosti
       </div>
       <div v-if="!isMobile" class="flex flex--wrap">
-        <div v-for="(event, index) in topEvents" :key="event.id" class="col-lg-8 col-12 mb30">
+        <div v-for="(event, index) in topEvents" :key="event.id" class="col-xl-8 col-12 mb30">
           <EventWrapper
             :title="event.title"
             :articles="event.articles"
@@ -17,7 +17,7 @@
             :first-publish="event.firstPublish"
           />
         </div>
-        <div v-for="event in otherEvents" :key="event.id" class="col-lg-4 col-12 mb30">
+        <div v-for="event in otherEvents" :key="event.id" class="col-xl-4 col-lg-6 col-12 mb30">
           <EventWrapper
             :title="event.title"
             :articles="event.articles"
