@@ -1,48 +1,38 @@
+const OG_TITLE = 'Newsgradient BiH'
+const OG_DESCRIPTION =
+  'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
+const OG_IMAGE = 'TODO og image'
+
 export default {
   mode: 'spa',
   /*
    ** Headers of the page
    */
   head: {
-    title: 'Newsgradient BIH',
+    title: OG_TITLE,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti'
-      },
-      { property: 'og:image', content: 'https://imgur.com/a/xBRacq3' },
-      { property: 'ogs:image:width', content: '1200' },
-      { property: 'og:image:height', content: '630' },
-      { property: 'og:title', content: 'Newsgradient BIH' },
-      {
-        property: 'og:description',
-        content:
-          'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
-      },
-      { property: 'twitter:card', content: 'summary' },
-      { property: 'twitter:title', content: 'Newsgradient BIH' },
-      {
-        property: 'twitter:description',
-        content:
-          'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
-      }
+      { name: 'description', content: OG_DESCRIPTION },
+      { property: 'og:image', content: OG_IMAGE },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '628' },
+      { property: 'og:title', content: OG_TITLE },
+      { property: 'og:description', content: OG_DESCRIPTION },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: OG_TITLE },
+      { name: 'twitter:image', content: OG_IMAGE },
+      { name: 'twitter:description', content: OG_DESCRIPTION }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://use.typekit.net/rwb3jbn.css'
-      }
+      { rel: 'stylesheet', href: 'https://use.typekit.net/rwb3jbn.css' }
     ]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#e50001' },
   /*
    ** Global CSS
    */
