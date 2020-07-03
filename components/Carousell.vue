@@ -18,7 +18,14 @@
         </span>
       </div>
       <div :class="{ 'carousel__item--empty': noArticles }" class="carousel__item">
+        <template v-if="noArticles">
+          <div class="flex flex--column flex-justify--center flex-align--center empty__holder--main">
+            <img src="@/assets/svg/missing-icon.svg" class="missing-icon" />
+            <span class="empty__text">Ni jedan {{ selectedSlantString }} medij nije izvijestio o ovom dogadjaju.</span>
+          </div>
+        </template>
         <CarousellItem
+          v-else
           :articles="getArticles(this.$store.state.carousel.selectedSlant)"
           class="carousel-item-selector"
         />
@@ -89,6 +96,10 @@ export default {
         return false
       }
       return this.$store.state.events.articles[slant].length === 0
+    },
+    selectedSlantString() {
+      const slant = this.$store.state.carousel.selectedSlant
+      return slant === 2 ? 'neutralan' : slant < 2 ? 'lijevo orijentiran' : 'desno orijentiran'
     }
   },
   methods: {
@@ -99,9 +110,9 @@ export default {
       this.$store.commit('carousel/INCREMENT_ITEM')
     },
     getArticles(slant) {
-      if (slant - 1 < 1 || slant + 1 > 3) {
-        return []
-      }
+      // if (slant - 1 < 1 || slant + 1 > 3) {
+      //   return []
+      // }
       return this.$store.state.events.articles[slant]
     }
   }
@@ -123,6 +134,12 @@ export default {
     position: absolute;
     opacity: 0.3;
     top: 0;
+
+    &,
+    & /deep/ *,
+    & /deep/ .stretched-link::after {
+      pointer-events: none !important;
+    }
   }
 
   &__item {
@@ -153,19 +170,18 @@ export default {
   }
 
   &__arrow {
-    width: 60px;
     cursor: pointer;
     margin: 25px;
-    text-align: center;
     position: fixed;
     top: 45%;
 
     &--left {
-      left: 14%;
+      text-align: right;
+      right: 80%;
     }
 
     &--right {
-      right: 14%;
+      left: 80%;
     }
 
     img {
@@ -174,9 +190,39 @@ export default {
     }
 
     span {
+      display: block;
       font-weight: 700;
       font-style: italic;
+      text-align: center;
     }
   }
+}
+
+.empty {
+  &__holder {
+    margin-top: 40%;
+    &--main {
+      margin-top: 22%;
+    }
+  }
+
+  &__wrapper {
+    height: 100%;
+    // border-top: 1px solid black;
+  }
+
+  &__text {
+    margin-top: 8px;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 22px;
+    max-width: 350px;
+    text-align: center;
+    line-height: 1.1;
+  }
+}
+
+.missing-icon {
+  width: 70px;
 }
 </style>
