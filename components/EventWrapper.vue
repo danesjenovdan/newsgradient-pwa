@@ -6,14 +6,14 @@
         <div :class="{ 'title--small': !isMain }" @click="$router.push('/events/' + eventUri)" class="title">
           {{ title }}
         </div>
-        <div v-if="articles.length">
+        <div v-if="articles.length" class="mt-1">
           <span class="date-display">Posljednja objava:</span>
           <span class="date-display__date">{{ firstPublish }}</span>
         </div>
         <div class="mt16 mb8">
-          <a :href="'/events/' + eventUri" class="articles"> {{ articleCount }} članaka </a>
+          <a :href="'/events/' + eventUri" class="articles">{{ articleCount }} članaka</a>
         </div>
-        <div v-if="isMain" :class="{ empty__wrapper: !articleCount, row: articleCount }">
+        <div v-if="isMain" :class="['mt-2', { empty__wrapper: !articleCount, row: articleCount }]">
           <template v-if="articleCount">
             <div v-for="article in articles" :key="article.id" class="col-lg-4 col-md-6">
               <ArticleCard
@@ -66,7 +66,7 @@
         </div>
       </div>
       <div>
-        <div v-if="articleCount" class="w-100 flex flex-justify--flex-end text--uppercase mt16">
+        <div v-if="articleCount" class="w-100 flex flex-justify--flex-end text--uppercase mt-4">
           <button
             :to="'/events/' + eventUri"
             @click="$router.push('/events/' + eventUri)"
@@ -121,40 +121,45 @@ export default {
 .wrapper {
   margin: 10px;
 }
+
 .title {
-  font-size: 2rem;
+  font-size: 36px;
   font-weight: 900;
   font-style: italic;
   color: #3f3942;
-  transition: color 0.2s;
+  transition: color 0.15s ease-in-out;
   cursor: pointer;
   display: block;
-  line-height: 1em;
+  line-height: 1.1;
+
   &--small {
     font-size: 1.8rem;
   }
+
   &:hover {
     color: #0177ff;
   }
 }
+
 .date-display {
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 300;
   font-style: italic;
 
   &__date {
-    font-weight: 400;
-    font-size: 1rem;
-    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
   }
 }
+
 .articles {
-  font-size: 1rem;
+  font-size: 18px;
   color: #e50001;
 }
 
 .content-wrapper-custom {
-  padding: 10px;
+  padding: 25px 20px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -179,6 +184,7 @@ export default {
     height: 100%;
     border-top: 1px solid black;
   }
+
   &__text {
     margin-top: 5px;
     font-weight: 300;

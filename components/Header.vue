@@ -1,6 +1,6 @@
 <template>
   <div class="ng-header container--fluid">
-    <div class="flex flex-justify--space-between">
+    <div class="flex flex-justify--space-between w-90 mx-auto px-3">
       <div class="flex">
         <nuxt-link to="/" class="flex flex--1 mr8">
           <h1 hidden>NEWSGRADIENT</h1>
@@ -52,8 +52,9 @@ export default {
   width: 100%;
   box-shadow: 0px -10px 20px 10px rgba(0, 0, 0, 0.25);
   padding: 10px 20px;
+
   @media (min-width: $small) {
-    padding: 15px 40px;
+    padding: 32px 0;
   }
 
   &__text {
@@ -67,6 +68,7 @@ export default {
   text-decoration: none;
   display: block;
 }
+
 .logo-image {
   width: 150px;
 
@@ -75,12 +77,12 @@ export default {
   }
 
   @media (min-width: $large) {
-    width: 300px;
+    width: 408px;
   }
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 300;
   font-style: italic;
   line-height: 1.2;
@@ -89,9 +91,9 @@ h2 {
 
 .links-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  width: 30%;
+  width: 20%;
   @media (max-width: $medium) {
     justify-content: flex-end;
   }
@@ -99,7 +101,7 @@ h2 {
 
 .link {
   color: #3f3942;
-  font-size: 1.3rem;
+  font-size: 27px;
   font-weight: 900;
   border-bottom: 4px solid white;
 
@@ -145,6 +147,7 @@ h2 {
     display: none;
   }
 }
+
 a {
   text-decoration: none;
 }

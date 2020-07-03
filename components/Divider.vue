@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 .divider {
-  height: 4px;
+  height: 5px;
   background-image: linear-gradient(to right, #0076fe 0%, #e50001 100%);
 }
 </style>

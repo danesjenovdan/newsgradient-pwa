@@ -107,7 +107,7 @@ export default {
 .container-landing {
   width: 90%;
   margin-bottom: 100px;
-  margin-top: 30px;
+  margin-top: 80px;
   @media (max-width: $medium) {
     margin-top: 0;
     margin-bottom: 80px;

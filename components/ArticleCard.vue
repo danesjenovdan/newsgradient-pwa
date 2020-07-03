@@ -9,18 +9,18 @@
     <div class="article-info">
       <div class="article-medium">
         <div class="medium-brand">
-          <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" alt="" class="favicon" />
-          <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
+          <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" class="favicon" />
+          <a :href="mediumUrl" class="medium-name" target="_blank">{{ fixedMediumName }}</a>
         </div>
       </div>
       <div class="article-content">
-        <span class="article-title">{{ title }}/</span>
+        <span class="article-title">{{ title }} /</span>
         <span class="article-description">
           {{ content | trim }}
         </span>
 
         <div>
-          <a :href="articleUrl" class="read-more" target="_blank">
+          <a :href="articleUrl" class="read-more stretched-link" target="_blank">
             Pročitaj više
           </a>
         </div>
@@ -51,7 +51,7 @@ export default {
     },
     sourceTitle: {
       type: String,
-      default: 'NewsHouse'
+      default: ''
     },
     articleUrl: {
       type: String,
@@ -64,17 +64,18 @@ export default {
     mediumName: {
       type: String,
       default: ''
-    },
-    mediumUrl: {
-      type: String,
-      default: ''
     }
+    // mediumUrl: {
+    //   type: String,
+    //   default: ''
+    // }
   },
   computed: {
-    setLogo() {
-      return {
-        /* LOGO */
-      }
+    mediumUrl() {
+      return this.articleUrl.slice(0, this.articleUrl.indexOf('/', this.articleUrl.indexOf('://') + 3))
+    },
+    fixedMediumName() {
+      return this.mediumName.replace('Oslobo?enje', 'Oslobođenje')
     }
   }
 }
@@ -88,20 +89,22 @@ export default {
   margin-bottom: 10px;
   margin-left: 5px;
   margin-right: 5px;
-  transition: background-color 0.15s;
+  transition: background-color 0.15s ease-in-out;
+  position: relative;
 
   &:first-child {
     margin-left: 0;
   }
+
   &:last-child {
     margin-right: 0;
   }
+
   &:hover {
-    background-color: #fbfbfb;
+    background-color: #fdfdfd;
   }
 
   .image-ratio {
-    margin-bottom: 0.65rem;
     .article-image {
       height: 0;
       padding-top: 56.25%;
@@ -110,20 +113,25 @@ export default {
       position: relative;
     }
   }
+
   .article-medium {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 18px;
+
     .medium-brand {
       flex-shrink: 0;
       display: flex;
       align-items: center;
+
       .favicon {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 26px;
+        height: 26px;
+        background-color: #ededed;
       }
+
       .medium-name {
         margin-left: 0.5rem;
         color: #000;
@@ -132,6 +140,7 @@ export default {
         line-height: 1.25rem;
       }
     }
+
     .medium-link {
       flex-shrink: 0;
       font-size: 0.65rem;
@@ -140,13 +149,16 @@ export default {
       margin-left: auto;
       display: inline;
       vertical-align: middle;
+
       &:hover {
         text-decoration: none;
       }
     }
   }
+
   .tags {
     margin: 0.75rem 0 0.5rem;
+
     .tag {
       display: inline-block;
       font-size: 0.75rem;
@@ -155,29 +167,35 @@ export default {
       padding: 0.25rem 0.5rem;
     }
   }
+
   .article-info {
-    padding: 0 0.65rem 0.65rem;
+    padding: 15px 21px;
+
     .article-content {
       display: block;
       line-height: 1;
+
       .article-title {
         display: inline;
         margin: 0;
-        font-size: 1.25rem;
+        font-size: 22px;
         font-weight: 700;
         color: #3f3942;
-        line-height: 1;
+        line-height: 1.1;
         word-break: break-word;
       }
+
       .article-description {
         display: inline;
-        line-height: 1.2;
+        line-height: 1.3;
         word-break: break-word;
       }
+
       .read-more {
         display: inline-block;
         color: #07f;
         text-decoration: underline;
+        line-height: 1.3;
       }
     }
   }
