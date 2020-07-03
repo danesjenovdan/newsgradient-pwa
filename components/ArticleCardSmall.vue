@@ -2,13 +2,16 @@
   <div :class="{ 'card--one': onlyOne }" class="card flex">
     <div class="flex flex-justify--space-between flex-align--center card__header">
       <div class="medium-brand">
-        <img :src="faviconUrl" alt="" class="favicon" />
+        <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" alt="" class="favicon" />
         <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
       </div>
     </div>
     <div class="flex" style="margin-bottom: 5px">
       <div class="image-ratio">
-        <div :style="{ backgroundImage: `url(${imageUrl}), url(/missing-image.png)` }" class="article-image"></div>
+        <div
+          :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=205), url(/missing-image.png)` }"
+          class="article-image"
+        ></div>
       </div>
       <div class="card__body">
         <div class="card__text-wrapper">

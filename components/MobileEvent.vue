@@ -4,7 +4,7 @@
       <div class="image-ratio">
         <div
           :style="{
-            backgroundImage: `linear-gradient(to right, rgba(228, 0, 1, 0.6) 0%, rgba(65, 153, 254, 0.6) 100%), url(${imageUrl})`
+            backgroundImage: `linear-gradient(to right, rgba(228, 0, 1, 0.6) 0%, rgba(65, 153, 254, 0.6) 100%), url(https://images.weserv.nl/?url=${imageUrl}&w=120&h=120&fit=cover)`
           }"
           class="article-image"
         ></div>

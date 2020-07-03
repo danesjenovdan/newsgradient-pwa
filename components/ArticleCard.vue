@@ -1,12 +1,15 @@
 <template>
   <div class="event-article-preview">
     <div class="image-ratio">
-      <div :style="{ backgroundImage: `url(${imageUrl}), url(/missing-image.png)` }" class="article-image"></div>
+      <div
+        :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=344), url(/missing-image.png)` }"
+        class="article-image"
+      ></div>
     </div>
     <div class="article-info">
       <div class="article-medium">
         <div class="medium-brand">
-          <img :src="faviconUrl" alt="" class="favicon" />
+          <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" alt="" class="favicon" />
           <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
         </div>
       </div>
