@@ -189,9 +189,9 @@ export default {
 
 .empty {
   &__holder {
-    margin-top: 50%;
+    margin-top: 40%;
     &--main {
-      margin-top: 25%;
+      margin-top: 22%;
     }
   }
 

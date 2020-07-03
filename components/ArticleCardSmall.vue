@@ -8,10 +8,7 @@
     </div>
     <div class="flex">
       <div class="image-ratio">
-        <div
-          :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=194), url(/missing-image.png)` }"
-          class="article-image"
-        ></div>
+        <div :style="{ backgroundImage: `url(${fixedImageUrl}), url(/missing-image.png)` }" class="article-image"></div>
       </div>
       <div class="card__body">
         <div class="card__text-wrapper">
@@ -70,6 +67,13 @@ export default {
     },
     fixedMediumName() {
       return this.mediumName.replace('Oslobo?enje', 'Oslobođenje')
+    },
+    fixedImageUrl() {
+      let imageUrl = this.imageUrl
+      if (imageUrl.includes('balkans.aljazeera.net') || imageUrl.includes('federalna.ba')) {
+        imageUrl = imageUrl.replace('https://', 'http://')
+      }
+      return `https://images.weserv.nl/?url=${encodeURIComponent(imageUrl)}&w=194`
     }
   }
 }

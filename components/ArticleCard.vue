@@ -1,10 +1,7 @@
 <template>
   <div class="event-article-preview">
     <div class="image-ratio">
-      <div
-        :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=334), url(/missing-image.png)` }"
-        class="article-image"
-      ></div>
+      <div :style="{ backgroundImage: `url(${fixedImageUrl}), url(/missing-image.png)` }" class="article-image"></div>
     </div>
     <div class="article-info">
       <div class="article-medium">
@@ -76,6 +73,13 @@ export default {
     },
     fixedMediumName() {
       return this.mediumName.replace('Oslobo?enje', 'Oslobođenje')
+    },
+    fixedImageUrl() {
+      let imageUrl = this.imageUrl
+      if (imageUrl.includes('balkans.aljazeera.net') || imageUrl.includes('federalna.ba')) {
+        imageUrl = imageUrl.replace('https://', 'http://')
+      }
+      return `https://images.weserv.nl/?url=${encodeURIComponent(imageUrl)}&w=334`
     }
   }
 }
