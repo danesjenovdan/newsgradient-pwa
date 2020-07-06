@@ -15,7 +15,7 @@
         >
           <defs>
             <linearGradient
-              id="a"
+              id="6c9a0"
               x1="3.1"
               x2="96.9"
               y1="52"
@@ -27,7 +27,7 @@
               <stop offset="1" stop-color="#e50001" />
             </linearGradient>
           </defs>
-          <g fill="url(#a)">
+          <g fill="url(#6c9a0)" class="arrow-icon-color">
             <path
               d="M3.1 50A46.9 46.9 0 1150 96.9 46.9 46.9 0 013.1 50zm6.3 0A40.6 40.6 0 1050 9.4 40.6 40.6 0 009.4 50z"
             />
@@ -61,7 +61,7 @@
         >
           <defs>
             <linearGradient
-              id="a"
+              id="adf5b"
               x1="3.1"
               x2="96.9"
               y1="52"
@@ -73,7 +73,7 @@
               <stop offset="1" stop-color="#e50001" />
             </linearGradient>
           </defs>
-          <g fill="url(#a)">
+          <g fill="url(#adf5b)" class="arrow-icon-color">
             <path
               d="M3.1 50A46.9 46.9 0 1150 96.9 46.9 46.9 0 013.1 50zm6.3 0A40.6 40.6 0 1050 9.4 40.6 40.6 0 009.4 50z"
             />
@@ -94,6 +94,12 @@
     </template>
     <template v-else>
       <div class="carousel__item">
+        <template v-if="noArticles">
+          <div class="flex flex--column flex-justify--center flex-align--center empty__holder--main">
+            <img src="@/assets/svg/missing-icon.svg" class="missing-icon" />
+            <span class="empty__text">Ni jedan {{ selectedSlantString }} medij nije izvijestio o ovom dogadjaju.</span>
+          </div>
+        </template>
         <CarousellItemMobile
           :articles="getArticles(this.$store.state.carousel.selectedSlant)"
           class="carousel-item-selector"
@@ -189,8 +195,10 @@ export default {
 
   &__item {
     width: 60vw;
+
     @media (max-width: $medium) {
-      width: 90%;
+      width: auto;
+      padding: 0 8px;
     }
 
     &--left {
@@ -229,7 +237,7 @@ export default {
       left: 80%;
     }
 
-    img {
+    svg {
       width: 60px;
       margin-bottom: 5px;
     }
@@ -239,6 +247,12 @@ export default {
       font-weight: 700;
       font-style: italic;
       text-align: center;
+    }
+
+    &:not(:hover) {
+      svg .arrow-icon-color {
+        fill: #0177ff;
+      }
     }
   }
 }
@@ -264,6 +278,7 @@ export default {
     max-width: 350px;
     text-align: center;
     line-height: 1.1;
+    padding-bottom: 0.18em;
   }
 }
 

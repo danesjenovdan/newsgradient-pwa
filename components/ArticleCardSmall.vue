@@ -12,7 +12,7 @@
       </div>
       <div class="card__body">
         <div class="card__text-wrapper">
-          <span class="card__title"> {{ title }} /</span>
+          <span class="card__title">{{ title }} /</span>
         </div>
         <a :href="articleUrl" target="_blank" class="read-more stretched-link">Pročitaj više</a>
       </div>

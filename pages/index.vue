@@ -3,8 +3,7 @@
     <Header />
     <div class="container-landing ">
       <div v-if="isMobile" class="description-container">
-        Top pet događaja o kojima je izvještavala bosanskohercegovačka <br />
-        štampa poredani su prema strančkoj pristranosti
+        Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti
       </div>
       <div v-if="!isMobile" class="flex flex--wrap">
         <div v-for="(event, index) in topEvents" :key="event.id" class="col-xl-8 col-12 mb30">
@@ -108,9 +107,12 @@ export default {
   width: 90%;
   margin-bottom: 100px;
   margin-top: 80px;
+
   @media (max-width: $medium) {
     margin-top: 0;
     margin-bottom: 80px;
+    width: auto;
+    padding: 0 8px;
   }
 }
 .large-container {
@@ -132,5 +134,12 @@ export default {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  line-height: 1.1;
+
+  @media (max-width: $medium) {
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

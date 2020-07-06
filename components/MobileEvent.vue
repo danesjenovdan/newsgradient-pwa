@@ -18,7 +18,7 @@
         </div>
         <div>
           <div class="flex flex-justify--space-between flex-align--center">
-            <span class="articles">{{ articleCount }} članaka</span>
+            <span class="articles">{{ `${articleCount} ${articleCount === 1 ? 'članak' : 'članaka'}` }}</span>
             <button
               :to="'/events/' + eventUri"
               @click="$router.push('/events/' + eventUri)"
@@ -67,12 +67,8 @@ export default {
       default: 0
     }
   },
-  computed: {
-    setLogo() {
-      return {
-        /* LOGO */
-      }
-    }
+  mounted() {
+    this.$store.dispatch('carousel/setSlant', 2)
   }
 }
 </script>
@@ -87,13 +83,15 @@ export default {
   border-left: none;
   border-radius: 0;
   margin-bottom: 10px;
+  font-weight: 300;
 
   .image-ratio {
     width: 120px;
+
     .article-image {
       height: 0;
       padding-top: 120px;
-      width: 120px;
+      width: 110px;
       background-position: center center;
       background-size: cover;
       position: relative;
@@ -122,17 +120,25 @@ export default {
   }
 
   &__title {
-    font-size: 0.95rem;
+    font-size: 16px;
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.1;
+    color: #3f3942;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    padding-bottom: 0.18em;
   }
 
   &__text {
     font-size: 0.8rem;
   }
 }
+
 .articles {
-  font-size: 0.7rem;
+  font-size: 12px;
   color: #e50001;
+  font-weight: 400;
 }
 </style>

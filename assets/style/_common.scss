@@ -19,11 +19,12 @@
   }
 
   @media (max-width:$medium) {
-    font-size: 0.7rem;
-    height: 24px;
+    font-size: 10px;
+    height: auto;
     border-radius: 12px;
-    width: 170px;
+    // width: 150px;
     justify-content: center;
+    padding: 5px 10px;
   }
 }
 

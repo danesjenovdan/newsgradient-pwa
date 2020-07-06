@@ -16,7 +16,7 @@
       </SubHeader>
       <Header v-else />
     </div>
-    <div class="container mt48">
+    <div class="container mt64 mb64">
       <h2 class="about-text text--center">
         "Newsgradient" vam pomaže istražiti razlike u izvještavanju o političkim događajima. Omogućuje brz i jednostavan
         pristup načinu predstavljanja vijesti u čitavom medijskom spektru.
@@ -24,31 +24,12 @@
     </div>
     <div :class="{ container: !isMobile, 'container--fluid': isMobile }">
       <div class="flex flex-justify--space-evenly mt64">
-        <div @mouseenter="onHover(1)" @mouseleave="onHover(null)" class="flex flex--column text--center title-holder">
-          <span @click="selectedTitle = 1" class="text--uppercase tab-title text--cursor-pointer mb4">Karta medija</span>
-          <img
-            v-if="selectedTitle === 1 || hoverItem === 1"
-            src="@/assets/svg/underline-gradient.svg"
-            class="gradient-underline"
-          />
-        </div>
-        <div @mouseenter="onHover(2)" @mouseleave="onHover(null)" class="flex flex--column text--center title-holder">
-          <span @click="selectedTitle = 2" class="text--uppercase tab-title text--cursor-pointer mb4"
-            >Kako ovo funkcionira?</span
-          >
-          <div
-            v-if="selectedTitle === 2 || hoverItem === 2"
-            src="@/assets/svg/underline-gradient.svg"
-            class="gradient-underline"
-          ></div>
+        <div class="flex flex--column text--center title-holder">
+          <span class="text--uppercase tab-title mb4">Kako ovo funkcionira?</span>
+          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
         </div>
       </div>
-      <div v-if="selectedTitle === 1" class="card flex flex--column">
-        <div class="row mt40">
-          <img src="https://placekitten.com/1000/1000" class="w-100 img-fluid" />
-        </div>
-      </div>
-      <div v-if="selectedTitle === 2" class="card flex flex--column">
+      <div class="card flex flex--column">
         <span class="subtitle">
           Prikupljamo sve članke iz odabranih bosanskohercegovačih medija uz pomoć naših saradnika i prijatelja iz
           <a href="https://eventregistry.org/" target="_blank">Event Registryija</a>. Novinski članci o istom događaju se
@@ -58,6 +39,25 @@
           orjentaciju. Više o tome možete saznati
           <a href="https://www.adfontesmedia.com/how-ad-fontes-ranks-news-sources/" target="_blank">ovdje</a>.
         </span>
+      </div>
+      <div class="flex flex-justify--space-evenly mt40">
+        <div class="flex flex--column text--center title-holder">
+          <span class="text--uppercase tab-title mb4">Karta medija</span>
+          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
+        </div>
+      </div>
+      <div class="card flex flex--column">
+        <div>
+          <img src="https://placekitten.com/1000/1000" class="w-100 img-fluid" />
+        </div>
+      </div>
+      <div class="flex flex-justify--space-evenly mt40">
+        <div class="flex flex--column text--center title-holder">
+          <span class="text--uppercase tab-title mb4"></span>
+          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
+        </div>
+      </div>
+      <div class="card flex flex--column mb64">
         <div class="row mt40">
           <div class="flex flex--column flex-align--flex-start col-lg-8 col-12 sponsors">
             <div class="title-container">
@@ -93,20 +93,9 @@ import Header from '../../components/Header'
 export default {
   name: 'Index',
   components: { Header, SubHeader },
-  data() {
-    return {
-      selectedTitle: 1,
-      hoverItem: null
-    }
-  },
   computed: {
     isMobile() {
       return this.$store.state.sizing.windowWidth <= 768
-    }
-  },
-  methods: {
-    onHover(val) {
-      this.hoverItem = val
     }
   }
 }
@@ -116,12 +105,15 @@ export default {
 @import '@/assets/style/variables';
 
 .about-text {
-  font-size: 2rem;
-  font-weight: 400;
+  font-size: 40px;
+  font-weight: 300;
+  font-style: italic;
+
   @media (max-width: $medium) {
     font-size: 1rem;
   }
 }
+
 .card {
   background-color: rgba(255, 255, 255, 0.6);
   width: 100%;
@@ -129,9 +121,11 @@ export default {
   border-radius: 0;
   border: none;
 }
+
 .title {
   font-size: 1.5rem;
   font-weight: 900;
+
   @media (max-width: $medium) {
     font-size: 1.1rem;
   }
@@ -142,8 +136,9 @@ export default {
 }
 
 .subtitle {
-  font-size: 15px;
+  font-size: 18px;
 }
+
 .gradient-underline {
   width: 100%;
   margin-bottom: -5px;
@@ -175,10 +170,12 @@ export default {
     @media (max-width: $large) {
     }
   }
+
   .img1,
   .img2 {
     width: 20%;
   }
+
   .img2 {
     @media (max-width: $medium) {
       width: 80px;

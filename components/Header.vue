@@ -51,7 +51,7 @@ export default {
   left: 0;
   width: 100%;
   box-shadow: 0px -10px 20px 10px rgba(0, 0, 0, 0.25);
-  padding: 10px 20px;
+  padding: 10px 0;
 
   @media (min-width: $small) {
     padding: 32px 0;
@@ -101,7 +101,7 @@ h2 {
 
 .link {
   color: #3f3942;
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 900;
   border-bottom: 4px solid white;
 
@@ -110,12 +110,14 @@ h2 {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    font-size: 1rem;
+    font-size: 10px;
     background-color: #ea4243;
     color: white;
     width: 80%;
     border-radius: 12px;
     border: none;
+    font-weight: 400;
+    padding: 5px 10px;
   }
 
   &:hover {

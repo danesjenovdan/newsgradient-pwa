@@ -4,18 +4,15 @@
     <div class="title-section">
       <div class="article-medium">
         <div class="medium-brand">
-          <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" alt="" class="favicon" />
-          <a :href="'https://' + mediumUrl" class="medium-name" target="_blank">{{ mediumName }}</a>
+          <img :src="`https://www.google.com/s2/favicons?sz=32&domain_url=${mediumUrl}`" class="favicon" />
+          <a :href="mediumUrl" class="medium-name" target="_blank">{{ fixedMediumName }}</a>
         </div>
       </div>
       <hr />
       <h4 class="article-title">{{ title }}</h4>
     </div>
     <div class="image-ratio">
-      <div
-        :style="{ backgroundImage: `url(https://images.weserv.nl/?url=${imageUrl}&w=685), url(/missing-image.png)` }"
-        class="article-image"
-      ></div>
+      <div :style="{ backgroundImage: `url(${fixedImageUrl}), url(/missing-image.png)` }" class="article-image"></div>
     </div>
     <div class="article-info">
       <div class="article-content">
@@ -23,7 +20,7 @@
           {{ content | trim }}
         </div>
         <div>
-          <a :href="articleUrl" class="read-more" target="_blank">
+          <a :href="articleUrl" class="read-more stretched-link" target="_blank">
             Pročitaj više
           </a>
         </div>
@@ -70,17 +67,25 @@ export default {
     mediumName: {
       type: String,
       default: ''
-    },
-    mediumUrl: {
-      type: String,
-      default: ''
     }
+    // mediumUrl: {
+    //   type: String,
+    //   default: ''
+    // }
   },
   computed: {
-    setLogo() {
-      return {
-        /* LOGO */
+    mediumUrl() {
+      return this.articleUrl.slice(0, this.articleUrl.indexOf('/', this.articleUrl.indexOf('://') + 3))
+    },
+    fixedMediumName() {
+      return this.mediumName.replace('Oslobo?enje', 'Oslobođenje')
+    },
+    fixedImageUrl() {
+      let imageUrl = this.imageUrl
+      if (imageUrl.includes('balkans.aljazeera.net') || imageUrl.includes('federalna.ba')) {
+        imageUrl = imageUrl.replace('https://', 'http://')
       }
+      return `https://images.weserv.nl/?url=${encodeURIComponent(imageUrl)}&w=359`
     }
   }
 }
@@ -121,13 +126,13 @@ export default {
       display: flex;
       align-items: center;
       .favicon {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 16px;
+        height: 16px;
       }
       .medium-name {
         margin-left: 0.5rem;
         color: #000;
-        font-size: 1rem;
+        font-size: 12px;
         font-style: italic;
         line-height: 1.25rem;
       }
@@ -159,12 +164,13 @@ export default {
     .article-content {
       .article-description {
         display: block;
-        font-size: 0.9rem;
+        font-size: 13px;
         font-weight: 400;
-        line-height: 1.3;
+        line-height: 1.2;
         word-break: break-all;
       }
       .read-more {
+        font-size: 13px;
         display: inline-block;
         color: #07f;
         text-decoration: underline;
@@ -176,13 +182,19 @@ export default {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
 }
+
 .article-title {
   display: block;
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 700;
   color: #3f3942;
-  line-height: 1;
+  line-height: 1.2;
   word-break: break-word;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>
