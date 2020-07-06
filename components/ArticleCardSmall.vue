@@ -140,7 +140,7 @@ export default {
   }
 
   &__title {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 700;
     color: #3f3942;
     line-height: 1.1;

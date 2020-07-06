@@ -63,8 +63,9 @@ h1 {
   font-style: italic;
   margin: 36px 0 25px 0;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 36px;
   color: #3f3942;
+  max-width: 60vw;
 }
 </style>
 <script>

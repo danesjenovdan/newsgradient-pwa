@@ -183,7 +183,7 @@ export default {
       .article-title {
         display: inline;
         margin: 0;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 700;
         color: #3f3942;
         line-height: 1.1;

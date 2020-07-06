@@ -53,10 +53,10 @@
           Prikupljamo sve članke iz odabranih bosanskohercegovačih medija uz pomoć naših saradnika i prijatelja iz
           <a href="https://eventregistry.org/" target="_blank">Event Registryija</a>. Novinski članci o istom događaju se
           zajednički grupiraju. Događaji o kojima se najviše izvještavalo su prikazani na početnoj stranici. Uz korištenu
-          rigoroznu
-          <a href="https://www.adfontesmedia.com/how-ad-fontes-ranks-news-sources/" target="_blank">metodologiju</a> koju
-          je razvila <a href="https://www.adfontesmedia.com/" target="_blank">Ad Fontes Media</a>, ocijenili smo medijsku
-          ideolosku orjentaciju. Više o tome možete saznati ovdje.
+          rigoroznu metodologiju koju je razvila
+          <a href="https://www.adfontesmedia.com/" target="_blank">Ad Fontes Media</a>, ocijenili smo medijsku ideolosku
+          orjentaciju. Više o tome možete saznati
+          <a href="https://www.adfontesmedia.com/how-ad-fontes-ranks-news-sources/" target="_blank">ovdje</a>.
         </span>
         <div class="row mt40">
           <div class="flex flex--column flex-align--flex-start col-lg-8 col-12 sponsors">
@@ -74,7 +74,7 @@
           <div class="flex flex--column col-lg-4 col-12 sponsors">
             <div class="title-container">
               <strong>
-                WUZ POMOĆ
+                UZ POMOĆ
               </strong>
             </div>
             <div class="flex flex-justify--center flex-align--center image-wrapper single-image">

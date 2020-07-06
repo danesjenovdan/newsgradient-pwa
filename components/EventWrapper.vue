@@ -13,8 +13,10 @@
           </template>
           <span v-else>&nbsp;</span>
         </div>
-        <div class="mt16 mb8">
-          <a :href="'/events/' + eventUri" class="articles">{{ articleCount }} članaka</a>
+        <div class="mt8 mb8">
+          <a :href="'/events/' + eventUri" class="articles">{{
+            `${articleCount} ${articleCount === 1 ? 'članak' : 'članaka'}`
+          }}</a>
         </div>
         <div v-if="isMain" :class="['mt-2', { empty__wrapper: !articleCount, row: articleCount }]">
           <template v-if="articleCount">
