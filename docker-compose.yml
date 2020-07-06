@@ -4,6 +4,7 @@ services:
     build: .
     environment:
       COMPOSE_HTTP_TIMEOUT: 300
+      NODE_ENV: production
     command: sh -c "npm run build && npm run start"
     ports:
       - "127.0.0.1:50000:3000"
