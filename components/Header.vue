@@ -101,7 +101,7 @@ h2 {
 
 .link {
   color: #3f3942;
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 900;
   border-bottom: 4px solid white;
 

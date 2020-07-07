@@ -55,7 +55,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    ['nuxt-matomo', { matomoUrl: 'https://track.djnd.si/', siteId: 12, doNotTrack: true, cookies: false }]
   ],
   /*
    ** Axios module configuration
@@ -63,7 +64,7 @@ export default {
    */
   axios: {
     proxy: false,
-    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:20000' : 'https://api.bih.newsgradient.org/'
+    baseURL: 'https://api.bih.newsgradient.org/'
   },
   /*
    ** Build configuration
@@ -73,5 +74,11 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  /*
+   ** Router configuration
+   */
+  router: {
+    middleware: 'matomo'
   }
 }
