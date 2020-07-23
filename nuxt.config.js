@@ -1,7 +1,7 @@
 const OG_TITLE = 'Newsgradient BiH'
 const OG_DESCRIPTION =
   'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
-const OG_IMAGE = 'TODO og image'
+const OG_IMAGE = 'https://bih.newsgradient.org/missing-image.png'
 
 export default {
   mode: 'spa',
@@ -15,8 +15,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: OG_DESCRIPTION },
       { property: 'og:image', content: OG_IMAGE },
-      { property: 'og:image:width', content: '1200' },
-      { property: 'og:image:height', content: '628' },
+      { property: 'og:image:width', content: '530' },
+      { property: 'og:image:height', content: '300' },
       { property: 'og:title', content: OG_TITLE },
       { property: 'og:description', content: OG_DESCRIPTION },
       { name: 'twitter:card', content: 'summary_large_image' },
