@@ -48,7 +48,7 @@
       </div>
       <div class="card flex flex--column">
         <div>
-          <img src="https://placekitten.com/1000/1000" class="w-100 img-fluid" />
+          <img src="@/assets/img/Media-Bias-Chart-Bosnia-1.jpg" class="w-100 img-fluid" />
         </div>
       </div>
       <div class="flex flex-justify--space-evenly mt40">
