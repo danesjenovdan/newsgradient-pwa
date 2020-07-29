@@ -16,30 +16,7 @@
       </SubHeader>
       <Header v-else />
     </div>
-    <div class="container mt64 mb64">
-      <h2 class="about-text text--center">
-        "Newsgradient" vam pomaže istražiti razlike u izvještavanju o političkim događajima. Omogućuje brz i jednostavan
-        pristup načinu predstavljanja vijesti u čitavom medijskom spektru.
-      </h2>
-    </div>
     <div :class="{ container: !isMobile, 'container--fluid': isMobile }">
-      <div class="flex flex-justify--space-evenly mt64">
-        <div class="flex flex--column text--center title-holder">
-          <span class="text--uppercase tab-title mb4">Kako ovo funkcionira?</span>
-          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
-        </div>
-      </div>
-      <div class="card flex flex--column">
-        <span class="subtitle">
-          Prikupljamo sve članke iz odabranih bosanskohercegovačih medija uz pomoć naših saradnika i prijatelja iz
-          <a href="https://eventregistry.org/" target="_blank">Event Registryija</a>. Novinski članci o istom događaju se
-          zajednički grupiraju. Događaji o kojima se najviše izvještavalo su prikazani na početnoj stranici. Uz korištenu
-          rigoroznu metodologiju koju je razvila
-          <a href="https://www.adfontesmedia.com/" target="_blank">Ad Fontes Media</a>, ocijenili smo medijsku ideolosku
-          orjentaciju. Više o tome možete saznati
-          <a href="https://www.adfontesmedia.com/how-ad-fontes-ranks-news-sources/" target="_blank">ovdje</a>.
-        </span>
-      </div>
       <div class="flex flex-justify--space-evenly mt40">
         <div class="flex flex--column text--center title-holder">
           <span class="text--uppercase tab-title mb4">Karta medija</span>
@@ -48,8 +25,58 @@
       </div>
       <div class="card flex flex--column">
         <div>
-          <img src="@/assets/img/Media-Bias-Chart-Bosnia-1.jpg" class="w-100 img-fluid" />
+          <a href="/Media-Bias-Chart-Bosnia-2.jpg" target="_blank"
+            ><img src="/Media-Bias-Chart-Bosnia-2.jpg" class="w-100 img-fluid"
+          /></a>
         </div>
+      </div>
+      <div class="flex flex-justify--space-evenly mt64">
+        <div class="flex flex--column text--center title-holder">
+          <span class="text--uppercase tab-title mb4">Šta je Newsgradient?</span>
+          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
+        </div>
+      </div>
+      <div class="card flex flex--column">
+        <p class="subtitle mb-0">
+          Newsgradient je online platforma koja nam omogućava da vidimo kako su mediji iz BiH, grupisani prema svojoj
+          ideološkoj orijentaciji, izvještavali o pojedinim događajima i temama.
+        </p>
+      </div>
+      <div class="flex flex-justify--space-evenly mt64">
+        <div class="flex flex--column text--center title-holder">
+          <span class="text--uppercase tab-title mb4">Kako je određena ideološka orijentacija medija?</span>
+          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
+        </div>
+      </div>
+      <div class="card flex flex--column">
+        <p class="subtitle">
+          Koristeći jedinstvenu metodologiju koju je razvila Vanessa Otero, osnivačica
+          <a href="https://www.adfontesmedia.com/" target="_blank">Ad Fontes Media</a>, ocijenili smo pouzdanost i
+          ideološku orijentaciju medija u BiH. Tim analitičara/ki je u periodu od dva mjeseca pratio i ocjenjivao uzorak
+          medijskih izvještaja odabranih medija prema spomenutoj metodologiji. Na ovaj način su dobijeni ukupni rezultati
+          i izračunate ocjene 1) pouzdanosti 2) ideološke orijentacije svakog medija iz uzorka.
+        </p>
+        <p class="subtitle mb-0">
+          Više o metodologiji ocjenjivanja medija možete saznati
+          <a href="https://www.adfontesmedia.com/how-ad-fontes-ranks-news-sources/" target="_blank">ovdje</a>.
+        </p>
+      </div>
+      <div class="flex flex-justify--space-evenly mt64">
+        <div class="flex flex--column text--center title-holder">
+          <span class="text--uppercase tab-title mb4">Kako radi Newsgradient?</span>
+          <div src="@/assets/svg/underline-gradient.svg" class="gradient-underline"></div>
+        </div>
+      </div>
+      <div class="card flex flex--column">
+        <p class="subtitle mb-0">
+          Prikupljamo članke iz odabranih bosanskohercegovačih medija uz pomoć naših saradnika i prijatelja iz
+          <a href="https://eventregistry.org/" target="_blank">Event Registry</a>. Novinski članci o istoj temi ili
+          događaju se grupiraju. Teme ili događaji o kojima se najviše izvještavalo u proteklom danu su prikazani na
+          početnoj stranici. Mediji su, prema ideološkoj orijentaciji, grupisani u tri grupe: lijevo orijentisani mediji,
+          neutralni/uravnoteženi mediji i desno orijentisani mediji. Granica koja dijeli ove tri kategorije je
+          postavljena prema smjernicama postavljenim od strane autorke metodologije, uvažavajući lokalni kontekst i
+          realnost medijske scene u BiH.
+        </p>
       </div>
       <div class="flex flex-justify--space-evenly mt40">
         <div class="flex flex--column text--center title-holder">
@@ -58,27 +85,41 @@
         </div>
       </div>
       <div class="card flex flex--column mb64">
-        <div class="row mt40">
+        <div class="row">
           <div class="flex flex--column flex-align--flex-start col-lg-8 col-12 sponsors">
             <div class="title-container">
-              <strong>
-                RAZVILI
-              </strong>
+              <strong>RAZVILI</strong>
             </div>
-            <div class="flex flex-justify--space-between flex-align--center image-wrapper">
-              <img src="@/assets/img/djnd-logo.png" class="img1" alt="danes je nov dan logo" />
-              <img src="@/assets/img/zasto-ne-logo.png" class="img2" alt="zašto ne logo" />
-              <img src="@/assets/img/adfontes-logo.png" class="img1" alt="adfontes logo" />
+            <div class="row">
+              <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                <a href="https://danesjenovdan.si/" target="_blank" class="d-inline-block mb-4 mb-md-0"
+                  ><img src="@/assets/img/djnd-logo.png" alt="danes je nov dan logo" class="img-fluid"
+                /></a>
+              </div>
+              <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                <a href="https://zastone.ba/" target="_blank" class="d-inline-block mb-4 mb-md-0"
+                  ><img src="@/assets/img/zasto-ne-logo.png" alt="zašto ne logo" class="img-fluid"
+                /></a>
+              </div>
+              <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                <a href="https://www.adfontesmedia.com/" target="_blank" class="d-inline-block mb-4 mb-md-0"
+                  ><img src="@/assets/img/adfontes-logo.png" alt="adfontes logo" class="img-fluid"
+                /></a>
+              </div>
             </div>
           </div>
-          <div class="flex flex--column col-lg-4 col-12 sponsors">
+          <div class="flex flex--column col-lg-4 col-12 sponsors mt-4 mt-lg-0">
             <div class="title-container">
-              <strong>
-                UZ POMOĆ
-              </strong>
+              <strong>UZ POMOĆ</strong>
             </div>
-            <div class="flex flex-justify--center flex-align--center image-wrapper single-image">
-              <img src="@/assets/img/ned-logo.png" height="80" width="80" style="width: unset" />
+            <div class="row">
+              <div
+                class="col-12 col-md-4 col-lg-6 d-flex align-items-center justify-content-center justify-content-md-start"
+              >
+                <a href="https://www.ned.org/" target="_blank" class="d-inline-block mb-4 mb-md-0"
+                  ><img src="@/assets/img/ned-logo.png" alt="ned logo" class="img-fluid"
+                /></a>
+              </div>
             </div>
           </div>
         </div>
@@ -159,30 +200,6 @@ export default {
   }
 }
 
-.image-wrapper {
-  width: 80%;
-
-  @media (max-width: $large) {
-    width: 100%;
-  }
-  height: 120px;
-  img {
-    @media (max-width: $large) {
-    }
-  }
-
-  .img1,
-  .img2 {
-    width: 20%;
-  }
-
-  .img2 {
-    @media (max-width: $medium) {
-      width: 80px;
-    }
-  }
-}
-
 .title-container {
   width: 100%;
   text-align: center;
@@ -204,10 +221,9 @@ export default {
 }
 
 .sponsors {
-  &:last-child {
-    @media (max-width: $medium) {
-      margin-top: 40px;
-    }
+  img {
+    max-width: 160px;
+    max-height: 90px;
   }
 }
 </style>

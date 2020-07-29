@@ -7,14 +7,14 @@
           <img src="@/assets/svg/logo-text.svg" class="logo-image" />
         </nuxt-link>
         <h2 class="ng-header__text">
-          Top pet događaja o kojima je izvještavala bosanskohercegovačka <br />
-          štampa poredani su prema strančkoj pristranosti
+          Pet najaktuelnijih vijesti u izvještajima bosanskohercegovačkih <br />
+          medija, poredanih po ideološkoj orijentaciji
         </h2>
         <!--        <TimingSelect @change="timerangeChanged" class="timing-container" />-->
       </div>
       <div class="links-container">
         <nuxt-link :class="['link', { 'link--active': '/' === $route.path }]" to="/" class="link events-link">
-          Događaji
+          Vijesti
         </nuxt-link>
         <nuxt-link :class="['link', { 'link--active': '/about' === $route.path }]" to="/about" class="link">
           Više o
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       links: [
-        { to: '/', title: 'Događaji' },
+        { to: '/', title: 'Vijesti' },
         { to: '/about', title: 'Više o' }
       ]
     }

@@ -1,6 +1,6 @@
 const OG_TITLE = 'Newsgradient BiH'
 const OG_DESCRIPTION =
-  'Top pet događaja o kojima je izvještavala bosanskohercegovačka štampa poredani su prema strančkoj pristranosti.'
+  'Pet najaktuelnijih vijesti u izvještajima bosanskohercegovačkih medija, poredanih po ideološkoj orijentaciji'
 const OG_IMAGE = 'https://bih.newsgradient.org/missing-image.png'
 
 export default {
