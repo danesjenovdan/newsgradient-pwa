@@ -15,7 +15,7 @@
         </div>
         <div class="mt8 mb8">
           <a :href="'/events/' + eventUri" class="articles">{{
-            `${articleCount} ${articleCount === 1 ? 'članak' : 'članaka'}`
+            `${allArticlesCount} ${allArticlesCount === 1 ? 'članak' : 'članaka'}`
           }}</a>
         </div>
         <div v-if="isMain" :class="['mt-2', { empty__wrapper: !articleCount, row: articleCount }]">
@@ -106,6 +106,10 @@ export default {
       default: '20 hours ago'
     },
     articleCount: {
+      type: Number,
+      default: 0
+    },
+    allArticlesCount: {
       type: Number,
       default: 0
     },

@@ -18,7 +18,7 @@
         </div>
         <div>
           <div class="flex flex-justify--space-between flex-align--center">
-            <span class="articles">{{ `${articleCount} ${articleCount === 1 ? 'članak' : 'članaka'}` }}</span>
+            <span class="articles">{{ `${allArticlesCount} ${allArticlesCount === 1 ? 'članak' : 'članaka'}` }}</span>
             <button
               :to="'/events/' + eventUri"
               @click="$router.push('/events/' + eventUri)"
@@ -63,6 +63,10 @@ export default {
       default: ''
     },
     articleCount: {
+      type: Number,
+      default: 0
+    },
+    allArticlesCount: {
       type: Number,
       default: 0
     }

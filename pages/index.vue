@@ -11,6 +11,7 @@
             :title="event.title"
             :articles="event.articles"
             :article-count="event.articleCount"
+            :all-articles-count="event.allArticlesCount"
             :event-uri="event.id"
             :is-main="index === 0"
             :first-publish="event.firstPublish"
@@ -23,6 +24,7 @@
             :is-main="false"
             :event-uri="event.id"
             :article-count="event.articleCount"
+            :all-articles-count="event.allArticlesCount"
             :first-publish="event.firstPublish"
           />
         </div>
@@ -35,6 +37,7 @@
             :image-url="ev.image"
             :first-publish="ev.firstPublish"
             :article-count="ev.articleCount"
+            :all-articles-count="ev.allArticlesCount"
             :event-uri="ev.id"
           />
         </div>
