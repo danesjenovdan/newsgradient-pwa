@@ -1,7 +1,7 @@
 const OG_TITLE = 'Newsgradient BiH'
 const OG_DESCRIPTION =
   'Pet najaktuelnijih vijesti u izvještajima bosanskohercegovačkih medija, poredanih po ideološkoj orijentaciji'
-const OG_IMAGE = 'https://bih.newsgradient.org/missing-image.png'
+const OG_IMAGE = 'https://bih.newsgradient.org/newsgradient-og.png'
 
 export default {
   mode: 'spa',
@@ -14,6 +14,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: OG_DESCRIPTION },
+      { name: 'author', content: 'Danes je nov dan' },
       { property: 'og:image', content: OG_IMAGE },
       { property: 'og:image:width', content: '530' },
       { property: 'og:image:height', content: '300' },

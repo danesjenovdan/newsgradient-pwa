@@ -94,6 +94,8 @@ h2 {
   justify-content: space-between;
   align-items: center;
   width: 20%;
+  max-width: 240px;
+
   @media (max-width: $medium) {
     justify-content: flex-end;
   }
@@ -123,6 +125,7 @@ h2 {
   &:hover {
     color: #ea4243;
     border-bottom: 4px solid #ea4243;
+
     @media (max-width: $medium) {
       color: white;
       text-decoration: none;
@@ -138,14 +141,16 @@ h2 {
 
 .events-link {
   display: none;
-  @media (min-width: $medium) {
+
+  @media (min-width: $large) {
     display: block;
   }
 }
 
 .timing-container {
   display: block;
-  @media (min-width: $medium) {
+
+  @media (min-width: $large) {
     display: none;
   }
 }
